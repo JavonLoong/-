@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#f8f4ed"/>
+  <rect x="32" y="28" width="1136" height="584" rx="28" fill="#fffdf8" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="60" y="82" font-family="Georgia, Microsoft YaHei, serif" font-size="32" fill="#1f2937">波粒二象性里的两张常考图像</text>
+  <rect x="70" y="124" width="500" height="430" rx="24" fill="#fff8ef" stroke="#e5cfab" stroke-width="2"/>
+  <text x="96" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#9f4f2b">光电效应：截止电压随频率线性变化</text>
+  <line x1="130" y1="462" x2="510" y2="462" stroke="#374151" stroke-width="3"/>
+  <line x1="130" y1="462" x2="130" y2="210" stroke="#374151" stroke-width="3"/>
+  <line x1="205" y1="462" x2="470" y2="245" stroke="#ef4444" stroke-width="4"/>
+  <circle cx="205" cy="462" r="6" fill="#ef4444"/>
+  <text x="185" y="496" font-family="Cambria Math, Microsoft YaHei, serif" font-size="22" fill="#b91c1c">ν₀</text>
+  <text x="512" y="468" font-family="Cambria Math, Microsoft YaHei, serif" font-size="22" fill="#1f2937">ν</text>
+  <text x="98" y="205" font-family="Cambria Math, Microsoft YaHei, serif" font-size="22" fill="#1f2937">Uₛ</text>
+  <text x="286" y="270" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#b91c1c">斜率 = h/e</text>
+  <text x="192" y="350" font-family="Cambria Math, Microsoft YaHei, serif" font-size="26" fill="#1f2937">hν = W + eUₛ</text>
+  <text x="164" y="408" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#5b6472">横截距是阈频，纵向变化对应最大初动能。</text>
+  <rect x="630" y="124" width="500" height="430" rx="24" fill="#f1fbfa" stroke="#afd4d7" stroke-width="2"/>
+  <text x="656" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#1f6b73">黑体辐射：峰值位置和总本领分开看</text>
+  <line x1="690" y1="462" x2="1070" y2="462" stroke="#374151" stroke-width="3"/>
+  <line x1="690" y1="462" x2="690" y2="210" stroke="#374151" stroke-width="3"/>
+  <path d="M696 462 C740 420,780 280,838 246 C900 210,970 270,1030 462" fill="none" stroke="#ef4444" stroke-width="4"/>
+  <path d="M696 462 C750 430,812 350,880 318 C946 288,1002 336,1040 462" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <line x1="838" y1="246" x2="838" y2="462" stroke="#ef4444" stroke-width="2" stroke-dasharray="8 8"/>
+  <line x1="880" y1="318" x2="880" y2="462" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="812" y="228" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#b91c1c">高温</text>
+  <text x="904" y="318" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#1d4ed8">低温</text>
+  <text x="1076" y="468" font-family="Cambria Math, Microsoft YaHei, serif" font-size="22" fill="#1f2937">λ</text>
+  <text x="720" y="520" font-family="Cambria Math, Microsoft YaHei, serif" font-size="25" fill="#1f2937">λₘT = b；M = σT⁴</text>
+</svg>

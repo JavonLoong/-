@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <rect width="980" height="420" fill="#f8fafc"/>
+  <text x="40" y="42" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#111827">Wave-Particle Duality</text>
+
+  <rect x="40" y="80" width="270" height="280" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="3"/>
+  <text x="72" y="116" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#9a3412">photoelectric effect</text>
+  <line x1="72" y1="180" x2="150" y2="150" stroke="#f59e0b" stroke-width="5"/>
+  <polygon points="150,150 136,146 144,160" fill="#f59e0b"/>
+  <rect x="175" y="140" width="70" height="120" fill="#9ca3af"/>
+  <line x1="245" y1="160" x2="285" y2="130" stroke="#2563eb" stroke-width="4"/>
+  <polygon points="285,130 274,128 278,140" fill="#2563eb"/>
+  <text x="78" y="310" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">hν = W + Kₘₐₓ</text>
+  <text x="78" y="338" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">Kₘₐₓ = eUₛ</text>
+
+  <rect x="350" y="80" width="270" height="280" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="3"/>
+  <text x="414" y="116" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1d4ed8">Compton</text>
+  <circle cx="430" cy="220" r="18" fill="#ef4444"/>
+  <line x1="374" y1="220" x2="412" y2="220" stroke="#f59e0b" stroke-width="5"/>
+  <polygon points="412,220 400,214 400,226" fill="#f59e0b"/>
+  <line x1="446" y1="206" x2="540" y2="145" stroke="#60a5fa" stroke-width="5"/>
+  <polygon points="540,145 527,145 534,156" fill="#60a5fa"/>
+  <line x1="446" y1="234" x2="540" y2="300" stroke="#10b981" stroke-width="5"/>
+  <polygon points="540,300 530,292 526,304" fill="#10b981"/>
+  <text x="486" y="182" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#374151">λ′</text>
+  <text x="478" y="318" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">electron</text>
+  <text x="372" y="310" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">Δλ = λc (1 − cosφ)</text>
+
+  <rect x="660" y="80" width="280" height="280" rx="14" fill="#f0fdf4" stroke="#86efac" stroke-width="3"/>
+  <text x="704" y="116" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#15803d">de Broglie + uncertainty</text>
+  <rect x="705" y="155" width="12" height="110" fill="#475569"/>
+  <rect x="810" y="155" width="12" height="110" fill="#475569"/>
+  <line x1="665" y1="210" x2="705" y2="210" stroke="#2563eb" stroke-width="4"/>
+  <line x1="822" y1="210" x2="900" y2="170" stroke="#2563eb" stroke-width="4"/>
+  <line x1="822" y1="210" x2="900" y2="250" stroke="#2563eb" stroke-width="4"/>
+  <text x="742" y="145" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#374151">Δx</text>
+  <text x="842" y="160" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#374151">Δpₓ 展宽</text>
+  <text x="684" y="310" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">λ = h / p</text>
+  <text x="684" y="338" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">ΔxΔpₓ ≥ ħ / 2</text>
+</svg>

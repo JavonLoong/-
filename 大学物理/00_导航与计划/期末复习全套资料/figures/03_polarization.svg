@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="380" viewBox="0 0 960 380">
+  <rect width="960" height="380" fill="#fffdf7"/>
+  <text x="40" y="42" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#111827">Polarization</text>
+
+  <text x="52" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">natural light</text>
+  <path d="M46 180 C70 150,86 210,110 180 C134 150,150 210,174 180" fill="none" stroke="#60a5fa" stroke-width="4"/>
+  <path d="M46 215 C70 185,86 245,110 215 C134 185,150 245,174 215" fill="none" stroke="#f87171" stroke-width="4"/>
+
+  <line x1="180" y1="198" x2="250" y2="198" stroke="#6b7280" stroke-width="3"/>
+
+  <rect x="250" y="110" width="28" height="180" rx="5" fill="#111827"/>
+  <line x1="264" y1="125" x2="264" y2="275" stroke="#fde68a" stroke-width="5"/>
+  <text x="240" y="315" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">P1</text>
+
+  <line x1="278" y1="198" x2="405" y2="198" stroke="#10b981" stroke-width="4"/>
+  <line x1="330" y1="164" x2="330" y2="232" stroke="#10b981" stroke-width="4"/>
+  <text x="302" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">linearly polarized</text>
+
+  <rect x="405" y="110" width="28" height="180" rx="5" fill="#111827"/>
+  <line x1="414" y1="266" x2="424" y2="134" stroke="#fde68a" stroke-width="5"/>
+  <text x="395" y="315" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">P2</text>
+  <path d="M448 198 L532 165" stroke="#ef4444" stroke-width="4"/>
+  <text x="478" y="150" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#b91c1c">I = Iin cos²θ</text>
+
+  <line x1="560" y1="198" x2="610" y2="198" stroke="#6b7280" stroke-width="3"/>
+  <rect x="610" y="120" width="70" height="150" rx="8" fill="#dbeafe" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="625" y1="140" x2="665" y2="255" stroke="#1d4ed8" stroke-width="3"/>
+  <line x1="660" y1="140" x2="620" y2="255" stroke="#f59e0b" stroke-width="3"/>
+  <text x="626" y="110" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">wave plate</text>
+  <text x="615" y="296" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#374151">fast / slow axis</text>
+
+  <path d="M690 198 C714 170,736 226,760 198 C784 170,806 226,830 198" fill="none" stroke="#8b5cf6" stroke-width="4"/>
+  <text x="708" y="92" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#374151">phase delay</text>
+
+  <text x="60" y="350" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">自然光过偏振片：I = I₀ / 2</text>
+  <text x="350" y="350" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">布儒斯特角：tan θ_B = n₂ / n₁</text>
+  <text x="640" y="350" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#111827">四分之一波片：Δnt = λ / 4</text>
+</svg>

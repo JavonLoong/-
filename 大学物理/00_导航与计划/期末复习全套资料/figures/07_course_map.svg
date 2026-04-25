@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#f8f4ed"/>
+  <rect x="32" y="28" width="1136" height="584" rx="28" fill="#fffdf8" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="62" y="82" font-family="Georgia, Microsoft YaHei, serif" font-size="34" fill="#1f2937">一周复习主线图</text>
+  <text x="62" y="116" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#5b6472">先光学成型，再量子成型，最后用整卷和默写把知识压成考场动作。</text>
+  <rect x="68" y="162" width="300" height="356" rx="24" fill="#fff8ef" stroke="#e5cfab" stroke-width="2"/>
+  <text x="94" y="204" font-family="Georgia, Microsoft YaHei, serif" font-size="26" fill="#9f4f2b">Day 1-3 光学</text>
+  <text x="94" y="250" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">干涉：先找光程差</text>
+  <text x="94" y="286" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">δ ≈ dx / D</text>
+  <text x="94" y="334" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">衍射：分清单缝和光栅</text>
+  <text x="94" y="370" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">a sinθ=mλ；d sinθ=kλ</text>
+  <text x="94" y="418" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">偏振：逐片更新方向</text>
+  <text x="94" y="454" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">I=Iin cos²θ</text>
+  <rect x="450" y="162" width="300" height="356" rx="24" fill="#f1fbfa" stroke="#afd4d7" stroke-width="2"/>
+  <text x="476" y="204" font-family="Georgia, Microsoft YaHei, serif" font-size="26" fill="#1f6b73">Day 4-6 量子</text>
+  <text x="476" y="250" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">波粒：能量和动量</text>
+  <text x="476" y="286" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">hν=W+eUₛ；λ=h/p</text>
+  <text x="476" y="334" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">势阱：态、概率、演化</text>
+  <text x="476" y="370" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">P(Eₙ)=|cₙ|²</text>
+  <text x="476" y="418" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">氢原子：谱线和量子数</text>
+  <text x="476" y="454" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">Eₙ=-13.6/n²</text>
+  <rect x="832" y="162" width="300" height="356" rx="24" fill="#f6fbef" stroke="#b6d08d" stroke-width="2"/>
+  <text x="858" y="204" font-family="Georgia, Microsoft YaHei, serif" font-size="26" fill="#4b7a2a">Day 7 输出</text>
+  <text x="858" y="250" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">上午：整卷计时</text>
+  <text x="858" y="302" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">下午：错因复盘</text>
+  <text x="858" y="354" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">晚上：公式默写</text>
+  <text x="858" y="406" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">睡前：口头说题型第一步</text>
+  <text x="858" y="470" font-family="Cambria Math, Microsoft YaHei, serif" font-size="22" fill="#4b7a2a">会写、写快、写稳</text>
+  <line x1="368" y1="340" x2="450" y2="340" stroke="#c38b50" stroke-width="5"/>
+  <polygon points="450,340 430,328 430,352" fill="#c38b50"/>
+  <line x1="750" y1="340" x2="832" y2="340" stroke="#5b9aa2" stroke-width="5"/>
+  <polygon points="832,340 812,328 812,352" fill="#5b9aa2"/>
+</svg>

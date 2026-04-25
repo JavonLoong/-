@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>布儒斯特角极简逻辑图</title>
+  <style>
+    :root {
+      --ink: #14213d;
+      --muted: #56657a;
+      --paper: #fffaf1;
+      --panel: #ffffff;
+      --line: #d7c8ad;
+      --blue: #1d4ed8;
+      --red: #dc2626;
+      --green: #047857;
+      --gold: #b7791f;
+      --soft-blue: #eaf2ff;
+      --soft-red: #fff0ed;
+      --soft-green: #eafaf3;
+      --soft-gold: #fff6dd;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(29, 78, 216, 0.12), transparent 28rem),
+        radial-gradient(circle at 90% 8%, rgba(183, 121, 31, 0.16), transparent 26rem),
+        linear-gradient(135deg, #fffaf1 0%, #f4efe6 100%);
+      font-family: "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+      line-height: 1.7;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 22px 56px;
+    }
+
+    .hero {
+      padding: 28px 30px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 18px 45px rgba(20, 33, 61, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    p { margin: 0; }
+
+    .subtitle {
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .big-answer {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-left: 7px solid var(--blue);
+      border-radius: 18px;
+      background: var(--soft-blue);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 12px 30px rgba(20, 33, 61, 0.06);
+      padding: 22px;
+    }
+
+    .diagram {
+      width: 100%;
+      min-height: 420px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(234, 242, 255, 0.88) 0 49%, rgba(255, 246, 221, 0.9) 49% 100%);
+      border: 1px solid #c9d7ee;
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .pill.p { background: var(--red); }
+    .pill.s { background: var(--blue); }
+    .pill.g { background: var(--green); }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      position: relative;
+      padding: 16px 16px 16px 56px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fffdf8;
+    }
+
+    .step::before {
+      content: attr(data-n);
+      position: absolute;
+      left: 15px;
+      top: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--ink);
+      font-weight: 900;
+    }
+
+    .arrow {
+      text-align: center;
+      color: var(--gold);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .formula {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 2px 4px;
+      border-radius: 12px;
+      background: #f4f7ff;
+      border: 1px solid #cad8ff;
+      font-family: "Cambria Math", "Times New Roman", serif;
+      font-size: 1.08em;
+      color: #0f285f;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      counter-reset: item;
+    }
+
+    .check {
+      counter-increment: item;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fffdf8;
+      border: 1px solid var(--line);
+    }
+
+    .check::before {
+      content: counter(item) ". ";
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .warn {
+      border-left: 7px solid var(--red);
+      background: var(--soft-red);
+    }
+
+    .ok {
+      border-left: 7px solid var(--green);
+      background: var(--soft-green);
+    }
+
+    .mini-title {
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 6px;
+    }
+
+    svg text {
+      font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      fill: var(--ink);
+    }
+
+    @media (max-width: 850px) {
+      .grid, .two { grid-template-columns: 1fr; }
+      main { padding: 18px 12px 36px; }
+      .hero, .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>布儒斯特角：先别背，先看懂这条逻辑</h1>
+      <p class="subtitle">
+        你卡住的点其实很正常：不是“只要垂直就会神奇偏振”，而是到了一个特殊角度时，反射光里的某一个电场方向刚好反射不出来。
+      </p>
+      <div class="big-answer">
+        一句话答案：布儒斯特角时，反射光线与折射光线互相垂直；这会让 <span class="pill p">p 分量</span> 的反射变成 0，所以反射光只剩 <span class="pill s">s 分量</span>，于是反射光完全偏振。
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>图：到底是哪两个东西垂直？</h2>
+        <svg class="diagram" viewBox="0 0 760 460" role="img" aria-label="布儒斯特角示意图">
+          <defs>
+            <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"></path>
+            </marker>
+            <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L9,3 L0,6 Z" fill="#dc2626"></path>
+            </marker>
+            <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L9,3 L0,6 Z" fill="#047857"></path>
+            </marker>
+          </defs>
+
+          <rect x="0" y="0" width="760" height="225" fill="#eaf2ff"></rect>
+          <rect x="0" y="225" width="760" height="235" fill="#fff6dd"></rect>
+          <line x1="40" y1="225" x2="720" y2="225" stroke="#8b7355" stroke-width="4"></line>
+          <text x="52" y="204" font-size="18" font-weight="700">介质 1：空气，折射率 n₁</text>
+          <text x="52" y="258" font-size="18" font-weight="700">介质 2：玻璃/水，折射率 n₂</text>
+
+          <line x1="380" y1="42" x2="380" y2="405" stroke="#667085" stroke-width="2" stroke-dasharray="8 8"></line>
+          <text x="394" y="70" font-size="16">法线</text>
+
+          <line x1="105" y1="62" x2="380" y2="225" stroke="#1d4ed8" stroke-width="6" marker-end="url(#arrowBlue)"></line>
+          <text x="88" y="45" font-size="20" font-weight="800" fill="#1d4ed8">入射光</text>
+
+          <line x1="380" y1="225" x2="658" y2="62" stroke="#dc2626" stroke-width="6" marker-end="url(#arrowRed)"></line>
+          <text x="594" y="45" font-size="20" font-weight="800" fill="#dc2626">反射光</text>
+
+          <line x1="380" y1="225" x2="608" y2="382" stroke="#047857" stroke-width="6" marker-end="url(#arrowGreen)"></line>
+          <text x="590" y="407" font-size="20" font-weight="800" fill="#047857">折射光</text>
+
+          <path d="M380 160 A65 65 0 0 0 324 192" fill="none" stroke="#1d4ed8" stroke-width="3"></path>
+          <text x="306" y="164" font-size="18" fill="#1d4ed8">i_B</text>
+
+          <path d="M433 193 A62 62 0 0 0 380 162" fill="none" stroke="#dc2626" stroke-width="3"></path>
+          <text x="437" y="166" font-size="18" fill="#dc2626">i_B</text>
+
+          <path d="M380 292 A67 67 0 0 0 435 264" fill="none" stroke="#047857" stroke-width="3"></path>
+          <text x="430" y="302" font-size="18" fill="#047857">r</text>
+
+          <path d="M500 153 Q548 220 493 282" fill="none" stroke="#b7791f" stroke-width="4" stroke-dasharray="8 6"></path>
+          <text x="516" y="222" font-size="20" font-weight="900" fill="#b7791f">90°</text>
+          <text x="474" y="247" font-size="15" fill="#b7791f">反射光 ⟂ 折射光</text>
+
+          <circle cx="380" cy="225" r="7" fill="#14213d"></circle>
+          <text x="195" y="326" font-size="18" font-weight="800">p 分量：电场在这张“入射面”里</text>
+          <text x="195" y="355" font-size="18" font-weight="800">s 分量：电场垂直这张纸面</text>
+          <text x="93" y="326" font-size="34" fill="#dc2626">↕</text>
+          <text x="101" y="355" font-size="28" fill="#1d4ed8">⊙ / ⊗</text>
+        </svg>
+        <div class="legend">
+          <p><span class="mini-title">关键纠错：</span>这里说的“垂直”，是 <strong>反射光线和折射光线垂直</strong>，不是“电场和界面垂直”。</p>
+          <p><span class="mini-title">入射面：</span>入射光线、反射光线、法线共同确定的一张平面。你可以把它想象成这张图所在的纸面。</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>逻辑流程：为什么会完全偏振？</h2>
+        <div class="flow">
+          <div class="step" data-n="1">
+            <h3>先把光拆成两份</h3>
+            <p><span class="pill p">p</span> 在入射面内；<span class="pill s">s</span> 垂直入射面。</p>
+            <p class="why">为什么：任何电场振动都可以分解成两个互相垂直的方向，像把一个力分解成水平和竖直。</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step" data-n="2">
+            <h3>反射不是对 p、s 一视同仁</h3>
+            <p>s 分量通常还能反射；p 分量在某个角度会反射为 0。</p>
+            <p class="why">为什么：光进入介质会驱动介质中的电偶极子振动，不同电场方向驱动出的反射效果不同。</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step" data-n="3">
+            <h3>到了布儒斯特角</h3>
+            <p>反射光线和折射光线正好互相垂直。</p>
+            <p class="why">这个几何条件等价于 p 分量反射系数为 0。</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step" data-n="4">
+            <h3>结果：反射光只剩 s</h3>
+            <p>p 没反射出来，s 还在，所以反射光的电场方向固定。</p>
+            <p class="why">电场方向固定，就叫线偏振；只剩一个方向，就叫完全偏振。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>专门看 p 和 s：它们到底朝哪儿？</h2>
+      <svg class="diagram" viewBox="0 0 1100 520" role="img" aria-label="p 偏振和 s 偏振方向示意图">
+        <defs>
+          <marker id="arrowDark" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#14213d"></path>
+          </marker>
+          <marker id="arrowP" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#dc2626"></path>
+          </marker>
+          <marker id="arrowS" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"></path>
+          </marker>
+          <marker id="arrowRayBlue2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#1d4ed8"></path>
+          </marker>
+          <marker id="arrowRayRed2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#dc2626"></path>
+          </marker>
+          <marker id="arrowRayGreen2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#047857"></path>
+          </marker>
+        </defs>
+
+        <rect x="0" y="0" width="1100" height="520" rx="24" fill="#fffdf8"></rect>
+
+        <polygon points="170,90 770,90 930,410 330,410" fill="#f4ead6" stroke="#b89f76" stroke-width="3"></polygon>
+        <text x="205" y="75" font-size="24" font-weight="900">这张斜着的板 = 入射面</text>
+        <text x="205" y="108" font-size="17" fill="#56657a">入射光线、反射光线、法线都躺在这张面里</text>
+
+        <line x1="550" y1="62" x2="550" y2="452" stroke="#667085" stroke-width="3" stroke-dasharray="9 8"></line>
+        <text x="566" y="72" font-size="18" font-weight="800">法线</text>
+
+        <circle cx="550" cy="250" r="8" fill="#14213d"></circle>
+        <line x1="235" y1="130" x2="550" y2="250" stroke="#1d4ed8" stroke-width="7" marker-end="url(#arrowRayBlue2)"></line>
+        <line x1="550" y1="250" x2="820" y2="130" stroke="#dc2626" stroke-width="7" marker-end="url(#arrowRayRed2)"></line>
+        <line x1="550" y1="250" x2="790" y2="385" stroke="#047857" stroke-width="7" marker-end="url(#arrowRayGreen2)"></line>
+        <text x="225" y="122" font-size="20" font-weight="900" fill="#1d4ed8">入射光</text>
+        <text x="815" y="122" font-size="20" font-weight="900" fill="#dc2626">反射光</text>
+        <text x="795" y="405" font-size="20" font-weight="900" fill="#047857">折射光</text>
+
+        <line x1="365" y1="210" x2="425" y2="94" stroke="#dc2626" stroke-width="7" marker-end="url(#arrowP)"></line>
+        <line x1="425" y1="94" x2="365" y2="210" stroke="#dc2626" stroke-width="7" marker-end="url(#arrowP)"></line>
+        <text x="315" y="237" font-size="22" font-weight="900" fill="#dc2626">p 方向</text>
+        <text x="286" y="265" font-size="17" fill="#56657a">电场在入射面内摆动</text>
+        <text x="286" y="291" font-size="17" fill="#56657a">而且仍然垂直于光线传播方向</text>
+
+        <circle cx="642" cy="184" r="32" fill="#eaf2ff" stroke="#1d4ed8" stroke-width="4"></circle>
+        <circle cx="642" cy="184" r="7" fill="#1d4ed8"></circle>
+        <text x="681" y="178" font-size="22" font-weight="900" fill="#1d4ed8">s 方向：从面里出来</text>
+        <text x="681" y="205" font-size="17" fill="#56657a">⊙ 表示箭头尖朝你</text>
+
+        <circle cx="720" cy="282" r="32" fill="#eaf2ff" stroke="#1d4ed8" stroke-width="4"></circle>
+        <line x1="700" y1="262" x2="740" y2="302" stroke="#1d4ed8" stroke-width="6"></line>
+        <line x1="740" y1="262" x2="700" y2="302" stroke="#1d4ed8" stroke-width="6"></line>
+        <text x="759" y="276" font-size="22" font-weight="900" fill="#1d4ed8">s 方向：钻进面里</text>
+        <text x="759" y="303" font-size="17" fill="#56657a">⊗ 表示箭尾朝你</text>
+
+        <path d="M115 444 L985 444" stroke="#d7c8ad" stroke-width="3"></path>
+        <text x="125" y="478" font-size="21" font-weight="900">记法：</text>
+        <text x="190" y="478" font-size="21"><tspan fill="#dc2626" font-weight="900">p = parallel</tspan>，平行于入射面；</text>
+        <text x="500" y="478" font-size="21"><tspan fill="#1d4ed8" font-weight="900">s = senkrecht</tspan>，德语“垂直”，垂直于入射面。</text>
+      </svg>
+
+      <p class="note">
+        关键点：p 和 s 画的是电场 E 的方向，不是光线的方向。光线表示能量往哪里走；p/s 表示这束光里的电场往哪个方向振动。
+      </p>
+      <p class="note">
+        对每一束光来说，电场 E 都必须垂直于它自己的传播方向。所以 p 不是“沿着光线走”，而是“在入射面里面、同时又垂直于光线”的那个方向。
+      </p>
+    </section>
+
+    <section class="two">
+      <div class="card ok">
+        <h2>考试怎么操作？</h2>
+        <div class="checklist">
+          <div class="check">先确认光从哪种介质进入哪种介质：入射侧是 n₁，折射侧是 n₂。</div>
+          <div class="check">如果题目说“反射光完全偏振”，马上想到布儒斯特角。</div>
+          <div class="check">写公式：<span class="formula">tan i<sub>B</sub> = n<sub>2</sub> / n<sub>1</sub></span></div>
+          <div class="check">如果还要求折射角，写：<span class="formula">i<sub>B</sub> + r = 90°</span></div>
+          <div class="check">问偏振方向，就答：反射光的电场垂直入射面，也就是 s 偏振。</div>
+        </div>
+      </div>
+
+      <div class="card warn">
+        <h2>最容易错的 4 件事</h2>
+        <p><span class="mini-title">错 1：</span>以为“垂直”指电场垂直界面。其实这里的 90° 指反射光线和折射光线互相垂直。</p>
+        <p class="note"><span class="mini-title">错 2：</span>以为完全偏振等于反射光没了。不是，消失的是 p 分量，s 分量还反射。</p>
+        <p class="note"><span class="mini-title">错 3：</span>把 n₁、n₂ 写反。公式里 n₁ 是入射侧，n₂ 是折射侧。</p>
+        <p class="note"><span class="mini-title">错 4：</span>把偏振片和布儒斯特角混在一起。偏振片是“筛方向”；布儒斯特角是“反射时某方向自己消失”。</p>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>更直觉一点：p 分量为什么会没反射？</h2>
+      <p>
+        你可以把介质里的分子想成一排会被电场摇动的小天线。p 分量会让这些“小天线”在入射面内振动。
+        在布儒斯特角时，反射光的方向刚好对着这种振动方向。一个振动电偶极子有个重要性质：它不沿自己的振动方向辐射电磁波。
+        所以 p 分量沿反射方向发不出来，反射光里就没有 p 分量。
+      </p>
+      <p class="note">
+        这就是“垂直”的真正作用：它不是直接制造偏振，而是让几何关系刚好满足 p 分量反射为 0 的条件。
+      </p>
+    </section>
+
+    <section class="card section">
+      <h2>你只需要背下来的极简版</h2>
+      <p>
+        <span class="formula">tan i<sub>B</sub> = n<sub>2</sub> / n<sub>1</sub></span>
+        <span class="formula">i<sub>B</sub> + r = 90°</span>
+        <span class="formula">反射光 = s 偏振</span>
+      </p>
+      <p class="note">
+        读题触发词：反射光完全偏振、布儒斯特角、反射光与折射光垂直、玻璃表面反光被偏振镜削弱。
+      </p>
+    </section>
+  </main>
+</body>
+</html>

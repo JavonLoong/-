@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#f8f4ed"/>
+  <rect x="32" y="28" width="1136" height="584" rx="28" fill="#fffdf8" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="60" y="82" font-family="Georgia, Microsoft YaHei, serif" font-size="32" fill="#1f2937">偏振题流程图：逐片算、先分解</text>
+  <rect x="70" y="124" width="500" height="430" rx="24" fill="#fff8ef" stroke="#e5cfab" stroke-width="2"/>
+  <text x="96" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#9f4f2b">多片偏振片：方向每次都会更新</text>
+  <path d="M96 320 C122 276,150 364,176 320 C202 276,230 364,256 320" fill="none" stroke="#94a3b8" stroke-width="4"/>
+  <rect x="285" y="220" width="26" height="190" rx="5" fill="#111827"/>
+  <line x1="298" y1="236" x2="298" y2="394" stroke="#fde68a" stroke-width="5"/>
+  <rect x="405" y="220" width="26" height="190" rx="5" fill="#111827"/>
+  <line x1="412" y1="392" x2="426" y2="238" stroke="#fde68a" stroke-width="5"/>
+  <rect x="510" y="220" width="26" height="190" rx="5" fill="#111827"/>
+  <line x1="514" y1="250" x2="532" y2="380" stroke="#fde68a" stroke-width="5"/>
+  <line x1="256" y1="320" x2="285" y2="320" stroke="#60a5fa" stroke-width="4"/>
+  <line x1="311" y1="320" x2="405" y2="320" stroke="#60a5fa" stroke-width="4"/>
+  <line x1="431" y1="320" x2="510" y2="320" stroke="#60a5fa" stroke-width="4"/>
+  <text x="286" y="442" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#374151">P1</text>
+  <text x="406" y="442" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#374151">P2</text>
+  <text x="512" y="442" font-family="Microsoft YaHei, sans-serif" font-size="17" fill="#374151">P3</text>
+  <text x="104" y="502" font-family="Cambria Math, Microsoft YaHei, serif" font-size="24" fill="#1f2937">I₁=I₀/2；I₂=I₁cos²θ₁₂；I₃=I₂cos²θ₂₃</text>
+  <rect x="630" y="124" width="500" height="430" rx="24" fill="#f1fbfa" stroke="#afd4d7" stroke-width="2"/>
+  <text x="656" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#1f6b73">波片：先沿快轴 / 慢轴分解</text>
+  <rect x="830" y="208" width="120" height="205" rx="14" fill="#dbeafe" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="854" y1="230" x2="926" y2="386" stroke="#1d4ed8" stroke-width="4"/>
+  <line x1="930" y1="230" x2="858" y2="386" stroke="#f59e0b" stroke-width="4"/>
+  <text x="835" y="198" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#1f2937">Δnt = λ/4 或 λ/2</text>
+  <rect x="672" y="235" width="138" height="76" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="694" y="272" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#1f2937">Δφ=0 或 π</text>
+  <text x="714" y="294" font-family="Microsoft YaHei, sans-serif" font-size="16" fill="#5b6472">线偏振</text>
+  <rect x="980" y="235" width="120" height="76" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="996" y="272" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#1f2937">等幅</text>
+  <text x="990" y="294" font-family="Cambria Math, Microsoft YaHei, serif" font-size="16" fill="#5b6472">且 Δφ=±π/2</text>
+  <rect x="828" y="460" width="220" height="56" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="868" y="496" font-family="Microsoft YaHei, sans-serif" font-size="19" fill="#1f2937">其余一般是椭圆偏振</text>
+  <path d="M880 414 C908 380,940 448,970 414" fill="none" stroke="#8b5cf6" stroke-width="4"/>
+</svg>

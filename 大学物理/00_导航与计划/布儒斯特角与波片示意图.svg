@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#154c79"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b23b3b"/>
+    </marker>
+    <style>
+      .title { font: 700 30px "Microsoft YaHei", "SimHei", sans-serif; fill: #102a43; }
+      .label { font: 22px "Microsoft YaHei", "SimHei", sans-serif; fill: #102a43; }
+      .small { font: 18px "Microsoft YaHei", "SimHei", sans-serif; fill: #334e68; }
+      .math { font: italic 23px "Times New Roman", serif; fill: #102a43; }
+      .panel { fill: #fbfaf6; stroke: #d9cbb8; stroke-width: 2; rx: 18; }
+      .surface { stroke: #2f3e46; stroke-width: 5; }
+      .normal { stroke: #6c757d; stroke-width: 3; stroke-dasharray: 8 7; }
+      .rayB { stroke: #154c79; stroke-width: 5; fill: none; marker-end: url(#arrowBlue); }
+      .rayR { stroke: #b23b3b; stroke-width: 5; fill: none; marker-end: url(#arrowRed); }
+      .dash { stroke: #778899; stroke-width: 3; stroke-dasharray: 8 7; fill: none; }
+      .crystal { fill: #e4f2f7; stroke: #2d6a7f; stroke-width: 4; rx: 8; }
+      .formula { font: 700 21px "Microsoft YaHei", "SimHei", sans-serif; fill: #0b2f4f; }
+    </style>
+  </defs>
+
+  <rect x="20" y="20" width="1160" height="720" class="panel"/>
+  <text x="50" y="70" class="title">布儒斯特角与波片：两件不同的偏振现象</text>
+
+  <!-- left panel: Brewster -->
+  <text x="70" y="120" class="label">1. 布儒斯特角：反射光变成完全线偏振光</text>
+  <line x1="90" y1="360" x2="560" y2="360" class="surface"/>
+  <text x="95" y="390" class="small">介质 1：n₁</text>
+  <text x="95" y="335" class="small">介质 2：n₂</text>
+  <line x1="325" y1="145" x2="325" y2="575" class="normal"/>
+  <text x="337" y="160" class="small">法线</text>
+
+  <line x1="145" y1="160" x2="325" y2="360" class="rayB"/>
+  <line x1="325" y1="360" x2="515" y2="170" class="rayR"/>
+  <line x1="325" y1="360" x2="500" y2="540" class="rayB"/>
+  <text x="115" y="150" class="small">入射光</text>
+  <text x="495" y="160" class="small">反射光</text>
+  <text x="505" y="550" class="small">折射光</text>
+
+  <path d="M325 270 A90 90 0 0 0 265 295" stroke="#154c79" stroke-width="4" fill="none"/>
+  <text x="260" y="270" class="math">i_B</text>
+  <path d="M325 445 A85 85 0 0 1 385 420" stroke="#154c79" stroke-width="4" fill="none"/>
+  <text x="390" y="452" class="math">r</text>
+
+  <line x1="390" y1="295" x2="455" y2="360" class="dash"/>
+  <text x="410" y="282" class="small">布儒斯特角时</text>
+  <text x="392" y="312" class="formula">反射光 ⟂ 折射光</text>
+  <text x="115" y="615" class="formula">tan i_B = n₂ / n₁　　　　i_B + r = 90°</text>
+
+  <!-- polarization symbols -->
+  <circle cx="500" cy="215" r="16" fill="none" stroke="#b23b3b" stroke-width="3"/>
+  <circle cx="500" cy="215" r="4" fill="#b23b3b"/>
+  <text x="523" y="222" class="small">反射光的电场垂直于入射面</text>
+
+  <!-- right panel: wave plate -->
+  <text x="650" y="120" class="label">2. 波片：让两个偏振分量产生相位差</text>
+  <rect x="780" y="210" width="150" height="290" class="crystal"/>
+  <text x="795" y="195" class="small">双折射晶体</text>
+  <line x1="650" y1="355" x2="780" y2="355" class="rayB"/>
+  <line x1="930" y1="335" x2="1085" y2="335" class="rayR"/>
+  <line x1="930" y1="375" x2="1085" y2="375" class="rayB"/>
+  <text x="650" y="335" class="small">入射线偏振光</text>
+  <text x="950" y="318" class="small">快轴分量</text>
+  <text x="950" y="405" class="small">慢轴分量</text>
+
+  <line x1="855" y1="220" x2="855" y2="490" stroke="#2d6a7f" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="870" y="260" class="small">厚度 t</text>
+  <text x="690" y="530" class="small">晶体对两个互相垂直的偏振方向折射率不同：</text>
+  <text x="690" y="562" class="formula">Δφ = 2π Δn t / λ</text>
+  <text x="690" y="605" class="formula">四分之一波片：Δn t = λ/4 → Δφ = π/2</text>
+  <text x="690" y="640" class="formula">二分之一波片：Δn t = λ/2 → Δφ = π</text>
+
+  <text x="705" y="700" class="small">波片不是靠反射产生相位差，而是靠晶体内部两个偏振分量传播速度不同。</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#f8f4ed"/>
+  <rect x="32" y="28" width="1136" height="584" rx="28" fill="#fffdf8" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="60" y="82" font-family="Georgia, Microsoft YaHei, serif" font-size="32" fill="#1f2937">题型热度图：复习时间优先投到哪里</text>
+  <text x="60" y="116" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#5b6472">条越长，越值得练到“看到题眼就能写第一步”。</text>
+  <text x="78" y="184" font-family="Microsoft YaHei, sans-serif" font-size="20" fill="#1f2937">双缝 / 插片 / 迈克耳孙</text>
+  <rect x="340" y="158" width="700" height="34" rx="17" fill="#f4ded3"/>
+  <rect x="340" y="158" width="650" height="34" rx="17" fill="#d97757"/>
+  <text x="78" y="244" font-family="Microsoft YaHei, sans-serif" font-size="20" fill="#1f2937">单缝 / 光栅 / 缺级 / 分辨</text>
+  <rect x="340" y="218" width="700" height="34" rx="17" fill="#f5e6cf"/>
+  <rect x="340" y="218" width="630" height="34" rx="17" fill="#d39a3f"/>
+  <text x="78" y="304" font-family="Microsoft YaHei, sans-serif" font-size="20" fill="#1f2937">偏振 / 波片 / 布儒斯特</text>
+  <rect x="340" y="278" width="700" height="34" rx="17" fill="#edf5dc"/>
+  <rect x="340" y="278" width="500" height="34" rx="17" fill="#7da34a"/>
+  <text x="78" y="364" font-family="Microsoft YaHei, sans-serif" font-size="20" fill="#1f2937">光电 / 康普顿 / 德布罗意</text>
+  <rect x="340" y="338" width="700" height="34" rx="17" fill="#dceff1"/>
+  <rect x="340" y="338" width="610" height="34" rx="17" fill="#3f8d97"/>
+  <text x="78" y="424" font-family="Microsoft YaHei, sans-serif" font-size="20" fill="#1f2937">势阱 / 时间演化 / 概率</text>
+  <rect x="340" y="398" width="700" height="34" rx="17" fill="#e3e7fb"/>
+  <rect x="340" y="398" width="640" height="34" rx="17" fill="#5f6dc9"/>
+  <text x="78" y="484" font-family="Microsoft YaHei, sans-serif" font-size="20" fill="#1f2937">氢原子 / 谱线 / 量子数</text>
+  <rect x="340" y="458" width="700" height="34" rx="17" fill="#ece1fa"/>
+  <rect x="340" y="458" width="620" height="34" rx="17" fill="#8b5fb6"/>
+  <text x="340" y="548" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#5b6472">低</text>
+  <text x="1000" y="548" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#5b6472">高</text>
+  <line x1="340" y1="520" x2="1040" y2="520" stroke="#cbd5e1" stroke-width="3"/>
+</svg>

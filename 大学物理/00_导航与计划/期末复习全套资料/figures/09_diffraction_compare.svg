@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#f8f4ed"/>
+  <rect x="32" y="28" width="1136" height="584" rx="28" fill="#fffdf8" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="60" y="82" font-family="Georgia, Microsoft YaHei, serif" font-size="32" fill="#1f2937">单缝 vs 光栅：包络、主峰、缺级</text>
+  <rect x="70" y="124" width="500" height="430" rx="24" fill="#fff8ef" stroke="#e5cfab" stroke-width="2"/>
+  <text x="96" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#9f4f2b">单缝：暗纹条件控制包络</text>
+  <rect x="126" y="230" width="18" height="170" rx="4" fill="#4b5563"/>
+  <rect x="132" y="265" width="6" height="100" fill="#f9fafb"/>
+  <line x1="144" y1="315" x2="462" y2="315" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="462" y="190" width="14" height="250" rx="4" fill="#111827"/>
+  <path d="M180 315 C220 250,262 220,320 218 C378 220,420 250,450 315" fill="none" stroke="#f59e0b" stroke-width="5"/>
+  <path d="M180 315 C220 380,262 410,320 412 C378 410,420 380,450 315" fill="none" stroke="#f59e0b" stroke-width="5"/>
+  <line x1="260" y1="245" x2="260" y2="385" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 8"/>
+  <line x1="380" y1="245" x2="380" y2="385" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 8"/>
+  <line x1="260" y1="455" x2="380" y2="455" stroke="#2563eb" stroke-width="3"/>
+  <polygon points="260,455 274,447 274,463" fill="#2563eb"/>
+  <polygon points="380,455 366,447 366,463" fill="#2563eb"/>
+  <text x="218" y="498" font-family="Cambria Math, Microsoft YaHei, serif" font-size="24" fill="#1f2937">a sinθ = mλ</text>
+  <text x="218" y="530" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">中央明纹宽：2fλ / a</text>
+  <rect x="630" y="124" width="500" height="430" rx="24" fill="#f1fbfa" stroke="#afd4d7" stroke-width="2"/>
+  <text x="656" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#1f6b73">光栅：主峰落在单缝包络里</text>
+  <rect x="690" y="230" width="22" height="170" rx="4" fill="#4b5563"/>
+  <rect x="690" y="250" width="22" height="18" fill="#f9fafb"/>
+  <rect x="690" y="282" width="22" height="18" fill="#f9fafb"/>
+  <rect x="690" y="314" width="22" height="18" fill="#f9fafb"/>
+  <rect x="690" y="346" width="22" height="18" fill="#f9fafb"/>
+  <line x1="712" y1="315" x2="1042" y2="315" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="1042" y="190" width="14" height="250" rx="4" fill="#111827"/>
+  <path d="M748 315 C798 255,838 232,890 228 C944 232,982 255,1016 315" fill="none" stroke="#f59e0b" stroke-width="4"/>
+  <path d="M748 315 C798 375,838 398,890 402 C944 398,982 375,1016 315" fill="none" stroke="#f59e0b" stroke-width="4"/>
+  <rect x="1068" y="225" width="42" height="12" fill="#fde68a"/>
+  <rect x="1068" y="268" width="42" height="24" fill="#f59e0b"/>
+  <rect x="1068" y="310" width="42" height="42" fill="#d97706"/>
+  <rect x="1068" y="370" width="42" height="24" fill="#f59e0b"/>
+  <line x1="1089" y1="268" x2="1089" y2="292" stroke="#ef4444" stroke-width="3"/>
+  <line x1="1074" y1="280" x2="1104" y2="280" stroke="#ef4444" stroke-width="3"/>
+  <text x="748" y="496" font-family="Cambria Math, Microsoft YaHei, serif" font-size="24" fill="#1f2937">d sinθ = kλ</text>
+  <text x="748" y="528" font-family="Cambria Math, Microsoft YaHei, serif" font-size="21" fill="#5b6472">缺级：k = md / a；分辨本领：R = kN</text>
+</svg>

@@ -1,0 +1,3449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大学物理（2）期末复习全景讲义</title>
+  <style>
+    :root {
+      --bg: #f6f2eb;
+      --paper: #fffdf8;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: #d9d1c3;
+      --accent: #9f4f2b;
+      --accent-2: #1f6b73;
+      --soft: #efe7d7;
+      --shadow: 0 14px 40px rgba(54, 43, 29, 0.08);
+      --radius: 18px;
+      --code: #f3efe7;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at top right, rgba(216, 139, 46, 0.13), transparent 24%),
+        radial-gradient(circle at top left, rgba(31, 107, 115, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8f5ef 0%, #f2ede3 100%);
+    }
+
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1440px, calc(100vw - 40px));
+      margin: 24px auto 48px;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid rgba(217, 209, 195, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .sidebar-top {
+      padding: 20px 20px 14px;
+      background: linear-gradient(145deg, rgba(159, 79, 43, 0.14), rgba(31, 107, 115, 0.08));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sidebar h1 {
+      margin: 0 0 8px;
+      font-family: "Georgia", "STSong", serif;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .sidebar p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 16px 20px 6px;
+    }
+
+    .action-row button,
+    .hero-actions a,
+    .hero-actions button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 10px 24px rgba(159, 79, 43, 0.22); }
+    .btn-secondary { background: var(--soft); color: var(--ink); border: 1px solid rgba(159, 79, 43, 0.14); }
+    .action-row button:hover,
+    .hero-actions a:hover,
+    .hero-actions button:hover { transform: translateY(-1px); text-decoration: none; }
+
+    .nav { padding: 10px 12px 16px; }
+    .nav a {
+      display: block;
+      padding: 10px 12px;
+      margin: 4px 0;
+      border-radius: 12px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .nav a:hover { background: rgba(31, 107, 115, 0.08); }
+    .nav small { color: var(--muted); display: block; margin-top: 2px; }
+
+    .hero, .section {
+      background: rgba(255, 253, 248, 0.94);
+      border: 1px solid rgba(217, 209, 195, 0.92);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero { border-radius: 28px; }
+    .hero-inner {
+      padding: 34px 36px 28px;
+      background:
+        linear-gradient(135deg, rgba(159, 79, 43, 0.12), rgba(216, 139, 46, 0.06)),
+        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(159, 79, 43, 0.12);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 18px 0 12px;
+      font-family: "Georgia", "STSong", serif;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.08;
+    }
+
+    .hero p { margin: 0 0 18px; max-width: 850px; color: var(--muted); font-size: 16px; }
+
+    .hero-grid,
+    .quick-grid,
+    .chapter-grid,
+    .footer-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
+    .quick-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .chapter-grid, .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .stat, .quick-card, .chapter-card, .mini-panel {
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid rgba(217, 209, 195, 0.9);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(45, 33, 21, 0.05);
+    }
+
+    .stat, .quick-card, .chapter-card, .mini-panel { padding: 18px; }
+    .stat strong { display: block; margin-bottom: 6px; font-size: 28px; color: var(--accent); font-family: "Georgia", "STSong", serif; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .hero-actions a { display: inline-flex; align-items: center; justify-content: center; }
+
+    .section { margin-top: 24px; border-radius: 24px; }
+    .section-head {
+      padding: 22px 26px 10px;
+      border-bottom: 1px solid rgba(217, 209, 195, 0.72);
+      background: linear-gradient(180deg, rgba(159, 79, 43, 0.06), rgba(255, 253, 248, 0));
+    }
+    .section-head h3 { margin: 0; font-size: 28px; font-family: "Georgia", "STSong", serif; }
+    .section-head p { margin: 8px 0 0; color: var(--muted); }
+    .section-body { padding: 24px 26px 28px; }
+
+    .chapter-card h4, .mini-panel h4, .quick-card h4 { margin: 0 0 10px; }
+    .chapter-card h4 { font-size: 24px; font-family: "Georgia", "STSong", serif; }
+
+    .chapter-card img {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(217, 209, 195, 0.9);
+      background: #fff;
+      margin: 14px 0 18px;
+      display: block;
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 18px 0 22px;
+    }
+
+    .visual-card,
+    .wide-visual {
+      background: rgba(255, 253, 248, 0.9);
+      border: 1px solid rgba(217, 209, 195, 0.9);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(45, 33, 21, 0.05);
+      padding: 14px;
+    }
+
+    .visual-card h4,
+    .wide-visual h4 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      font-family: "Georgia", "STSong", serif;
+    }
+
+    .visual-card img,
+    .wide-visual img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid rgba(217, 209, 195, 0.92);
+      background: #fff;
+    }
+
+    .visual-card p,
+    .wide-visual p,
+    .visual-caption {
+      margin: 10px 2px 2px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .callout {
+      padding: 16px 18px;
+      margin: 16px 0;
+      border-radius: 16px;
+      border-left: 5px solid var(--accent);
+      background: rgba(216, 139, 46, 0.10);
+    }
+    .callout.blue { border-left-color: var(--accent-2); background: rgba(31, 107, 115, 0.09); }
+    .callout.green { border-left-color: #4b7a2a; background: rgba(75, 122, 42, 0.10); }
+
+    .math-note {
+      margin: 14px 0 16px;
+      padding: 16px 18px;
+      background: linear-gradient(180deg, rgba(243, 239, 231, 0.9), rgba(246, 242, 235, 0.95));
+      border: 1px solid rgba(217, 209, 195, 0.92);
+      border-radius: 16px;
+      line-height: 1.9;
+    }
+
+    .math-note .inline-math,
+    .math-note .katex-display {
+      margin: 0.18em 0;
+    }
+
+    .formula-sheet {
+      margin: 14px 0 16px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(243, 239, 231, 0.9), rgba(246, 242, 235, 0.95));
+      border: 1px solid rgba(217, 209, 195, 0.92);
+      border-radius: 16px;
+    }
+
+    .formula-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 10.5em) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 11px 0;
+      border-top: 1px dashed rgba(166, 152, 131, 0.36);
+    }
+
+    .formula-row:first-child {
+      padding-top: 4px;
+      border-top: 0;
+    }
+
+    .formula-tag {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .formula-eq {
+      min-width: 0;
+      overflow-x: auto;
+      font-size: 16px;
+    }
+
+    .formula-eq .mjx-container {
+      margin: 0 !important;
+      font-size: 112% !important;
+    }
+
+    .formula-eq .katex,
+    .inline-math .katex {
+      font-size: 1.04em;
+    }
+
+    .formula-eq .katex-display {
+      margin: 0 !important;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .chip { padding: 8px 12px; border-radius: 999px; background: rgba(31, 107, 115, 0.08); border: 1px solid rgba(31, 107, 115, 0.12); font-size: 13px; }
+
+    ul, ol { padding-left: 22px; margin: 10px 0; }
+    li + li { margin-top: 6px; }
+
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid rgba(217, 209, 195, 0.96); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: rgba(159, 79, 43, 0.08); }
+
+    details { margin-top: 16px; border-radius: 14px; border: 1px solid rgba(217, 209, 195, 0.9); overflow: hidden; background: rgba(255,255,255,0.58); }
+    summary { cursor: pointer; list-style: none; padding: 14px 16px; font-weight: 700; background: rgba(31, 107, 115, 0.05); }
+    summary::-webkit-details-marker { display: none; }
+    .details-body { padding: 0 16px 16px; }
+    .muted { color: var(--muted); }
+    .print-note { margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+    code.inline-code {
+      padding: 0.12em 0.42em;
+      border-radius: 0.5em;
+      background: rgba(31, 41, 55, 0.06);
+      border: 1px solid rgba(31, 41, 55, 0.08);
+      font-family: "Consolas", "Cascadia Code", monospace;
+      font-size: 0.92em;
+    }
+
+    .inline-math {
+      display: inline-block;
+      min-width: 0;
+    }
+
+    .formula-explain {
+      display: block;
+      margin: 7px 0 9px;
+      padding: 8px 10px;
+      border-left: 4px solid rgba(31, 107, 115, 0.72);
+      border-radius: 10px;
+      background: rgba(31, 107, 115, 0.07);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .formula-explain::before {
+      content: "解释：";
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    td .formula-explain,
+    li .formula-explain {
+      margin-top: 6px;
+    }
+
+    @media (max-width: 1120px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { position: relative; top: 0; }
+    }
+    @media (max-width: 860px) {
+      .hero-grid, .quick-grid, .chapter-grid, .footer-grid, .visual-grid { grid-template-columns: 1fr; }
+      .hero-inner, .section-head, .section-body { padding-left: 18px; padding-right: 18px; }
+      .formula-row { grid-template-columns: 1fr; gap: 6px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; display: block; }
+      .sidebar, .hero-actions, .print-hide { display: none !important; }
+      .hero, .section, .quick-card, .chapter-card, .mini-panel { box-shadow: none; border-color: #ddd; }
+      .section { page-break-inside: avoid; }
+    }
+  </style>
+  <link rel="stylesheet" href="./assets/katex/katex.min.css" />
+  <script defer src="./assets/katex/katex.min.js"></script>
+  <script defer src="./assets/katex/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <h1>大学物理（2）<br />期末复习超详讲义</h1>
+        <p>把一周复习真正要用到的内容，整理成一份可以长时间连续学习的网页长讲义。</p>
+      </div>
+      <div class="action-row">
+        <button class="btn-primary" onclick="window.print()">打印 / 导出 PDF</button>
+        <button class="btn-secondary" onclick="toggleDetails()">展开 / 收起细节</button>
+      </div>
+      <nav class="nav">
+        <a href="#overview">考情定位<small>范围、题型、使用方法</small></a>
+        <a href="#quickstart">冲刺策略<small>3 天版 / 1 天版</small></a>
+        <a href="#optics22">第 22 章 干涉<small>双缝、薄膜、迈克耳孙</small></a>
+        <a href="#optics23">第 23 章 衍射<small>单缝、光栅、分辨本领</small></a>
+        <a href="#optics24">第 24 章 偏振<small>马吕斯、布儒斯特角、波片</small></a>
+        <a href="#quantum26">第 26 章 波粒二象性<small>黑体、光电效应、康普顿</small></a>
+        <a href="#quantum27">第 27 章 薛定谔方程<small>无限深势阱、测量概率</small></a>
+        <a href="#quantum28">第 28 章 原子中的电子<small>氢原子、量子数、谱线</small></a>
+        <a href="#appendix29">附录 第 29 章<small>固体中的电子</small></a>
+        <a href="#templates">大题模板<small>看到题就知道怎么落笔</small></a>
+        <a href="#speedsheet">考前速记<small>最后五分钟提醒</small></a>
+        <a href="#weekplan">一周复习计划<small>7 天怎么分配任务</small></a>
+        <a href="#mastery22">干涉精讲<small>从概念到大题全流程</small></a>
+        <a href="#mastery23">衍射精讲<small>单缝、光栅、分辨本领</small></a>
+        <a href="#mastery24">偏振精讲<small>马吕斯到波片</small></a>
+        <a href="#mastery26">波粒二象性精讲<small>黑体、光电、康普顿</small></a>
+        <a href="#mastery27">势阱精讲<small>波函数、时间演化、概率</small></a>
+        <a href="#mastery28">氢原子精讲<small>能级、谱线、量子数</small></a>
+        <a href="#memorywall">默写墙<small>公式、关键词、速答提示</small></a>
+        <a href="#mistakes">错因总表<small>最常见失分习惯</small></a>
+        <a href="#drillbank">题库与问答<small>自测、默写、口头题</small></a>
+        <a href="#mockpaper">模拟卷与答案<small>整套冲刺练习</small></a>
+        <a href="#radar">题型雷达<small>历年高频考法总览</small></a>
+        <a href="#questiontypes">小题专项<small>填空、判断、简答集中练</small></a>
+        <a href="#casebook">章节加餐例题<small>再补一轮会写的感觉</small></a>
+        <a href="#mockpaperb">模拟卷 B<small>第二套整卷训练</small></a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <span class="eyebrow">Final Review · Visual Handbook</span>
+          <h2>大学物理（2）<br />期末复习超详讲义</h2>
+          <p>
+            这不是“十分钟刷完”的提纲，而是一份按一周复习节奏展开的长篇网页讲义。
+            你可以把它当成主线教材来用：先看章节讲解，再做例题和自测，最后用模拟卷收尾。
+            配图、公式、题型、错因、答案思路都已经并进一页里，直接用浏览器长期学习就行。
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="window.print()">打印 / 导出 PDF</button>
+            <a class="btn-secondary" href="./02_大学物理（2）期末考前速记公式清单.md">查看 Markdown 速记清单</a>
+            <a class="btn-secondary" href="./01_大学物理（2）期末一体化总复习.md">查看原始 Markdown 讲义</a>
+          </div>
+          <div class="hero-grid">
+            <div class="stat"><strong>22–24</strong>光学主战场：干涉、衍射、偏振</div>
+            <div class="stat"><strong>26–28</strong>量子主战场：波粒二象性、势阱、氢原子</div>
+            <div class="stat"><strong>闭卷冲分</strong>先识别题型，再调用公式，最后防易错点</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="overview">
+        <div class="section-head">
+          <h3>考情定位</h3>
+          <p>先把范围和优先级定死，后面所有复习动作都围绕这张地图展开。</p>
+        </div>
+        <div class="section-body">
+          <div class="quick-grid">
+            <div class="quick-card">
+              <h4>核心范围</h4>
+              <p>主线集中在 <strong>光学 + 量子物理</strong>，其中最值得投入时间的是第 22–24、26–28 章。</p>
+            </div>
+            <div class="quick-card">
+              <h4>做题思路</h4>
+              <p>闭卷拉分关键不是复杂推导，而是你能不能在 10 秒内认出题型，再迅速调用对应公式。</p>
+            </div>
+            <div class="quick-card">
+              <h4>使用方式</h4>
+              <p>先读本页，再回到历年卷专项刷题；考前只回看模板区和速记区，不建议再来回乱翻课件。</p>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>最建议搭配的三套题：</strong><br />
+            <code class="inline-code">大学物理2期末-2020秋.pdf</code>、<code class="inline-code">大学物理2期末-2021秋.pdf</code>、<code class="inline-code">大学物理2期末线上-2022春.pdf</code>
+          </div>
+
+          <div class="chips">
+            <span class="chip">双缝干涉</span>
+            <span class="chip">薄膜干涉</span>
+            <span class="chip">迈克耳孙干涉仪</span>
+            <span class="chip">单缝衍射</span>
+            <span class="chip">光栅缺级</span>
+            <span class="chip">偏振片串联</span>
+            <span class="chip">布儒斯特角</span>
+            <span class="chip">黑体辐射</span>
+            <span class="chip">光电效应</span>
+            <span class="chip">康普顿散射</span>
+            <span class="chip">无限深势阱</span>
+            <span class="chip">氢原子谱线</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="quickstart">
+        <div class="section-head">
+          <h3>冲刺策略</h3>
+          <p>把时间花在最会出分的地方，而不是平均用力。</p>
+        </div>
+        <div class="section-body">
+          <div class="footer-grid">
+            <div class="mini-panel">
+              <h4>如果还有 3 天</h4>
+              <ol>
+                <li>第 1 天：第 22、23、24 章，刷一套卷里的全部光学题。</li>
+                <li>第 2 天：第 26、27 章，把黑体、光电、康普顿、势阱专项过一遍。</li>
+                <li>第 3 天：第 28 章和模板区，完整限时做一套卷，睡前只看速记区。</li>
+              </ol>
+            </div>
+            <div class="mini-panel">
+              <h4>如果只剩 1 天</h4>
+              <ol>
+                <li>先看每章的“必背公式”和“最容易错的点”。</li>
+                <li>再看模板区，把每类题的起手式记牢。</li>
+                <li>最后只做自己最不熟的 2–3 个专题，不再大范围开新题。</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="optics22">
+        <div class="section-head">
+          <h3>第 22 章 光的干涉</h3>
+          <p>双缝、薄膜、空间相干性、迈克耳孙干涉仪，本质都围绕“光程差”。</p>
+        </div>
+        <div class="section-body">
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <h4>物理图像</h4>
+              <img src="./figures/01_interference.svg" alt="双缝干涉示意图" />
+              <ul>
+                <li>干涉题先别急着套公式，先找出哪两束光在叠加。</li>
+                <li>一旦写出光程差 <span class="inline-math">\(\delta\)</span>，大多数题已经完成了一半。</li>
+                <li>亮纹 / 暗纹的判断只看相位差，也就是光程差。</li>
+              </ul>
+            </article>
+            <article class="chapter-card">
+              <h4>必背公式</h4>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <span class="formula-tag">相位差</span>
+                  <span class="formula-eq">\( \Delta \phi = \dfrac{2\pi \delta}{\lambda} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">亮纹</span>
+                  <span class="formula-eq">\( \delta = k\lambda \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">暗纹</span>
+                  <span class="formula-eq">\( \delta = \left(k + \dfrac{1}{2}\right)\lambda \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">双缝近似</span>
+                  <span class="formula-eq">\( \delta \approx \dfrac{dx}{D} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">条纹间距</span>
+                  <span class="formula-eq">\( \Delta x = \dfrac{\lambda D}{d} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">插片附加光程</span>
+                  <span class="formula-eq">\( \Delta = (n - 1)t \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">图样平移</span>
+                  <span class="formula-eq">\( \Delta x_{\text{shift}} = \dfrac{D(n-1)t}{d} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">迈克耳孙</span>
+                  <span class="formula-eq">\( 2\Delta d = N\lambda \)</span>
+                </div>
+              </div>
+              <div class="callout blue">
+                <strong>一条规则就够：</strong> 干涉图样整体向插片所在那一路平移。
+              </div>
+            </article>
+          </div>
+
+          <details open>
+            <summary>高频题型</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝第 <span class="inline-math">\(k\)</span> 级亮纹 / 暗纹位置：先写 <span class="inline-math">\(\delta \approx dx / D\)</span>，再联立亮暗条件。</li>
+                <li>插片后条纹平移：先算附加光程 <span class="inline-math">\((n - 1)t\)</span>，再换成屏上位移。</li>
+                <li>空间相干性：条纹刚好消失时，记 <span class="inline-math">\(b_{\max} \approx  \lambda L / d\)</span>。</li>
+                <li>迈克耳孙干涉仪：镜面移动 <span class="inline-math">\(\Delta d\)</span> 引起光程差变化 <span class="inline-math">\(2 \Delta d\)</span>，最容易漏这个系数。</li>
+                <li>薄膜干涉：先数相位反转次数，再决定 <span class="inline-math">\(2nt\)</span> 对应亮纹还是暗纹条件。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>薄膜干涉的相位反转判断表</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>两束反射光半波损失差</th>
+                    <th>反射亮纹条件</th>
+                    <th>反射暗纹条件</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>相差 0 次或 2 次</td>
+                    <td><span class="inline-math">\(2nt = k \lambda\)</span></td>
+                    <td><span class="inline-math">\(2nt = (k + 1/2) \lambda\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>相差 1 次</td>
+                    <td><span class="inline-math">\(2nt = (k + 1/2) \lambda\)</span></td>
+                    <td><span class="inline-math">\(2nt = k \lambda\)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易错的点</summary>
+            <div class="details-body">
+              <ul>
+                <li>把相位差和光程差混掉，没有先统一到 <span class="inline-math">\(\delta\)</span>。</li>
+                <li>忘记双缝小角近似 <span class="inline-math">\(\delta \approx dx / D\)</span>。</li>
+                <li>插片题只改某一条纹位置，忘了本质是整套图样平移。</li>
+                <li>迈克耳孙干涉仪漏掉光程差中的 <span class="inline-math">\(2\)</span>。</li>
+                <li>薄膜干涉没有先判断反射时是否发生相位反转。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="optics23">
+        <div class="section-head">
+          <h3>第 23 章 光的衍射</h3>
+          <p>单缝看包络，光栅看“单缝包络 + 多缝干涉主极大”。</p>
+        </div>
+        <div class="section-body">
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <h4>物理图像</h4>
+              <img src="./figures/02_diffraction_grating.svg" alt="单缝和光栅衍射示意图" />
+              <ul>
+                <li>单缝衍射：缝内部各部分互相干涉。</li>
+                <li>光栅衍射：主极大位置由 <span class="inline-math">\(d \sin(\theta) = k \lambda\)</span> 决定。</li>
+                <li>缺级：主极大刚好落在单缝暗纹位置上，被包络压没。</li>
+              </ul>
+            </article>
+            <article class="chapter-card">
+              <h4>必背公式</h4>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <span class="formula-tag">单缝暗纹</span>
+                  <span class="formula-eq">\( a\sin\theta = m\lambda \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">中央明纹宽</span>
+                  <span class="formula-eq">\( \Delta x_{\text{center}} = \dfrac{2f\lambda}{a} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">光栅主极大</span>
+                  <span class="formula-eq">\( d\sin\theta = k\lambda \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">分辨本领</span>
+                  <span class="formula-eq">\( R = \dfrac{\lambda}{\Delta \lambda} = kN \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">缺级条件</span>
+                  <span class="formula-eq">\( a\sin\theta = m\lambda,\quad d\sin\theta = k\lambda,\quad k = \dfrac{md}{a} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">分辨极限</span>
+                  <span class="formula-eq">\( \theta_{\min} \approx \dfrac{1.22\lambda}{D} \)</span>
+                </div>
+              </div>
+              <div class="callout green">
+                <strong>遇到“刚好分辨开两条谱线”：</strong> 立刻想到 <span class="inline-math">\(R = kN\)</span>。
+              </div>
+            </article>
+          </div>
+
+          <details open>
+            <summary>高频题型</summary>
+            <div class="details-body">
+              <ol>
+                <li>单缝中央明纹宽度：只要给了 <span class="inline-math">\(a\)</span>、<span class="inline-math">\(f\)</span>、<span class="inline-math">\(\lambda\)</span>，直接 <span class="inline-math">\(2f \lambda / a\)</span>。</li>
+                <li>光栅主极大和级次：先用 <span class="inline-math">\(d \sin(\theta) = k \lambda\)</span>，再判断 <span class="inline-math">\(|\sin(\theta)| \le 1\)</span>。</li>
+                <li>缺级：一定联立单缝暗纹条件，不能只写光栅主极大条件。</li>
+                <li>分辨本领：级次越高、总缝数越多，越容易分辨。</li>
+                <li>望远镜 / 显微镜分辨：看到口径和最小角距，想到 <span class="inline-math">\(1.22 \lambda / D\)</span>。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>典型题骨架：主极大 + 缺级</summary>
+            <div class="details-body">
+              <div class="math-note">
+                已知：在 <span class="inline-math">\(\theta = 30^\circ\)</span> 处出现 <span class="inline-math">\(2\)</span> 级主极大<br />
+                <span class="inline-math">\(d \sin 30^\circ = 2\lambda\)</span><br />
+                <span class="inline-math">\(d = 4\lambda\)</span><br /><br />
+                若 <span class="inline-math">\(3\)</span> 级主极大缺级：<br />
+                <span class="inline-math">\(3 = md / a\)</span><br /><br />
+                取最小 <span class="inline-math">\(m = 1\)</span><br />
+                <span class="inline-math">\(a = d / 3 = 4\lambda / 3\)</span><br /><br />
+                再看可见级次：<br />
+                <span class="inline-math">\(\left| k\lambda / d \right| \le 1\)</span>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易错的点</summary>
+            <div class="details-body">
+              <ul>
+                <li>把单缝暗纹条件和光栅主极大条件写成同一个式子。</li>
+                <li>缺级题只写 <span class="inline-math">\(d \sin(\theta) = k \lambda\)</span>，忘了联立单缝条件。</li>
+                <li>只会算主极大，不会结合角域限制做级次筛选。</li>
+                <li>分辨极限题忘了 <span class="inline-math">\(1.22\)</span>。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="optics24">
+        <div class="section-head">
+          <h3>第 24 章 光的偏振</h3>
+          <p>偏振片筛方向，波片改相位差，这是整章最重要的两句话。</p>
+        </div>
+        <div class="section-body">
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <h4>物理图像</h4>
+              <img src="./figures/03_polarization.svg" alt="偏振示意图" />
+              <ul>
+                <li>自然光：振动方向杂乱；线偏振光：方向固定。</li>
+                <li>偏振片是在筛掉不合方向的振动分量。</li>
+                <li>波片主要改变相位差，不是简单改光强。</li>
+              </ul>
+            </article>
+            <article class="chapter-card">
+              <h4>必背公式</h4>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <span class="formula-tag">自然光过偏振片</span>
+                  <span class="formula-eq">\( I = \dfrac{I_0}{2} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">马吕斯定律</span>
+                  <span class="formula-eq">\( I = I_{\text{in}}\cos^2\theta \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">布儒斯特角</span>
+                  <span class="formula-eq">\( \tan i_B = \dfrac{n_2}{n_1} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">反射偏振关系</span>
+                  <span class="formula-eq">\( i_B + r = 90^\circ \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">相位延迟</span>
+                  <span class="formula-eq">\( \Delta \phi = \dfrac{2\pi\,\Delta n\,t}{\lambda} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">四分之一波片</span>
+                  <span class="formula-eq">\( \Delta n\,t = \dfrac{\lambda}{4} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">二分之一波片</span>
+                  <span class="formula-eq">\( \Delta n\,t = \dfrac{\lambda}{2} \)</span>
+                </div>
+              </div>
+              <div class="callout">
+                <strong>偏振类型快判断：</strong><br />
+                <span class="inline-math">\(\Delta \phi = 0\)</span> 或 <span class="inline-math">\(\pi\)</span> 是线偏振；<span class="inline-math">\(A_x = A_y\)</span> 且 <span class="inline-math">\(\Delta \phi = \pm \pi/2\)</span> 是圆偏振；其余一般是椭圆偏振。
+              </div>
+            </article>
+          </div>
+
+          <details open>
+            <summary>高频题型</summary>
+            <div class="details-body">
+              <ol>
+                <li>多片偏振片：自然光先减半，之后逐片乘 <span class="inline-math">\(\cos^2(\theta)\)</span>。</li>
+                <li>反射偏振：看到“反射光完全偏振”，立刻想到布儒斯特角。</li>
+                <li>波片题：先沿快慢轴分解，再看相位差是否变成 <span class="inline-math">\(\pi/2\)</span> 或 <span class="inline-math">\(\pi\)</span>。</li>
+                <li>两块四分之一波片同轴串联：等效于一块半波片。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>三片偏振片题的通用写法</summary>
+            <div class="details-body">
+              <div class="math-note">
+                <span class="inline-math">\(I_1 = I_0 / 2\)</span><br />
+                <span class="inline-math">\(I_2 = I_1 \cos^2 \theta_{12}\)</span><br />
+                <span class="inline-math">\(I_3 = I_2 \cos^2 \theta_{23}\)</span>
+              </div>
+              <p class="muted">别跳步骤。闭卷里最容易丢分的不是不会，而是第一步没先把自然光除以 2。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易错的点</summary>
+            <div class="details-body">
+              <ul>
+                <li>自然光经第一片偏振片后忘了先减半。</li>
+                <li>布儒斯特角题把入射角、反射角、折射角混掉。</li>
+                <li>波片题只背结论，不先拆成快慢轴两分量。</li>
+                <li>判断偏振类型时只看相位差，不看振幅关系。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="quantum26">
+        <div class="section-head">
+          <h3>第 26 章 波粒二象性</h3>
+          <p>本章大多数题都能收束到几类：黑体、光电效应、康普顿、德布罗意、不确定关系、X 射线衍射。</p>
+        </div>
+        <div class="section-body">
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <h4>物理图像</h4>
+              <img src="./figures/04_quantum_effects.svg" alt="波粒二象性示意图" />
+              <ul>
+                <li>光既有波动性，也有粒子性。</li>
+                <li>电子等微观粒子也有波动性，所以才会有电子衍射和德布罗意波长。</li>
+                <li>很多填空题看着花，其实只是换壳考同一条公式。</li>
+              </ul>
+            </article>
+            <article class="chapter-card">
+              <h4>必背公式</h4>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <span class="formula-tag">光子能量</span>
+                  <span class="formula-eq">\( E = h\nu = \dfrac{hc}{\lambda} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">维恩位移</span>
+                  <span class="formula-eq">\( \lambda_m T = b \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">斯特藩-玻尔兹曼</span>
+                  <span class="formula-eq">\( M = \sigma T^4 \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">光电效应</span>
+                  <span class="formula-eq">\( h\nu = W + K_{\max} = W + eU_s \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">红限频率</span>
+                  <span class="formula-eq">\( \nu_0 = \dfrac{W}{h} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">红限波长</span>
+                  <span class="formula-eq">\( \lambda_0 = \dfrac{hc}{W} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">康普顿散射</span>
+                  <span class="formula-eq">\( \Delta \lambda = \lambda_C(1-\cos\phi) \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">反冲电子动能</span>
+                  <span class="formula-eq">\( K = hc\left(\dfrac{1}{\lambda} - \dfrac{1}{\lambda'}\right) \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">德布罗意</span>
+                  <span class="formula-eq">\( \lambda = \dfrac{h}{p} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">加速电子波长</span>
+                  <span class="formula-eq">\( \lambda = \dfrac{h}{\sqrt{2meU}} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">不确定关系</span>
+                  <span class="formula-eq">\( \Delta x\,\Delta p_x \ge \dfrac{\hbar}{2} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">布拉格公式</span>
+                  <span class="formula-eq">\( 2d\sin\phi = k\lambda \)</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <details open>
+            <summary>高频题型</summary>
+            <div class="details-body">
+              <ol>
+                <li>黑体辐射：先用 <span class="inline-math">\(\lambda_m T = b\)</span> 算温度比，再用 <span class="inline-math">\(T^4\)</span> 算总辐射本领比。</li>
+                <li>光电效应：看到截止电压、逸出功、红限频率，直接写 <span class="inline-math">\(h \nu = W + eU_s\)</span>。</li>
+                <li>康普顿散射：如果问两个散射角下波长改变量比值，<span class="inline-math">\(\lambda_C\)</span> 会约掉。</li>
+                <li>德布罗意：电子经电压加速时常用 <span class="inline-math">\(\lambda = h / \sqrt{2meU}\)</span>。</li>
+                <li>不确定关系：单缝越窄，横向动量不确定度越大。</li>
+                <li>X 射线衍射：先看题里给的是掠射角还是与法线夹角，别直接上手。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>典型题骨架：光电效应</summary>
+            <div class="details-body">
+              <div class="math-note">
+                <div class="formula-row">
+                  <div class="formula-tag">第 1 步：光子能量</div>
+                  <div class="formula-eq">
+                    <span class="inline-math">\(E = hc / \lambda\)</span>
+                    <p>意思：一个光子的能量由波长决定。<span class="inline-math">\(h\)</span> 是普朗克常量，<span class="inline-math">\(c\)</span> 是光速，<span class="inline-math">\(\lambda\)</span> 是入射光波长。</p>
+                    <p>怎么用：题目给波长时，先用这个把“光的波长”换成“每个光子的能量”。波长越短，光子能量越大。</p>
+                  </div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">第 2 步：能量分账</div>
+                  <div class="formula-eq">
+                    <span class="inline-math">\(E = W + eU_s\)</span>
+                    <p>意思：光子能量分成两份：一份用来把电子从金属里“抠出来”，叫逸出功 <span class="inline-math">\(W\)</span>；剩下的变成光电子最大动能。</p>
+                    <p>为什么是 <span class="inline-math">\(eU_s\)</span>：截止电压刚好能把最快的光电子拦住，所以最大动能 <span class="inline-math">\(K_{\max} = eU_s\)</span>。</p>
+                    <p>易错点：<span class="inline-math">\(eU_s\)</span> 不是逸出功，它是最大动能。</p>
+                  </div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">求逸出功</div>
+                  <div class="formula-eq">
+                    <span class="inline-math">\(W = hc / \lambda - eU_s\)</span>
+                    <p>意思：总光子能量减去最大动能，剩下就是金属的逸出功。</p>
+                    <p>怎么用：题目给入射光波长 <span class="inline-math">\(\lambda\)</span> 和截止电压 <span class="inline-math">\(U_s\)</span>，通常就是让你求 <span class="inline-math">\(W\)</span>。</p>
+                  </div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">红限频率</div>
+                  <div class="formula-eq">
+                    <span class="inline-math">\(\nu_0 = W / h\)</span>
+                    <p>意思：刚好能发生光电效应的最低频率。这个时候电子刚好被打出来，最大动能为 0。</p>
+                    <p>怎么判断：如果入射光频率 <span class="inline-math">\(\nu &lt; \nu_0\)</span>，不管光强多大，都不会发生光电效应。</p>
+                  </div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">红限波长</div>
+                  <div class="formula-eq">
+                    <span class="inline-math">\(\lambda_0 = hc / W\)</span>
+                    <p>意思：刚好能发生光电效应的最大波长，也叫截止波长。</p>
+                    <p>怎么判断：如果入射光波长 <span class="inline-math">\(\lambda &gt; \lambda_0\)</span>，光子能量不够，电子出不来。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易错的点</summary>
+            <div class="details-body">
+              <ul>
+                <li>黑体题把峰值波长与温度关系写反。</li>
+                <li>光电效应里把 <span class="inline-math">\(eU_s\)</span> 当成逸出功，而不是最大动能。</li>
+                <li>康普顿题不会抓 <span class="inline-math">\(1 - \cos \phi\)</span> 这个核心。</li>
+                <li>德布罗意题把光子公式和电子加速公式混用。</li>
+                <li>不确定关系题不会把缝宽当作 <span class="inline-math">\(\Delta x\)</span> 的量级估计。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="quantum27">
+        <div class="section-head">
+          <h3>第 27 章 薛定谔方程与无限深方势阱</h3>
+          <p>重点不是求解微分方程本身，而是“本征态、叠加态、测量概率、时间演化”。</p>
+        </div>
+        <div class="section-body">
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <h4>物理图像</h4>
+              <img src="./figures/05_infinite_well.svg" alt="无限深方势阱示意图" />
+              <ul>
+                <li>粒子被限制在 <span class="inline-math">\(0 &lt; x &lt; a\)</span> 的势阱里，只能取离散能级。</li>
+                <li>如果初态是本征态叠加，时间演化只是在每个本征态前乘一个相位因子。</li>
+                <li>测量某能量的概率就是对应系数模方。</li>
+              </ul>
+            </article>
+            <article class="chapter-card">
+              <h4>必背公式</h4>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <span class="formula-tag">本征函数</span>
+                  <span class="formula-eq">\( \psi_n(x) = \sqrt{\dfrac{2}{a}}\sin\!\left(\dfrac{n\pi x}{a}\right) \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">本征能量</span>
+                  <span class="formula-eq">\( E_n = \dfrac{n^2 h^2}{8ma^2} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">初态展开</span>
+                  <span class="formula-eq">\( \Psi(x,0) = \sum_n c_n\,\psi_n(x) \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">时间演化</span>
+                  <span class="formula-eq">\( \Psi(x,t) = \sum_n c_n\,\psi_n(x)e^{-iE_n t/\hbar} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">能量概率</span>
+                  <span class="formula-eq">\( P(E_n) = |c_n|^2 \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">平均能量</span>
+                  <span class="formula-eq">\( E_{\text{avg}} = \sum_n |c_n|^2 E_n \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">区间概率</span>
+                  <span class="formula-eq">\( P(x_1 \sim x_2) = \int_{x_1}^{x_2} |\Psi(x,t)|^2\,dx \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">动量本征函数</span>
+                  <span class="formula-eq">\( \Phi_p(x) = \dfrac{1}{\sqrt{2\pi\hbar}}\,e^{ipx/\hbar} \)</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <details open>
+            <summary>高频题型</summary>
+            <div class="details-body">
+              <ol>
+                <li>已知初态，写出 <span class="inline-math">\(\Psi(x,t)\)</span>：给每个本征态乘上 <span class="inline-math">\(\exp(-iE_n t/\hbar)\)</span>。</li>
+                <li>求某个能量的概率：就是对应系数模方 <span class="inline-math">\(|c_n|^2\)</span>。</li>
+                <li>求平均能量：<span class="inline-math">\(\sum |c_n|^2 E_n\)</span>，不是重新解势阱。</li>
+                <li>区间概率：对 <span class="inline-math">\(|\Psi|^2\)</span> 在给定区间积分。</li>
+                <li>动量题：把波函数拆成若干平面波，读出可能动量值与概率。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最常用的展开技巧</summary>
+            <div class="details-body">
+              <div class="math-note">
+                <span class="inline-math">\(\sin u \cos u = \tfrac{1}{2} \sin 2u\)</span><br />
+                <span class="inline-math">\(\sin u (1 - \cos u) = \sin u - \tfrac{1}{2} \sin 2u\)</span>
+              </div>
+              <p class="muted">很多看起来复杂的初态，最终只是 <span class="inline-math">\(\psi_1\)</span> 和 <span class="inline-math">\(\psi_2\)</span> 的线性组合，别被表面形式吓住。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>典型题骨架：势阱初态展开</summary>
+            <div class="details-body">
+              <div class="math-note">
+                若<br />
+                <span class="inline-math">\(\Psi(x,0) = \sqrt{8/(5a)} (1 - \cos(\pi x / a)) \sin(\pi x / a)\)</span><br /><br />
+                先化简：<br />
+                <span class="inline-math">\(\sin u (1 - \cos u) = \sin u - \tfrac{1}{2} \sin 2u\)</span><br /><br />
+                则<br />
+                <span class="inline-math">\(\Psi(x,0) = \dfrac{2}{\sqrt{5}} \psi_1(x) - \dfrac{1}{\sqrt{5}} \psi_2(x)\)</span><br /><br />
+                于是<br />
+                <span class="inline-math">\(P(E_1) = 4/5\)</span><br />
+                <span class="inline-math">\(P(E_2) = 1/5\)</span><br />
+                <span class="inline-math">\(\bar{E} = (4/5) E_1 + (1/5) E_2\)</span>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易错的点</summary>
+            <div class="details-body">
+              <ul>
+                <li>忘了势阱定义区间是 <span class="inline-math">\(0 &lt; x &lt; a\)</span>。</li>
+                <li>归一化系数写错，导致后面概率全歪。</li>
+                <li>把 <span class="inline-math">\(c_n\)</span> 和 <span class="inline-math">\(|c_n|^2\)</span> 混掉。</li>
+                <li>区间概率直接对 <span class="inline-math">\(\Psi\)</span> 积分，而不是对 <span class="inline-math">\(|\Psi|^2\)</span> 积分。</li>
+                <li>把“可能动量值”和“平均动量”混成同一个概念。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="quantum28">
+        <div class="section-head">
+          <h3>第 28 章 原子中的电子</h3>
+          <p>氢原子、量子数、角动量量子化、谱线条数，是这一章几乎固定出现的几类题。</p>
+        </div>
+        <div class="section-body">
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <h4>物理图像</h4>
+              <img src="./figures/06_hydrogen_levels.svg" alt="氢原子能级图" />
+              <ul>
+                <li>氢原子最核心的结构是离散能级，不是连续取值。</li>
+                <li>光谱线来自能级跃迁，能量差越大，光子能量越高，波长越短。</li>
+                <li>量子数是描述电子量子态的标签，不是随便给的四个数字。</li>
+              </ul>
+            </article>
+            <article class="chapter-card">
+              <h4>必背公式</h4>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <span class="formula-tag">氢原子能级</span>
+                  <span class="formula-eq">\( E_n = -\dfrac{13.6}{n^2}\,\mathrm{eV} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">里德伯公式</span>
+                  <span class="formula-eq">\( \dfrac{1}{\lambda} = R\!\left(\dfrac{1}{n_l^2} - \dfrac{1}{n_u^2}\right) \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">最多谱线数</span>
+                  <span class="formula-eq">\( N_{\max} = \dfrac{n(n-1)}{2} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">主量子数</span>
+                  <span class="formula-eq">\( n = 1,2,3,\ldots \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">角量子数</span>
+                  <span class="formula-eq">\( l = 0,1,\ldots,n-1 \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">磁量子数</span>
+                  <span class="formula-eq">\( m_l = -l,\ldots,+l \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">自旋量子数</span>
+                  <span class="formula-eq">\( m_s = \pm \dfrac{1}{2} \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">角动量大小</span>
+                  <span class="formula-eq">\( L = \sqrt{l(l+1)}\,\hbar \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">z 分量</span>
+                  <span class="formula-eq">\( L_z = m_l\hbar \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">每层最多电子数</span>
+                  <span class="formula-eq">\( 2n^2 \)</span>
+                </div>
+                <div class="formula-row">
+                  <span class="formula-tag">每亚层最多电子数</span>
+                  <span class="formula-eq">\( 2(2l+1) \)</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <details open>
+            <summary>高频题型</summary>
+            <div class="details-body">
+              <ol>
+                <li>从 <span class="inline-math">\(n = 4\)</span> 激发态最多能发出几条谱线：直接 <span class="inline-math">\(n(n-1)/2\)</span>。</li>
+                <li>求可见光中最短波长：通常优先考虑跃迁到 <span class="inline-math">\(n = 2\)</span> 的巴耳末系。</li>
+                <li>由 <span class="inline-math">\(n, m_l\)</span> 反推 <span class="inline-math">\(l\)</span>：用 <span class="inline-math">\(|m_l| \le l \le n - 1\)</span> 夹出唯一值。</li>
+                <li>角动量大小和分量：看到“大小”就写 <span class="inline-math">\(L\)</span>，看到 “z 分量”就写 <span class="inline-math">\(L_z\)</span>。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>典型题骨架</summary>
+            <div class="details-body">
+              <div class="math-note">
+                若一群氢原子处于 <span class="inline-math">\(n = 4\)</span>：<br /><br />
+                最多谱线数：<br />
+                <span class="inline-math">\(N_{\max} = 4 \times 3 / 2 = 6\)</span><br /><br />
+                可见光中最短波长：<br />
+                优先看 <span class="inline-math">\(4 \to 2\)</span><br />
+                <span class="inline-math">\(\Delta E = 13.6 \left( 1/4 - 1/16 \right)\,\text{eV} = 2.55\,\text{eV}\)</span><br /><br />
+                若某态 <span class="inline-math">\(n = 4,\, m_l = -3\)</span>：<br />
+                因为 <span class="inline-math">\(|m_l| \le l \le n - 1 = 3\)</span><br />
+                <span class="inline-math">\(l = 3\)</span><br />
+                <span class="inline-math">\(m_s = \pm 1/2\)</span><br />
+                <span class="inline-math">\(L = \sqrt{3(4)}\,\hbar = 2\sqrt{3}\,\hbar\)</span>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易错的点</summary>
+            <div class="details-body">
+              <ul>
+                <li>不会从激发态直接写出最多谱线条数公式。</li>
+                <li>可见光题不知道要优先看跃迁到 <span class="inline-math">\(n = 2\)</span>。</li>
+                <li><span class="inline-math">\(m_l\)</span> 和 <span class="inline-math">\(l\)</span> 的约束关系记反。</li>
+                <li><span class="inline-math">\(L\)</span> 和 <span class="inline-math">\(L_z\)</span> 混掉，导致答案单位和数值都错。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="appendix29">
+        <div class="section-head">
+          <h3>附录：第 29 章 固体中的电子</h3>
+          <p>这一章放在低优先级补充区，只有在老师明确强调时再重点投入。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout blue">
+            <strong>最省时间的抓法：</strong> 先记住金属、绝缘体、半导体的能带差异；如果再往下考，通常才会碰到费米能、自由电子模型。
+          </div>
+          <div class="math-note">
+            <span class="inline-math">\(E = p^2 / (2m)\)</span><br /><br />
+            <span class="inline-math">\(p_F = \hbar (3\pi^2 n)^{1/3}\)</span><br /><br />
+            <span class="inline-math">\(E_F = p_F^2 / (2m)\)</span><br />
+            <span class="inline-math">\(= \hbar^2 (3\pi^2 n)^{2/3} / (2m)\)</span>
+          </div>
+          <ul>
+            <li>金属：能带部分填满，或价带和导带重叠，电子容易迁移。</li>
+            <li>绝缘体：禁带宽，电子难跃迁。</li>
+            <li>半导体：禁带较小，受温度和掺杂影响明显。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="templates">
+        <div class="section-head">
+          <h3>大题模板</h3>
+          <p>考场上最重要的是“先下得去笔”。下面这些模板就是你每类题的起手式。</p>
+        </div>
+        <div class="section-body">
+          <div class="footer-grid">
+            <div class="mini-panel">
+              <h4>模板 1：双缝干涉</h4>
+              <div class="math-note">
+                先写：<br />
+                <span class="inline-math">\(\delta \approx dx / D\)</span><br /><br />
+                再写：<br />
+                亮纹 <span class="inline-math">\(\delta = k\lambda\)</span><br />
+                暗纹 <span class="inline-math">\(\delta = (k + 1/2)\lambda\)</span><br /><br />
+                若插片：<br />
+                附加光程 <span class="inline-math">\((n - 1)t\)</span>
+              </div>
+            </div>
+            <div class="mini-panel">
+              <h4>模板 2：光栅</h4>
+              <div class="math-note">
+                先由主极大：<br />
+                <span class="inline-math">\(d \sin \theta = k\lambda\)</span><br /><br />
+                若缺级：<br />
+                <span class="inline-math">\(a \sin \theta = m\lambda\)</span><br />
+                <span class="inline-math">\(\Rightarrow k = md / a\)</span><br /><br />
+                分辨本领：<br />
+                <span class="inline-math">\(R = kN\)</span>
+              </div>
+            </div>
+            <div class="mini-panel">
+              <h4>模板 3：偏振</h4>
+              <div class="math-note">
+                自然光先过第一片：<br />
+                <span class="inline-math">\(I_1 = I_0 / 2\)</span><br /><br />
+                之后逐片乘：<br />
+                <span class="inline-math">\(\cos^2 \theta\)</span>
+              </div>
+            </div>
+            <div class="mini-panel">
+              <h4>模板 4：光电效应</h4>
+              <div class="math-note">
+                <span class="inline-math">\(h\nu = W + eU_s\)</span><br /><br />
+                先算光子能量<br />
+                再求逸出功 / 截止电压 / 红限频率
+              </div>
+            </div>
+            <div class="mini-panel">
+              <h4>模板 5：无限深势阱</h4>
+              <div class="math-note">
+                先把初态拆成本征态<br />
+                再乘时间因子 <span class="inline-math">\(\exp(-iE_n t / \hbar)\)</span><br />
+                概率 <span class="inline-math">\(= |c_n|^2\)</span><br />
+                平均能量 <span class="inline-math">\(= \sum |c_n|^2 E_n\)</span>
+              </div>
+            </div>
+            <div class="mini-panel">
+              <h4>模板 6：氢原子</h4>
+              <div class="math-note">
+                <span class="inline-math">\(E_n = -13.6 / n^2\)</span><br />
+                <span class="inline-math">\(\Delta E = |E_i - E_f|\)</span><br />
+                <span class="inline-math">\(N_{\max} = n(n - 1) / 2\)</span><br />
+                <span class="inline-math">\(L = \sqrt{l(l + 1)}\,\hbar\)</span><br />
+                <span class="inline-math">\(L_z = m_l \hbar\)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="speedsheet">
+        <div class="section-head">
+          <h3>考前速记</h3>
+          <p>临进考场前最后五分钟，只需要把这些提醒重新过一遍。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>最后五分钟提醒自己这些：</strong>
+          </div>
+          <ol>
+            <li>双缝、单缝、光栅三套条件一定分开。</li>
+            <li>迈克耳孙题别漏 <span class="inline-math">\(2\)</span>。</li>
+            <li>自然光先减半，再马吕斯。</li>
+            <li>黑体题先求温度比，再四次方。</li>
+            <li><span class="inline-math">\(eU_s\)</span> 是光电子最大动能，不是逸出功。</li>
+            <li>康普顿比值题里 <span class="inline-math">\(\lambda_C\)</span> 会约掉。</li>
+            <li>势阱题里的概率来自系数模方。</li>
+            <li>氢原子可见光通常优先看 <span class="inline-math">\(n \to 2\)</span>。</li>
+            <li>量子数题先用 <span class="inline-math">\(|m_l| \le l \le n - 1\)</span> 夹住 <span class="inline-math">\(l\)</span>。</li>
+          </ol>
+          <p class="print-note print-hide">这页已经做了打印样式，直接点左侧“打印 / 导出 PDF”就可以出一份干净版本。</p>
+        </div>
+      </section>
+
+      <section class="section" id="weekplan">
+        <div class="section-head">
+          <h3>一周复习总计划</h3>
+          <p>如果你这一周就靠这份网页讲义学，那最重要的不是“从头看到尾”，而是每天把输入、输出和复盘都安排上。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout blue">
+            <strong>建议使用方式：</strong> 每天先看对应章节的“知识主线”和“例题拆解”，再自己遮住答案做“自测题”，最后把错题和不熟公式抄到你自己的纸面清单里。
+          </div>
+          <div class="wide-visual">
+            <h4>一周复习路线图</h4>
+            <img src="./figures/07_course_map.svg" alt="一周复习主线图" />
+            <p>这张图把一周学习压成三段：先把光学的题型识别练稳，再把量子的概念和公式串起来，最后用整卷和默写封口。</p>
+          </div>
+          <div class="quick-grid">
+            <div class="mini-panel">
+              <h4>Day 1：框架搭建</h4>
+              <ul>
+                <li>通读“考情定位”和“冲刺策略”，先知道哪些章节是主战场。</li>
+                <li>完整学习第 22 章干涉精讲，至少自己重做 2 道双缝 / 薄膜题。</li>
+                <li>把干涉里的亮纹、暗纹、插片平移、迈克耳孙 <span class="inline-math">\(2\Delta d\)</span> 写成一张纸。</li>
+              </ul>
+            </div>
+            <div class="mini-panel">
+              <h4>Day 2：继续光学</h4>
+              <ul>
+                <li>学习第 23 章衍射精讲，重点盯“单缝条件、光栅条件、缺级、分辨本领”。</li>
+                <li>做 1 组“主极大 + 缺级”题，做 1 组“分辨极限”题。</li>
+                <li>晚上用 20 分钟回看第 22 章，把最容易混的条件对比一遍。</li>
+              </ul>
+            </div>
+            <div class="mini-panel">
+              <h4>Day 3：光学收口</h4>
+              <ul>
+                <li>学习第 24 章偏振精讲，重点解决“自然光先减半”“马吕斯定律”“波片判断”。</li>
+                <li>把第 22–24 章做一次综合小测，刻意练“看到题先识别类型”。</li>
+                <li>到这一天结束时，你应该能把光学三章的核心公式不看讲义写出来。</li>
+              </ul>
+            </div>
+            <div class="mini-panel">
+              <h4>Day 4：进入量子</h4>
+              <ul>
+                <li>学习第 26 章波粒二象性，优先掌握黑体、光电效应、康普顿、德布罗意。</li>
+                <li>做 2 道“光电效应综合式”题，练熟 <span class="inline-math">\(h\nu = W + eU_s\)</span>。</li>
+                <li>把常数、单位和物理量意义单独整理一遍，避免后面计算混乱。</li>
+              </ul>
+            </div>
+            <div class="mini-panel">
+              <h4>Day 5：最容易拉开差距的一章</h4>
+              <ul>
+                <li>学习第 27 章势阱精讲，重点解决“本征态”“时间因子”“概率”“平均能量”。</li>
+                <li>不要只背结论，要自己把一个初态展开到 <span class="inline-math">\(\psi_1\)</span>、<span class="inline-math">\(\psi_2\)</span> 的过程写出来。</li>
+                <li>做完后立刻回顾第 26 章，因为这两章容易在思维模式上断开。</li>
+              </ul>
+            </div>
+            <div class="mini-panel">
+              <h4>Day 6：氢原子和量子数</h4>
+              <ul>
+                <li>学习第 28 章氢原子精讲，背熟能级、谱线条数、巴耳末系、量子数约束。</li>
+                <li>做一组“最多谱线数 + 最短波长 + 量子数反推”的组合题。</li>
+                <li>晚上把整份讲义里的“题库与问答”刷一遍，开始冲记忆速度。</li>
+              </ul>
+            </div>
+            <div class="mini-panel">
+              <h4>Day 7：模拟与封口</h4>
+              <ul>
+                <li>按模拟卷整套做一遍，计时，不翻资料。</li>
+                <li>对照答案后，只复盘三个东西：题型识别、关键公式、粗心点。</li>
+                <li>最后回到“考前速记”和你自己的错题纸，收尾而不要继续铺新内容。</li>
+              </ul>
+            </div>
+          </div>
+          <details open>
+            <summary>这一周每天的复习节奏怎么分配</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>阶段</th>
+                    <th>建议时间</th>
+                    <th>做什么</th>
+                    <th>核心目标</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>输入</td>
+                    <td>60–90 分钟</td>
+                    <td>看本讲义的知识主线、公式说明、例题拆解</td>
+                    <td>先建结构，不急着做很多题</td>
+                  </tr>
+                  <tr>
+                    <td>输出</td>
+                    <td>40–60 分钟</td>
+                    <td>自己做“自测题”和题库小题</td>
+                    <td>逼自己从“看懂”变成“会写”</td>
+                  </tr>
+                  <tr>
+                    <td>复盘</td>
+                    <td>20–30 分钟</td>
+                    <td>整理错因、抄公式、口头复述题型</td>
+                    <td>把当天知识压成可重复调用的模板</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mastery22">
+        <div class="section-head">
+          <h3>干涉精讲：第 22 章从概念到大题全流程</h3>
+          <p>这章不是单纯背公式，而是先判断“哪两束光在叠加”，再把相位差统一成光程差去做。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>这章的根问题只有一个：</strong> 你有没有先找对发生干涉的两束光，以及它们之间到底差了多少光程。
+          </div>
+          <div class="wide-visual">
+            <h4>薄膜干涉与迈克耳孙对照图</h4>
+            <img src="./figures/08_thinfilm_michelson.svg" alt="薄膜干涉与迈克耳孙干涉仪光程差示意图" />
+            <p>薄膜题先判断反射相位反转；迈克耳孙题先抓住镜面移动造成的往返光程差变化。</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>看到什么题面</th>
+                <th>第一反应</th>
+                <th>最常用关系</th>
+                <th>最容易错的地方</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>双缝、屏上某点、亮暗纹位置</td>
+                <td>先找双缝几何近似</td>
+                <td><span class="inline-math">\(\delta \approx dx/D\)</span></td>
+                <td>把 <span class="inline-math">\(x\)</span>、<span class="inline-math">\(d\)</span>、<span class="inline-math">\(D\)</span> 的角色写反</td>
+              </tr>
+              <tr>
+                <td>插片、介质、条纹整体平移</td>
+                <td>算附加光程</td>
+                <td><span class="inline-math">\((n-1)t\)</span></td>
+                <td>只改某一条纹位置，忘了整套图样平移</td>
+              </tr>
+              <tr>
+                <td>薄膜、反射增强 / 减弱</td>
+                <td>先数相位反转次数</td>
+                <td><span class="inline-math">\(2nt\)</span> 与亮暗条件联立</td>
+                <td>没先判断高低折射率界面</td>
+              </tr>
+              <tr>
+                <td>牛顿环、环纹级次、环半径</td>
+                <td>想到厚度随半径变</td>
+                <td><span class="inline-math">\(2\Delta d = N\lambda\)</span></td>
+                <td>直径和半径关系漏平方</td>
+              </tr>
+              <tr>
+                <td>迈克耳孙、镜面移动、条纹变化数</td>
+                <td>先写光程差变化</td>
+                <td><span class="inline-math">\(2\Delta d = N\lambda\)</span></td>
+                <td>最常漏掉前面的 <span class="inline-math">\(2\)</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <details open>
+            <summary>知识主线：为什么干涉题一定要先找“哪两束光”</summary>
+            <div class="details-body">
+              <p>很多同学一见题就想套“亮纹条件”“暗纹条件”，但真正决定题目走向的是：参与叠加的是哪两束光，它们从哪出发、经过了哪些介质、发生了几次反射、每次反射有没有相位反转。</p>
+              <p>所以你做干涉题的标准流程最好固定成这样：</p>
+              <ol>
+                <li>画出两束相干光的路径，先把来源和会合点标出来。</li>
+                <li>写出两束光的几何路程差，再补上介质带来的附加光程。</li>
+                <li>如果是反射型薄膜，额外判断相位反转是否等效成半波损失。</li>
+                <li>把所有东西统一成光程差 <span class="inline-math">\(\delta\)</span>，最后再判亮纹还是暗纹。</li>
+              </ol>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">相位差</div>
+                  <div class="formula-eq">\( \Delta \varphi = \dfrac{2\pi}{\lambda}\delta \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">亮纹</div>
+                  <div class="formula-eq">\( \delta = k\lambda \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">暗纹</div>
+                  <div class="formula-eq">\( \delta = \left(k+\dfrac12\right)\lambda \)</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>双缝干涉完整讲解：题目一般怎么问，怎么一步步落笔</summary>
+            <div class="details-body">
+              <p>双缝干涉最常见的问法有四种：求某级亮纹 / 暗纹位置，求条纹间距，求插片引起的平移量，求相干长度或相干条件。</p>
+              <p>几何近似成立时，屏上距离中央明纹横坐标为 <span class="inline-math">\(x\)</span> 的点，对应光程差可写成 <span class="inline-math">\(\delta \approx dx/D\)</span>。这个式子其实就是把角度很小时的 <span class="inline-math">\(\sin \theta \approx \tan \theta \approx x/D\)</span> 用进去了。</p>
+              <p>一旦有了 <span class="inline-math">\(\delta \approx dx/D\)</span>，后面的题基本都只是把它和亮暗条件联立。比如第 <span class="inline-math">\(k\)</span> 级亮纹位置是 <span class="inline-math">\(x_k = k\lambda D / d\)</span>，相邻亮纹间距就是 <span class="inline-math">\(\Delta x = \lambda D / d\)</span>。</p>
+              <div class="math-note">
+                双缝核心三步：<br />
+                <span class="inline-math">\(\delta \approx dx / D\)</span><br />
+                亮纹：<span class="inline-math">\(\delta = k\lambda\)</span><br />
+                暗纹：<span class="inline-math">\(\delta = (k + 1/2)\lambda\)</span>
+              </div>
+              <p>如果在某一路插入折射率为 <span class="inline-math">\(n\)</span>、厚度为 <span class="inline-math">\(t\)</span> 的薄片，附加光程是 <span class="inline-math">\((n-1)t\)</span>。注意这不是某一条纹自己变了，而是整套条纹整体平移。平移量和屏上坐标的关系是：</p>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">附加光程</div>
+                  <div class="formula-eq">\( \delta_{\text{extra}} = (n-1)t \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">图样平移</div>
+                  <div class="formula-eq">\( \Delta x = \dfrac{D(n-1)t}{d} \)</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>薄膜干涉、牛顿环、迈克耳孙：这三类为什么总是被混</summary>
+            <div class="details-body">
+              <p>这三类题混在一起，本质上是因为它们都在问“光程差如何随着某个几何量变化”。薄膜题里变化的是膜厚 <span class="inline-math">\(t\)</span>，牛顿环里变化的是接触点到圆心的半径 <span class="inline-math">\(r\)</span>，迈克耳孙里变化的是镜面移动量 <span class="inline-math">\(\Delta d\)</span>。</p>
+              <p>薄膜题第一步不是写公式，而是数相位反转次数。若两束反射光在反射过程中额外损失半波，则亮暗条件会交换。这个判断不做，后面计算全对也会判反。</p>
+              <p>牛顿环经常考“第几环半径”“环直径变化”“明暗环数”。你如果把它当成普通薄膜题，再加上透镜几何关系就不难。迈克耳孙更像一个“会动的光程差发生器”，条纹变化数永远和光程差变化总量直接相关。</p>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">反射型薄膜</div>
+                  <div class="formula-eq">\( \delta = 2nt \) 后再结合是否相位反转判断亮暗</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">牛顿环 / 迈克耳孙</div>
+                  <div class="formula-eq">\( 2\Delta d = N\lambda \)</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 1：双缝插片后中央明纹平移多少</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 双缝间距 <span class="inline-math">\(d\)</span>，屏到双缝距离 <span class="inline-math">\(D\)</span>，一缝前插入薄片，折射率 <span class="inline-math">\(n\)</span>，厚度 <span class="inline-math">\(t\)</span>，求中央明纹平移量。</p>
+              <p><strong>思路：</strong> 中央明纹之所以平移，是因为原来光程差为零的点不再在几何中心。插片引入附加光程 <span class="inline-math">\((n-1)t\)</span>，于是屏上某个新点需要靠几何路程差来抵消它。</p>
+              <div class="math-note">
+                附加光程：<span class="inline-math">\(\delta_{\text{extra}} = (n-1)t\)</span><br />
+                几何光程差：<span class="inline-math">\(\delta \approx dx / D\)</span><br />
+                中央明纹新位置满足：<span class="inline-math">\(dx / D = (n-1)t\)</span><br />
+                所以平移量：<span class="inline-math">\(\Delta x = D(n-1)t / d\)</span>
+              </div>
+              <p><strong>点评：</strong> 这题最容易错成“某一级亮纹移动量”，实际上中央明纹本身也一起平移，整套图样都是同一个位移。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 2：迈克耳孙干涉仪移动反射镜后有多少条条纹移过</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 干涉仪中某反射镜移动了 <span class="inline-math">\(\Delta d\)</span>，求观察到多少条条纹掠过视场。</p>
+              <p><strong>关键：</strong> 镜子移动了 <span class="inline-math">\(\Delta d\)</span>，往返程都变，所以光程差变化量不是 <span class="inline-math">\(\Delta d\)</span>，而是 <span class="inline-math">\(2\Delta d\)</span>。</p>
+              <div class="math-note">
+                光程差变化：<span class="inline-math">\(\Delta \delta = 2\Delta d\)</span><br />
+                每变化一个波长：通过一条条纹<br />
+                条纹数：<span class="inline-math">\(N = 2\Delta d / \lambda\)</span>
+              </div>
+              <p><strong>点评：</strong> 这类题几乎是考试里最稳定的送分题，但也是最容易因为漏掉前面的 <span class="inline-math">\(2\)</span> 直接丢分的题。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>口头问答与自测：你是不是真的理解了干涉</summary>
+            <div class="details-body">
+              <ol>
+                <li>为什么双缝题里先写 <span class="inline-math">\(\delta \approx dx/D\)</span> 比直接背亮纹位置更稳？</li>
+                <li>什么情况下插片只会让条纹整体平移，而不会改变条纹间距？</li>
+                <li>薄膜干涉为什么必须先数相位反转次数？</li>
+                <li>迈克耳孙干涉仪中镜面移动量和光程差变化量是什么关系？</li>
+                <li>如果题目问“第 <span class="inline-math">\(k\)</span> 级暗纹位置”，你会先写哪两个式子？</li>
+                <li>牛顿环题里如果给的是直径而不是半径，哪里最容易出错？</li>
+                <li>双缝条纹间距与 <span class="inline-math">\(d\)</span>、<span class="inline-math">\(D\)</span>、<span class="inline-math">\(\lambda\)</span> 的关系是什么？</li>
+                <li>空间相干性题为什么会出现“条纹刚好消失”这类问法？</li>
+              </ol>
+              <div class="callout green">
+                <strong>自检标准：</strong> 如果你能不看讲义，把双缝、薄膜、迈克耳孙这三类题的“第一步该写什么”说顺，这章就已经过半了。
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mastery23">
+        <div class="section-head">
+          <h3>衍射精讲：第 23 章最容易混的条件一次讲清</h3>
+          <p>这章真正难的不是计算，而是你能不能分清“单缝暗纹条件”和“光栅主极大条件”到底在描述什么。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout blue">
+            <strong>一张图记住：</strong> 单缝负责“包络”，光栅负责“细密主峰”；缺级就是光栅本该亮的位置刚好落进单缝暗纹里。
+          </div>
+          <div class="wide-visual">
+            <h4>单缝与光栅的视觉对比</h4>
+            <img src="./figures/09_diffraction_compare.svg" alt="单缝衍射与光栅衍射对比图" />
+            <p>单缝暗纹控制包络，光栅主极大给出细峰位置；缺级就是两套条件撞在一起。</p>
+          </div>
+          <details open>
+            <summary>知识主线：单缝、光栅、缺级、分辨本领应该怎么串起来</summary>
+            <div class="details-body">
+              <p>单缝衍射研究的是有限宽度缝对光的扩展作用，所以最稳定的条件是暗纹条件 <span class="inline-math">\(a\sin\theta = m\lambda\)</span>。光栅则是很多缝的干涉叠加，所以最重要的是主极大条件 <span class="inline-math">\(d\sin\theta = k\lambda\)</span>。</p>
+              <p>一旦这两个系统叠在一起，就出现“单缝包络 + 光栅细峰”的结构。所谓缺级，本质上是某个光栅主极大刚好满足单缝暗纹条件，于是这个主峰被消掉了。</p>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">单缝暗纹</div>
+                  <div class="formula-eq">\( a\sin\theta = m\lambda \quad (m=1,2,\dots) \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">光栅主极大</div>
+                  <div class="formula-eq">\( d\sin\theta = k\lambda \quad (k=0,\pm 1,\pm 2,\dots) \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">缺级</div>
+                  <div class="formula-eq">\( k = md/a \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">分辨本领</div>
+                  <div class="formula-eq">\( R = \lambda / \Delta\lambda = kN \)</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>单缝衍射：为什么中央明纹最宽，宽度怎么算</summary>
+            <div class="details-body">
+              <p>单缝中央明纹两侧由第一暗纹夹住，所以其角宽度对应的是 <span class="inline-math">\(m=\pm 1\)</span> 两个暗纹之间的范围。若使用透镜焦平面，屏上中央明纹宽度常写成 <span class="inline-math">\(2f\lambda/a\)</span>。</p>
+              <p>这题最容易错的是：把“中央明纹宽度”误写成 <span class="inline-math">\(f\lambda/a\)</span>。其实从中心到一侧第一暗纹只是半宽，整宽要乘 <span class="inline-math">\(2\)</span>。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>光栅和缺级：考试最爱出的组合题</summary>
+            <div class="details-body">
+              <p>一旦题面同时给出缝宽 <span class="inline-math">\(a\)</span> 和光栅常数 <span class="inline-math">\(d\)</span>，就几乎可以直接判断这是一道“主极大 + 单缝包络 + 缺级”的综合题。做法是：</p>
+              <ol>
+                <li>先用光栅条件写主极大位置。</li>
+                <li>再用单缝暗纹条件看哪些主极大会消失。</li>
+                <li>如果还问最高级次，再加上角域限制 <span class="inline-math">\(|\sin\theta| \le 1\)</span>。</li>
+              </ol>
+              <p>真正有区分度的地方不在计算，而在于你知不知道这三步必须连着写。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>分辨本领和瑞利判据：这部分怎么和光栅衔接</summary>
+            <div class="details-body">
+              <p>如果题目从“条纹位置”突然切换到“两条谱线刚好能分辨”，那说明题目已经从几何位置转向分辨能力。光栅分辨本领是 <span class="inline-math">\(R = kN\)</span>，而光学仪器（如望远镜、显微镜）常用瑞利判据 <span class="inline-math">\(\theta_{\min} \approx 1.22\lambda/D\)</span>。</p>
+              <p>你可以把它们分工记忆：光栅看波长分离，透镜口径看角分辨。考试经常用它们分别出题，但都在考“刚好分辨”的临界思维。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 1：已知缺级求缝宽</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 某光栅第 <span class="inline-math">\(k\)</span> 级主极大缺级，已知光栅常数 <span class="inline-math">\(d\)</span>，求缝宽 <span class="inline-math">\(a\)</span>。</p>
+              <p><strong>思路：</strong> 缺级说明光栅主极大和单缝暗纹重合，因此：</p>
+              <div class="math-note">
+                光栅主极大：<span class="inline-math">\(d\sin\theta = k\lambda\)</span><br />
+                单缝暗纹：<span class="inline-math">\(a\sin\theta = m\lambda\)</span><br />
+                两式相除：<span class="inline-math">\(k/m = d/a\)</span><br />
+                所以：<span class="inline-math">\(a = md/k\)</span>
+              </div>
+              <p><strong>点评：</strong> 这道题最容易直接把 <span class="inline-math">\(k\)</span> 当成 <span class="inline-math">\(m\)</span>。其实题里说的是“第几级主极大缺级”，对应的是光栅级次；单缝暗纹级次通常要单独设成 <span class="inline-math">\(m\)</span>。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 2：已知分辨本领求可分辨的最小波长差</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 光栅工作在第 <span class="inline-math">\(k\)</span> 级，有总缝数 <span class="inline-math">\(N\)</span>，求在波长 <span class="inline-math">\(\lambda\)</span> 附近最小可分辨波长差。</p>
+              <div class="math-note">
+                分辨本领：<span class="inline-math">\(R = \lambda / \Delta\lambda = kN\)</span><br />
+                所以：<span class="inline-math">\(\Delta\lambda = \lambda / (kN)\)</span>
+              </div>
+              <p><strong>点评：</strong> 这题的关键不是会不会移项，而是看见“刚好分辨开”就要秒联想到分辨本领，而不是再去写主极大位置。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>自测题：衍射这一章你能否做到“见题识别”</summary>
+            <div class="details-body">
+              <ol>
+                <li>单缝中央明纹宽度为什么是由前后两个第一暗纹夹出来的？</li>
+                <li>光栅主极大和单缝暗纹条件的物理含义分别是什么？</li>
+                <li>为什么缺级必须联立两个条件，而不是单独看光栅？</li>
+                <li>若题目让你求“可见最高级次”，还必须补上哪一个限制？</li>
+                <li>什么时候该用 <span class="inline-math">\(R=kN\)</span>，什么时候该用 <span class="inline-math">\(1.22\lambda/D\)</span>？</li>
+                <li>若透镜焦距加倍，单缝中央明纹宽度怎么变？</li>
+                <li>若光栅缝数增多但级次不变，分辨本领怎么变？</li>
+                <li>为什么中央主极大总在 <span class="inline-math">\(\theta = 0\)</span> 处？</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mastery24">
+        <div class="section-head">
+          <h3>偏振精讲：第 24 章最容易被忽略的判断步骤</h3>
+          <p>偏振题的难点不在算式，而在顺序。自然光、线偏振、两片偏振片、波片、布儒斯特角这些问法看起来散，其实都能用固定模板做。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>这章一定要形成的条件反射：</strong> 看到自然光先除以 2，看到多片偏振片逐片乘 <span class="inline-math">\(\cos^2\theta\)</span>，看到波片先沿快慢轴分解。
+          </div>
+          <div class="wide-visual">
+            <h4>偏振题流程图</h4>
+            <img src="./figures/10_polarization_flow.svg" alt="偏振片与波片解题流程图" />
+            <p>左边提醒多片偏振片必须逐片更新方向，右边提醒波片题先分解到快慢轴再判断相位差。</p>
+          </div>
+
+          <details open>
+            <summary>知识主线：偏振题真正考的是什么</summary>
+            <div class="details-body">
+              <p>偏振的核心不是背定义，而是理解光振动方向被限制后的振幅分解。只要你接受“电矢量可以投影到某个允许方向上”，马吕斯定律就几乎是顺理成章的结果。</p>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">自然光过偏振片</div>
+                  <div class="formula-eq">\( I = I_0 / 2 \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">马吕斯定律</div>
+                  <div class="formula-eq">\( I = I_{\text{in}}\cos^2\theta \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">布儒斯特角</div>
+                  <div class="formula-eq">\( \tan i_B = n_2 / n_1 \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">四分之一波片</div>
+                  <div class="formula-eq">\( \Delta n\, t = \lambda/4 \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">半波片</div>
+                  <div class="formula-eq">\( \Delta n\, t = \lambda/2 \)</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>多片偏振片题：为什么“顺序”比公式更重要</summary>
+            <div class="details-body">
+              <p>两片或三片偏振片题最容易做乱，是因为很多人把所有夹角一次性代进一个总公式。其实考试里最稳的是一步一步乘：</p>
+              <div class="math-note">
+                自然光先过第一片：<span class="inline-math">\(I_1 = I_0/2\)</span><br />
+                第二片：<span class="inline-math">\(I_2 = I_1 \cos^2\theta_{12}\)</span><br />
+                第三片：<span class="inline-math">\(I_3 = I_2 \cos^2\theta_{23}\)</span>
+              </div>
+              <p>为什么要这样做？因为每过一片偏振片，出射光的偏振方向已经变成这片偏振片的透振方向。下一片看到的入射偏振方向，不再是最初的方向，而是上一片确定的新方向。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>波片与偏振态判断：线偏振、圆偏振、椭圆偏振怎么区分</summary>
+            <div class="details-body">
+              <p>波片题常见的结构是：先给一个线偏振光入射到某个晶片，再问出射后是什么偏振。真正的第一步不是套结论，而是把振动分解到快轴和慢轴方向。</p>
+              <p>如果两分量振幅相等，且相位差变成 <span class="inline-math">\(\pm \pi/2\)</span>，那么出射就是圆偏振；如果相位差是 <span class="inline-math">\(0\)</span> 或 <span class="inline-math">\(\pi\)</span>，还是线偏振；其余一般是椭圆偏振。</p>
+              <p>所以做这类题你至少要回答三个问题：是否分解成两个分量、两个分量是否等幅、相位差最后变成多少。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 1：三片偏振片求最终光强</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 自然光依次通过三片偏振片，相邻透振方向夹角已知，求最终光强。</p>
+              <div class="math-note">
+                第一步：<span class="inline-math">\(I_1 = I_0/2\)</span><br />
+                第二步：<span class="inline-math">\(I_2 = I_1\cos^2\theta_{12}\)</span><br />
+                第三步：<span class="inline-math">\(I_3 = I_2\cos^2\theta_{23}\)</span>
+              </div>
+              <p><strong>点评：</strong> 这类题最常见的低级错误就是第一步没把自然光减半，或者把第二片和第三片的夹角错写成相对第一片的夹角。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 2：已知折射率求布儒斯特角</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 光从介质 1 入射到介质 2，问入射角为多少时反射光完全偏振。</p>
+              <div class="math-note">
+                布儒斯特角条件：<span class="inline-math">\(\tan i_B = n_2/n_1\)</span><br />
+                若空气入射：<span class="inline-math">\(n_1 \approx 1\)</span><br />
+                所以：<span class="inline-math">\(i_B = \arctan n_2\)</span>
+              </div>
+              <p><strong>点评：</strong> 这题不是干涉，不是折射角，也不是全反射条件。看到“反射光完全偏振”就应该直接跳到布儒斯特角。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>自测题：偏振这章最该会说出口的话</summary>
+            <div class="details-body">
+              <ol>
+                <li>为什么自然光通过第一片偏振片后一定变成 <span class="inline-math">\(I_0/2\)</span>？</li>
+                <li>马吕斯定律里的角度是相对于哪两个方向的夹角？</li>
+                <li>为什么多片偏振片题必须逐片算，不能一口气合并？</li>
+                <li>四分之一波片和半波片分别改变了什么？</li>
+                <li>圆偏振出现的两个必要条件是什么？</li>
+                <li>什么现象一出现，就应该立刻想到布儒斯特角？</li>
+                <li>如果线偏振光沿波片快轴入射，会不会变成圆偏振？为什么？</li>
+                <li>为什么插入中间偏振片有时会让原本完全灭掉的光重新出现？</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mastery26">
+        <div class="section-head">
+          <h3>波粒二象性精讲：第 26 章把四块内容连成一条线</h3>
+          <p>这章表面上很散，实际上一直在围绕同一件事打转：经典理论解释不了的地方，需要量子观点来接管。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout blue">
+            <strong>最好的串联方式：</strong> 黑体辐射告诉你能量量子化，光电效应告诉你光子能量是 <span class="inline-math">\(h\nu\)</span>，康普顿散射告诉你光子还带动量，德布罗意再把“粒子也有波动性”补回来。
+          </div>
+          <div class="wide-visual">
+            <h4>黑体辐射与光电效应图像</h4>
+            <img src="./figures/11_blackbody_photoelectric.svg" alt="黑体辐射曲线和光电效应图像" />
+            <p>光电效应图像帮你读出阈频和截止电压；黑体曲线帮你区分峰值波长和总辐射本领。</p>
+          </div>
+
+          <details open>
+            <summary>知识主线：这章为什么不是四个孤立小节</summary>
+            <div class="details-body">
+              <p>如果你把这章看成四个完全独立的章节，就会背得很碎。其实它们是在共同说明：光和微观粒子既表现为波，也表现为粒子，单纯经典图像已经不够了。</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>内容</th>
+                    <th>解决什么问题</th>
+                    <th>最核心公式</th>
+                    <th>考试最爱问什么</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>黑体辐射</td>
+                    <td>经典理论紫外灾难</td>
+                    <td><span class="inline-math">\(\lambda_m T = b\)</span></td>
+                    <td>温度比、峰值波长比、总辐射本领比</td>
+                  </tr>
+                  <tr>
+                    <td>光电效应</td>
+                    <td>频率阈值和瞬时逸出</td>
+                    <td><span class="inline-math">\(h\nu = W + eU_s\)</span></td>
+                    <td>截止电压、逸出功、红限频率</td>
+                  </tr>
+                  <tr>
+                    <td>康普顿散射</td>
+                    <td>光子的动量效应</td>
+                    <td><span class="inline-math">\(\Delta\lambda = \lambda_C(1-\cos\phi)\)</span></td>
+                    <td>波长改变量、比值、散射角比较</td>
+                  </tr>
+                  <tr>
+                    <td>德布罗意 / 不确定关系</td>
+                    <td>粒子的波动性</td>
+                    <td><span class="inline-math">\(\lambda = h/p\)</span>、<span class="inline-math">\(\Delta x\Delta p_x \ge \hbar/2\)</span></td>
+                    <td>加速电压、缝宽估算、不确定关系量级</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details open>
+            <summary>黑体辐射：为什么常常考比值题</summary>
+            <div class="details-body">
+              <p>黑体辐射很少要求你推公式，更多是用维恩位移定律和斯特藩-玻尔兹曼定律做“比值型判断”。比如峰值波长变成原来的一半，温度就变成原来两倍；总辐射本领则按温度四次方变化。</p>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">维恩位移定律</div>
+                  <div class="formula-eq">\( \lambda_m T = b \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">总辐射本领</div>
+                  <div class="formula-eq">\( M = \sigma T^4 \)</div>
+                </div>
+              </div>
+              <p>只要你先看清楚题目问的是“峰值位置”还是“总辐射本领”，就不会把这两个定律混用。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>光电效应：整章最稳的得分点</summary>
+            <div class="details-body">
+              <p>光电效应是这章最应该拿满的内容。你只要分清三个量：光子能量 <span class="inline-math">\(h\nu\)</span>，逸出功 <span class="inline-math">\(W\)</span>，最大动能 <span class="inline-math">\(eU_s\)</span>，题目基本就已经做完了。</p>
+              <div class="math-note">
+                爱因斯坦光电方程：<br />
+                <span class="inline-math">\(h\nu = W + K_{\max}\)</span><br />
+                <span class="inline-math">\(K_{\max} = eU_s\)</span><br />
+                所以：<span class="inline-math">\(h\nu = W + eU_s\)</span>
+              </div>
+              <p>这题最爱出的陷阱是：把 <span class="inline-math">\(eU_s\)</span> 错当成逸出功。其实它表示的是逸出电子在截止条件下对应的最大初动能。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>康普顿和德布罗意：一道看光子，一道看电子</summary>
+            <div class="details-body">
+              <p>康普顿散射常见的高频问法不是让你推导，而是比较不同散射角对应的波长改变量。因为 <span class="inline-math">\(\lambda_C\)</span> 是常数，所以题目一旦问“比值”，你通常只需要比较 <span class="inline-math">\(1-\cos\phi\)</span>。</p>
+              <p>德布罗意波长则常见于电子经电压加速后的情况。如果电子经过电压 <span class="inline-math">\(U\)</span> 加速，其动能近似为 <span class="inline-math">\(eU\)</span>，动量可由 <span class="inline-math">\(p=\sqrt{2meU}\)</span> 给出，于是：</p>
+              <div class="math-note">
+                <span class="inline-math">\(\lambda = h/p = h/\sqrt{2meU}\)</span>
+              </div>
+              <p>这类题最常错的地方不是公式，而是单位和根号忘写全。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 1：已知截止电压和波长求逸出功与红限波长</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 入射光波长为 <span class="inline-math">\(\lambda\)</span>，金属的截止电压为 <span class="inline-math">\(U_s\)</span>，求逸出功和红限波长。</p>
+              <div class="math-note">
+                先算光子能量：<span class="inline-math">\(E = hc/\lambda\)</span><br />
+                再由：<span class="inline-math">\(E = W + eU_s\)</span><br />
+                得：<span class="inline-math">\(W = hc/\lambda - eU_s\)</span><br />
+                红限条件：<span class="inline-math">\(W = h\nu_0 = hc/\lambda_0\)</span><br />
+                所以：<span class="inline-math">\(\lambda_0 = hc/W\)</span>
+              </div>
+              <p><strong>点评：</strong> 这类题思路非常标准，最怕的是你算出 <span class="inline-math">\(W\)</span> 后没意识到红限频率 / 红限波长还可以继续往下算。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 2：比较两个散射角下的康普顿波长改变量</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 同一种入射光，在散射角 <span class="inline-math">\(\phi_1\)</span>、<span class="inline-math">\(\phi_2\)</span> 下的波长改变量之比是多少。</p>
+              <div class="math-note">
+                <span class="inline-math">\(\Delta\lambda_1 = \lambda_C(1-\cos\phi_1)\)</span><br />
+                <span class="inline-math">\(\Delta\lambda_2 = \lambda_C(1-\cos\phi_2)\)</span><br />
+                所以：<span class="inline-math">\(\Delta\lambda_1/\Delta\lambda_2 = (1-\cos\phi_1)/(1-\cos\phi_2)\)</span>
+              </div>
+              <p><strong>点评：</strong> 这题的关键就是看出 <span class="inline-math">\(\lambda_C\)</span> 会约掉，别在常数上花时间。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>自测题：把这章的“量子观念”说清楚</summary>
+            <div class="details-body">
+              <ol>
+                <li>黑体辐射为什么会逼出能量量子化假设？</li>
+                <li>为什么光电效应说明光能量与频率有关，而不是与光强直接对应？</li>
+                <li>截止电压反映的是哪个物理量？</li>
+                <li>康普顿散射为什么支持光子具有动量？</li>
+                <li>如果题目问“波长改变量的比值”，为什么 <span class="inline-math">\(\lambda_C\)</span> 往往能约掉？</li>
+                <li>粒子的德布罗意波长和动量是什么关系？</li>
+                <li>不确定关系题里为什么常把缝宽看成 <span class="inline-math">\(\Delta x\)</span> 的量级？</li>
+                <li>如果入射光频率低于阈频，再增大光强能否发生光电效应？为什么？</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mastery27">
+        <div class="section-head">
+          <h3>势阱精讲：第 27 章如何真正看懂波函数、概率和时间演化</h3>
+          <p>这一章最容易出现“字都认识，题不会做”的情况，因为它考的不是代数技巧，而是量子态的组织方式。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>最重要的一句话：</strong> 量子态不是一个“粒子位置答案”，而是一个能用来算概率和测量结果分布的状态函数。
+          </div>
+          <div class="wide-visual">
+            <h4>势阱题的状态流程图</h4>
+            <img src="./figures/12_quantum_state_flow.svg" alt="无限深势阱初态展开和时间演化流程图" />
+            <p>势阱题的顺序非常固定：先看初态，展开成本征态，再分别写时间演化、测量概率和平均能量。</p>
+          </div>
+
+          <details open>
+            <summary>知识主线：这一章你一定要先分清“态、测量、概率”</summary>
+            <div class="details-body">
+              <p>无限深方势阱最先给你的是一个边界清晰的量子系统：粒子被限制在 <span class="inline-math">\(0 &lt; x &lt; a\)</span> 内。允许的定态波函数和能量不再连续，而是离散的本征态和本征值。</p>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">本征波函数</div>
+                  <div class="formula-eq">\( \psi_n(x) = \sqrt{2/a}\sin(n\pi x/a) \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">能级</div>
+                  <div class="formula-eq">\( E_n = n^2h^2/(8ma^2) \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">时间因子</div>
+                  <div class="formula-eq">\( \exp(-iE_n t/\hbar) \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">测得能量概率</div>
+                  <div class="formula-eq">\( P(E_n)=|c_n|^2 \)</div>
+                </div>
+              </div>
+              <p>一旦初态不是某一个纯粹本征态，而是多个本征态的线性组合，那么后面的所有题都会围绕这件事展开：怎么展开、每项随时间怎么演化、测得不同能量的概率是多少、平均能量是多少。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>为什么本征态最省事，而线性组合才是考试重点</summary>
+            <div class="details-body">
+              <p>如果系统正好处在某个本征态 <span class="inline-math">\(\psi_n\)</span>，那测量能量一定得到 <span class="inline-math">\(E_n\)</span>，题目其实很平。真正有区分度的是线性组合态：</p>
+              <div class="math-note">
+                <span class="inline-math">\(\Psi(x,0)=\sum c_n\psi_n(x)\)</span><br />
+                <span class="inline-math">\(\Psi(x,t)=\sum c_n\psi_n(x)e^{-iE_n t/\hbar}\)</span>
+              </div>
+              <p>这时候你要把“系数”理解成对不同本征态的权重。测量能量时，不是看 <span class="inline-math">\(c_n\)</span> 本身，而是看 <span class="inline-math">\(|c_n|^2\)</span>。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>区间概率和平均值：这章最容易混掉的两个概念</summary>
+            <div class="details-body">
+              <p>区间概率是在某个位置区间内找到粒子的可能性，所以必须对概率密度 <span class="inline-math">\(|\Psi|^2\)</span> 积分，而不是对 <span class="inline-math">\(\Psi\)</span> 积分。平均能量则是对不同能量结果按概率加权平均，因此：</p>
+              <div class="math-note">
+                区间概率：<span class="inline-math">\(\int_{x_1}^{x_2} |\Psi(x,t)|^2\,dx\)</span><br />
+                平均能量：<span class="inline-math">\(\bar E = \sum |c_n|^2 E_n\)</span>
+              </div>
+              <p>只要你把“位置概率”与“能量测量概率”分成两套对象，很多表面复杂的题都会清晰下来。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 1：初态展开成两个本征态后求能量概率</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 已知 <span class="inline-math">\(\Psi(x,0) = \dfrac{2}{\sqrt5}\psi_1(x)-\dfrac{1}{\sqrt5}\psi_2(x)\)</span>，求能量测量结果及其概率。</p>
+              <div class="math-note">
+                <span class="inline-math">\(c_1 = 2/\sqrt5\)</span>，所以 <span class="inline-math">\(P(E_1)=|c_1|^2=4/5\)</span><br />
+                <span class="inline-math">\(c_2 = -1/\sqrt5\)</span>，所以 <span class="inline-math">\(P(E_2)=|c_2|^2=1/5\)</span>
+              </div>
+              <p><strong>点评：</strong> 负号不会影响概率，因为概率取的是模方。这也是很多同学第一次接触时会本能出错的地方。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 2：写出随时间演化的波函数并求平均能量</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 已知初态展开式，求任意时刻波函数及平均能量。</p>
+              <div class="math-note">
+                <span class="inline-math">\(\Psi(x,t)=\dfrac{2}{\sqrt5}\psi_1(x)e^{-iE_1 t/\hbar}-\dfrac{1}{\sqrt5}\psi_2(x)e^{-iE_2 t/\hbar}\)</span><br />
+                <span class="inline-math">\(\bar E = \dfrac45 E_1 + \dfrac15 E_2\)</span>
+              </div>
+              <p><strong>点评：</strong> 平均能量不是把时间因子带进去重新计算，而是直接按各能量本征值的测量概率加权。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>自测题：这章你要能说清楚这几个概念</summary>
+            <div class="details-body">
+              <ol>
+                <li>为什么无限深势阱中的能级是离散的？</li>
+                <li>本征态和一般态有什么区别？</li>
+                <li>为什么时间演化只是在每个本征态前乘一个相位因子？</li>
+                <li>为什么测得能量 <span class="inline-math">\(E_n\)</span> 的概率是 <span class="inline-math">\(|c_n|^2\)</span>？</li>
+                <li>为什么区间概率一定要对 <span class="inline-math">\(|\Psi|^2\)</span> 积分？</li>
+                <li>平均能量为什么不是把波函数平方后积分一次就完？</li>
+                <li>如果初态就是 <span class="inline-math">\(\psi_2\)</span>，测量能量会出现几个结果？</li>
+                <li>为什么负的展开系数不意味着负概率？</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mastery28">
+        <div class="section-head">
+          <h3>氢原子精讲：第 28 章怎么把能级、谱线和量子数一口气拿下</h3>
+          <p>这章的表面知识点多，但真正高频的就三类：能级跃迁、谱线条数、量子数约束。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout blue">
+            <strong>拿分顺序建议：</strong> 先稳住 <span class="inline-math">\(E_n=-13.6/n^2\)</span>，再练谱线和巴耳末系，最后把 <span class="inline-math">\(n,l,m_l,m_s\)</span> 的约束关系讲熟。
+          </div>
+          <div class="wide-visual">
+            <h4>氢原子能级与量子数地图</h4>
+            <img src="./figures/13_quantum_numbers_map.svg" alt="氢原子能级跃迁与量子数约束图" />
+            <p>左边看能级跃迁和谱线，右边看量子数逐层约束，以及角动量大小和分量的区别。</p>
+          </div>
+
+          <details open>
+            <summary>知识主线：为什么这章看起来杂，实则只有三根主线</summary>
+            <div class="details-body">
+              <ol>
+                <li>能级主线：氢原子电子只能处于离散能级，能量由主量子数 <span class="inline-math">\(n\)</span> 决定。</li>
+                <li>跃迁主线：电子从高能级跃迁到低能级会发光，光子能量等于两能级差。</li>
+                <li>量子数主线：电子状态不仅由 <span class="inline-math">\(n\)</span> 决定，还受角量子数、磁量子数、自旋量子数约束。</li>
+              </ol>
+              <div class="formula-sheet">
+                <div class="formula-row">
+                  <div class="formula-tag">氢原子能级</div>
+                  <div class="formula-eq">\( E_n = -13.6 / n^2 \; \text{eV} \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">跃迁光子</div>
+                  <div class="formula-eq">\( h\nu = |E_i - E_f| = hc/\lambda \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">最多谱线</div>
+                  <div class="formula-eq">\( N_{\max} = n(n-1)/2 \)</div>
+                </div>
+                <div class="formula-row">
+                  <div class="formula-tag">量子数约束</div>
+                  <div class="formula-eq">\( l=0,1,\dots,n-1;\quad m_l=-l,\dots,0,\dots,l;\quad m_s=\pm 1/2 \)</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>谱线问题：最多几条、最短波长、可见光为什么常看巴耳末系</summary>
+            <div class="details-body">
+              <p>如果题目说“一群氢原子都在某个激发态 <span class="inline-math">\(n\)</span>”，那这类题几乎固定考最多能发出几条不同谱线。答案直接是 <span class="inline-math">\(n(n-1)/2\)</span>。</p>
+              <p>如果题目问可见光中最短波长，通常优先盯巴耳末系，也就是跃迁终态是 <span class="inline-math">\(n=2\)</span>。因为可见光最常对应这一系列，短波长通常来自更高初态向 <span class="inline-math">\(n=2\)</span> 的跃迁。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>量子数题：为什么很多题其实只是“夹出来”</summary>
+            <div class="details-body">
+              <p>量子数题看起来很抽象，其实很多时候只是用约束范围把未知量夹出来。比如已知 <span class="inline-math">\(n=4\)</span>、<span class="inline-math">\(m_l=-3\)</span>，那么因为 <span class="inline-math">\(|m_l| \le l \le n-1\)</span>，立刻得到 <span class="inline-math">\(3 \le l \le 3\)</span>，所以 <span class="inline-math">\(l=3\)</span>。</p>
+              <p>这类题真正容易错的是把约束关系记反，或者把角动量大小 <span class="inline-math">\(L\)</span> 和其 <span class="inline-math">\(z\)</span> 分量 <span class="inline-math">\(L_z\)</span> 混掉。</p>
+              <div class="math-note">
+                <span class="inline-math">\(L=\sqrt{l(l+1)}\,\hbar\)</span><br />
+                <span class="inline-math">\(L_z = m_l\hbar\)</span>
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 1：处于 n = 4 的氢原子最多能发出几条谱线</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 一群氢原子都被激发到 <span class="inline-math">\(n=4\)</span>，求最终可能发出几条不同谱线。</p>
+              <div class="math-note">
+                最多谱线数：<span class="inline-math">\(N_{\max}=n(n-1)/2\)</span><br />
+                代入 <span class="inline-math">\(n=4\)</span>：<span class="inline-math">\(N_{\max}=4\times 3/2=6\)</span>
+              </div>
+              <p><strong>点评：</strong> 这道题不是只数“从 4 直接往下跳”几种，而是考虑所有可能的级联跃迁形成的不同谱线。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>例题拆解 2：已知 n 和 m_l 反推 l，并求角动量大小</summary>
+            <div class="details-body">
+              <p><strong>题型：</strong> 已知某电子状态 <span class="inline-math">\(n=4\)</span>、<span class="inline-math">\(m_l=-3\)</span>，求 <span class="inline-math">\(l\)</span> 与轨道角动量大小。</p>
+              <div class="math-note">
+                因为：<span class="inline-math">\(|m_l| \le l \le n-1\)</span><br />
+                所以：<span class="inline-math">\(3 \le l \le 3\)</span>，得到 <span class="inline-math">\(l=3\)</span><br />
+                角动量大小：<span class="inline-math">\(L=\sqrt{3(3+1)}\,\hbar=2\sqrt3\,\hbar\)</span>
+              </div>
+              <p><strong>点评：</strong> 很多人会把 <span class="inline-math">\(L_z = m_l\hbar\)</span> 错写成角动量大小，这正是考试想卡的点。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>自测题：氢原子这一章能不能真的出口成章</summary>
+            <div class="details-body">
+              <ol>
+                <li>氢原子第 <span class="inline-math">\(n\)</span> 能级的能量表达式是什么？</li>
+                <li>为什么能级越高越接近零？</li>
+                <li>一群处于 <span class="inline-math">\(n=5\)</span> 的氢原子最多能发出几条谱线？</li>
+                <li>为什么可见光问题通常先看跃迁到 <span class="inline-math">\(n=2\)</span>？</li>
+                <li>已知 <span class="inline-math">\(n\)</span> 和 <span class="inline-math">\(m_l\)</span>，反推 <span class="inline-math">\(l\)</span> 的思路是什么？</li>
+                <li><span class="inline-math">\(L\)</span> 和 <span class="inline-math">\(L_z\)</span> 的公式分别是什么？</li>
+                <li>为什么同一个 <span class="inline-math">\(l\)</span> 可以对应多个 <span class="inline-math">\(m_l\)</span>？</li>
+                <li><span class="inline-math">\(m_s\)</span> 只可能取哪两个值？</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="memorywall">
+        <div class="section-head">
+          <h3>默写墙：考前必须能脱稿写出的内容</h3>
+          <p>这一部分适合你拿纸遮住右侧，先自己默写，再对照网页核对。真正能在闭卷里稳定拿分的人，通常都能把这些骨架直接写出来。</p>
+        </div>
+        <div class="section-body">
+          <details open>
+            <summary>默写组 1：干涉与衍射</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>提示词</th>
+                    <th>你应该默写出的东西</th>
+                    <th>默写时必须带上的说明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>双缝几何近似</td>
+                    <td><span class="inline-math">\(\delta \approx dx/D\)</span></td>
+                    <td>说明小角近似成立</td>
+                  </tr>
+                  <tr>
+                    <td>亮纹 / 暗纹条件</td>
+                    <td><span class="inline-math">\(\delta=k\lambda\)</span>、<span class="inline-math">\(\delta=(k+1/2)\lambda\)</span></td>
+                    <td>明确对应的是光程差</td>
+                  </tr>
+                  <tr>
+                    <td>条纹间距</td>
+                    <td><span class="inline-math">\(\Delta x=\lambda D/d\)</span></td>
+                    <td>说明是相邻同类条纹</td>
+                  </tr>
+                  <tr>
+                    <td>插片平移</td>
+                    <td><span class="inline-math">\(\Delta x = D(n-1)t/d\)</span></td>
+                    <td>说明是整体平移</td>
+                  </tr>
+                  <tr>
+                    <td>迈克耳孙</td>
+                    <td><span class="inline-math">\(2\Delta d=N\lambda\)</span></td>
+                    <td>别漏掉前面的 2</td>
+                  </tr>
+                  <tr>
+                    <td>单缝暗纹</td>
+                    <td><span class="inline-math">\(a\sin\theta=m\lambda\)</span></td>
+                    <td><span class="inline-math">\(m=1,2,\dots\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>中央明纹宽度</td>
+                    <td><span class="inline-math">\(2f\lambda/a\)</span></td>
+                    <td>强调这是整宽</td>
+                  </tr>
+                  <tr>
+                    <td>光栅主极大</td>
+                    <td><span class="inline-math">\(d\sin\theta=k\lambda\)</span></td>
+                    <td>级次可正可负</td>
+                  </tr>
+                  <tr>
+                    <td>缺级</td>
+                    <td><span class="inline-math">\(k=md/a\)</span></td>
+                    <td>由光栅主极大与单缝暗纹联立得出</td>
+                  </tr>
+                  <tr>
+                    <td>分辨本领</td>
+                    <td><span class="inline-math">\(R=\lambda/\Delta\lambda=kN\)</span></td>
+                    <td>看到“刚好分辨”就想它</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details open>
+            <summary>默写组 2：偏振与波粒二象性</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>提示词</th>
+                    <th>你应该默写出的东西</th>
+                    <th>最容易漏的点</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>自然光过偏振片</td>
+                    <td><span class="inline-math">\(I=I_0/2\)</span></td>
+                    <td>别把它写成马吕斯定律</td>
+                  </tr>
+                  <tr>
+                    <td>马吕斯定律</td>
+                    <td><span class="inline-math">\(I=I_{\text{in}}\cos^2\theta\)</span></td>
+                    <td>角度是振动方向与透振方向夹角</td>
+                  </tr>
+                  <tr>
+                    <td>布儒斯特角</td>
+                    <td><span class="inline-math">\(\tan i_B=n_2/n_1\)</span></td>
+                    <td>不是全反射条件</td>
+                  </tr>
+                  <tr>
+                    <td>四分之一波片</td>
+                    <td><span class="inline-math">\(\Delta nt=\lambda/4\)</span></td>
+                    <td>通常用来制造 <span class="inline-math">\(\pi/2\)</span> 相位差</td>
+                  </tr>
+                  <tr>
+                    <td>维恩位移定律</td>
+                    <td><span class="inline-math">\(\lambda_mT=b\)</span></td>
+                    <td>考峰值位置，不是总辐射本领</td>
+                  </tr>
+                  <tr>
+                    <td>斯特藩-玻尔兹曼</td>
+                    <td><span class="inline-math">\(M=\sigma T^4\)</span></td>
+                    <td>考总本领比最常见</td>
+                  </tr>
+                  <tr>
+                    <td>光电效应</td>
+                    <td><span class="inline-math">\(h\nu=W+eU_s\)</span></td>
+                    <td><span class="inline-math">\(eU_s\)</span> 不是逸出功</td>
+                  </tr>
+                  <tr>
+                    <td>康普顿</td>
+                    <td><span class="inline-math">\(\Delta\lambda=\lambda_C(1-\cos\phi)\)</span></td>
+                    <td>比值题里常数会约掉</td>
+                  </tr>
+                  <tr>
+                    <td>德布罗意</td>
+                    <td><span class="inline-math">\(\lambda=h/p\)</span></td>
+                    <td>加速电压题要接到 <span class="inline-math">\(p=\sqrt{2meU}\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>不确定关系</td>
+                    <td><span class="inline-math">\(\Delta x\Delta p_x\ge\hbar/2\)</span></td>
+                    <td>很多题只是量级估算</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details open>
+            <summary>默写组 3：势阱与氢原子</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>提示词</th>
+                    <th>你应该默写出的东西</th>
+                    <th>附带说明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>势阱区域</td>
+                    <td><span class="inline-math">\(0&lt;x&lt;a\)</span></td>
+                    <td>边界外波函数为 0</td>
+                  </tr>
+                  <tr>
+                    <td>本征态</td>
+                    <td><span class="inline-math">\(\psi_n(x)=\sqrt{2/a}\sin(n\pi x/a)\)</span></td>
+                    <td>归一化形式要写全</td>
+                  </tr>
+                  <tr>
+                    <td>能级</td>
+                    <td><span class="inline-math">\(E_n=n^2h^2/(8ma^2)\)</span></td>
+                    <td>与 <span class="inline-math">\(n^2\)</span> 成正比</td>
+                  </tr>
+                  <tr>
+                    <td>时间因子</td>
+                    <td><span class="inline-math">\(e^{-iE_nt/\hbar}\)</span></td>
+                    <td>每个本征态都要单独带上</td>
+                  </tr>
+                  <tr>
+                    <td>概率</td>
+                    <td><span class="inline-math">\(P(E_n)=|c_n|^2\)</span></td>
+                    <td>不是 <span class="inline-math">\(c_n\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>平均能量</td>
+                    <td><span class="inline-math">\(\bar E=\sum |c_n|^2E_n\)</span></td>
+                    <td>按能量测量概率加权</td>
+                  </tr>
+                  <tr>
+                    <td>氢原子能级</td>
+                    <td><span class="inline-math">\(E_n=-13.6/n^2\)</span> eV</td>
+                    <td>越高能级越接近 0</td>
+                  </tr>
+                  <tr>
+                    <td>跃迁</td>
+                    <td><span class="inline-math">\(h\nu=|E_i-E_f|=hc/\lambda\)</span></td>
+                    <td>发光时从高到低</td>
+                  </tr>
+                  <tr>
+                    <td>最多谱线</td>
+                    <td><span class="inline-math">\(N_{\max}=n(n-1)/2\)</span></td>
+                    <td>处于某一激发态的一群原子</td>
+                  </tr>
+                  <tr>
+                    <td>量子数约束</td>
+                    <td><span class="inline-math">\(l=0,\dots,n-1;\;m_l=-l,\dots,l;\;m_s=\pm1/2\)</span></td>
+                    <td>一定写完整范围</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mistakes">
+        <div class="section-head">
+          <h3>错因总表：最常见失分习惯逐条拆掉</h3>
+          <p>如果你已经学过一轮，再看这张表会特别有感觉。因为很多分不是“不会”，而是会得不稳定、写得不规范、想得太快。</p>
+        </div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>章节</th>
+                <th>典型错误</th>
+                <th>表面现象</th>
+                <th>真正原因</th>
+                <th>纠正动作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>干涉</td><td>一上来就写亮纹条件</td><td>题会做一半后突然卡死</td><td>没先找哪两束光叠加</td><td>先画路径，再统一成 <span class="inline-math">\(\delta\)</span></td></tr>
+              <tr><td>干涉</td><td>把 <span class="inline-math">\(d,D,x\)</span> 混掉</td><td>位置量纲不对</td><td>图像关系没建立</td><td>每做双缝题先在草稿上写清三者物理意义</td></tr>
+              <tr><td>干涉</td><td>插片题只改一条纹</td><td>结论与“整体平移”矛盾</td><td>没理解附加光程作用到整套图样</td><td>先写“中央明纹新位置”而不是“某条纹新位置”</td></tr>
+              <tr><td>干涉</td><td>薄膜题不判断相位反转</td><td>亮暗全反</td><td>只背了 <span class="inline-math">\(2nt\)</span> 没懂反射本质</td><td>先判低到高 / 高到低折射率界面</td></tr>
+              <tr><td>干涉</td><td>迈克耳孙漏掉 2</td><td>答案正好差一半</td><td>忘了往返程都变</td><td>固定写成 <span class="inline-math">\(2\Delta d=N\lambda\)</span></td></tr>
+              <tr><td>衍射</td><td>把单缝和光栅条件写成一个式子</td><td>缺级题越做越乱</td><td>不知道哪个负责包络哪个负责主峰</td><td>做题前先口头说出“单缝 / 光栅”各管什么</td></tr>
+              <tr><td>衍射</td><td>中央明纹宽度漏 2</td><td>答案总比标准答案小一半</td><td>把半宽当整宽</td><td>记住“中央明纹由两侧第一暗纹夹住”</td></tr>
+              <tr><td>衍射</td><td>缺级只写 <span class="inline-math">\(d\sin\theta=k\lambda\)</span></td><td>求不出缝宽</td><td>没想到要联立单缝暗纹</td><td>一看到“缺级”就补写第二个条件</td></tr>
+              <tr><td>衍射</td><td>分辨题还在写主极大位置</td><td>答非所问</td><td>没抓到“刚好分辨”关键词</td><td>见到“分辨”先查是 <span class="inline-math">\(R=kN\)</span> 还是 <span class="inline-math">\(1.22\lambda/D\)</span></td></tr>
+              <tr><td>偏振</td><td>忘了自然光先减半</td><td>整题强度差 2 倍</td><td>把自然光当成已偏振光处理</td><td>每次都把第一步单独写出来</td></tr>
+              <tr><td>偏振</td><td>夹角用错对象</td><td>算式结构没错但数值错</td><td>不知道马吕斯定律里的角是谁和谁的夹角</td><td>明确写“入射偏振方向与当前透振方向夹角”</td></tr>
+              <tr><td>偏振</td><td>波片题直接背结论</td><td>换个叙述就不会做</td><td>没做分解</td><td>先沿快慢轴分解，再谈相位差</td></tr>
+              <tr><td>量子</td><td>把维恩和斯特藩-玻尔兹曼混用</td><td>比值次方乱套</td><td>没区分峰值位置和总本领</td><td>先判断题目问“峰值”还是“总辐射”</td></tr>
+              <tr><td>量子</td><td>把 <span class="inline-math">\(eU_s\)</span> 当成逸出功</td><td>光电效应题总少一项</td><td>不清楚截止电压对应最大动能</td><td>固定先写 <span class="inline-math">\(h\nu=W+eU_s\)</span></td></tr>
+              <tr><td>量子</td><td>康普顿题死算常数</td><td>比值题做很慢</td><td>没意识到常数可约</td><td>先看问的是绝对值还是比值</td></tr>
+              <tr><td>量子</td><td>德布罗意题单位乱</td><td>数量级离谱</td><td>动量和能量关系没理顺</td><td>先写 <span class="inline-math">\(p=\sqrt{2meU}\)</span> 再代</td></tr>
+              <tr><td>势阱</td><td>把 <span class="inline-math">\(\Psi\)</span> 和 <span class="inline-math">\(|\Psi|^2\)</span> 混掉</td><td>概率题思路全错</td><td>没把“波函数”和“概率密度”区分开</td><td>每做题都问自己“题目要的是态还是概率”</td></tr>
+              <tr><td>势阱</td><td>时间因子只乘一项</td><td>展开态写残</td><td>忘了每个本征态都有自己的时间演化</td><td>把求和符号写完整再展开</td></tr>
+              <tr><td>势阱</td><td>平均能量重算一遍积分</td><td>算得又慢又乱</td><td>没认识到平均能量可直接加权</td><td>先看题里是否已经给了展开系数</td></tr>
+              <tr><td>氢原子</td><td>谱线数只数直接跃迁</td><td>答案偏小</td><td>没考虑级联跃迁</td><td>固定套 <span class="inline-math">\(n(n-1)/2\)</span></td></tr>
+              <tr><td>氢原子</td><td>可见光不先看巴耳末系</td><td>找错跃迁</td><td>没有系列概念</td><td>看到“可见光”先盯 <span class="inline-math">\(n\to2\)</span></td></tr>
+              <tr><td>氢原子</td><td>把 <span class="inline-math">\(L\)</span> 和 <span class="inline-math">\(L_z\)</span> 混掉</td><td>公式和单位都错</td><td>对角动量量子化理解不清</td><td>大小看 <span class="inline-math">\(\sqrt{l(l+1)}\)</span>，分量看 <span class="inline-math">\(m_l\)</span></td></tr>
+            </tbody>
+          </table>
+          <div class="callout green">
+            <strong>最后一句提醒：</strong> 如果你在考试里已经写到一半却突然觉得“不太对”，大概率不是后面算错，而是前面那个“第一步判断”做偏了。回头重查题型和物理图像，往往比硬算更省分。
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="drillbank">
+        <div class="section-head">
+          <h3>题库与问答：这一周可以反复刷的训练区</h3>
+          <p>这一块不是让你一次看完，而是每天抽时间反复回刷。会的题要答得更快，不会的题要找到自己卡住的那一步。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>推荐刷法：</strong> 先遮住答案自己想 30 秒，再往下看解析；不要一边读一边点头，那样很容易误以为自己已经会了。
+          </div>
+
+          <details open>
+            <summary>30 题快问快答：适合早上或睡前口头背诵</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>题号</th>
+                    <th>问题</th>
+                    <th>你应该秒想到的内容</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>双缝条纹间距是多少？</td><td><span class="inline-math">\(\Delta x = \lambda D/d\)</span></td></tr>
+                  <tr><td>2</td><td>插片后的附加光程是多少？</td><td><span class="inline-math">\((n-1)t\)</span></td></tr>
+                  <tr><td>3</td><td>迈克耳孙镜移 <span class="inline-math">\(\Delta d\)</span> 时光程差改变量是多少？</td><td><span class="inline-math">\(2\Delta d\)</span></td></tr>
+                  <tr><td>4</td><td>单缝暗纹条件是什么？</td><td><span class="inline-math">\(a\sin\theta = m\lambda\)</span></td></tr>
+                  <tr><td>5</td><td>光栅主极大条件是什么？</td><td><span class="inline-math">\(d\sin\theta = k\lambda\)</span></td></tr>
+                  <tr><td>6</td><td>缺级题为什么要联立两个条件？</td><td>因为主极大要和单缝暗纹重合</td></tr>
+                  <tr><td>7</td><td>分辨本领 <span class="inline-math">\(R\)</span> 的公式？</td><td><span class="inline-math">\(R = kN\)</span></td></tr>
+                  <tr><td>8</td><td>自然光通过第一片偏振片后强度？</td><td><span class="inline-math">\(I_0/2\)</span></td></tr>
+                  <tr><td>9</td><td>马吕斯定律？</td><td><span class="inline-math">\(I = I_{\text{in}}\cos^2\theta\)</span></td></tr>
+                  <tr><td>10</td><td>布儒斯特角条件？</td><td><span class="inline-math">\(\tan i_B = n_2/n_1\)</span></td></tr>
+                  <tr><td>11</td><td>四分之一波片条件？</td><td><span class="inline-math">\(\Delta nt = \lambda/4\)</span></td></tr>
+                  <tr><td>12</td><td>维恩位移定律？</td><td><span class="inline-math">\(\lambda_m T = b\)</span></td></tr>
+                  <tr><td>13</td><td>黑体总辐射本领和温度什么关系？</td><td><span class="inline-math">\(M \propto T^4\)</span></td></tr>
+                  <tr><td>14</td><td>光电效应主方程？</td><td><span class="inline-math">\(h\nu = W + eU_s\)</span></td></tr>
+                  <tr><td>15</td><td><span class="inline-math">\(eU_s\)</span> 表示什么？</td><td>光电子最大初动能</td></tr>
+                  <tr><td>16</td><td>康普顿公式？</td><td><span class="inline-math">\(\Delta\lambda=\lambda_C(1-\cos\phi)\)</span></td></tr>
+                  <tr><td>17</td><td>德布罗意关系？</td><td><span class="inline-math">\(\lambda = h/p\)</span></td></tr>
+                  <tr><td>18</td><td>不确定关系？</td><td><span class="inline-math">\(\Delta x\Delta p_x \ge \hbar/2\)</span></td></tr>
+                  <tr><td>19</td><td>无限深势阱本征波函数？</td><td><span class="inline-math">\(\psi_n(x)=\sqrt{2/a}\sin(n\pi x/a)\)</span></td></tr>
+                  <tr><td>20</td><td>势阱能级公式？</td><td><span class="inline-math">\(E_n=n^2h^2/(8ma^2)\)</span></td></tr>
+                  <tr><td>21</td><td>一般态时间演化怎么写？</td><td>每个本征态乘 <span class="inline-math">\(e^{-iE_n t/\hbar}\)</span></td></tr>
+                  <tr><td>22</td><td>测得能量 <span class="inline-math">\(E_n\)</span> 的概率？</td><td><span class="inline-math">\(|c_n|^2\)</span></td></tr>
+                  <tr><td>23</td><td>区间概率对什么积分？</td><td><span class="inline-math">\(|\Psi|^2\)</span></td></tr>
+                  <tr><td>24</td><td>氢原子能级公式？</td><td><span class="inline-math">\(E_n=-13.6/n^2\)</span> eV</td></tr>
+                  <tr><td>25</td><td>最多谱线数公式？</td><td><span class="inline-math">\(n(n-1)/2\)</span></td></tr>
+                  <tr><td>26</td><td>量子数 <span class="inline-math">\(l\)</span> 的取值范围？</td><td><span class="inline-math">\(0,1,\dots,n-1\)</span></td></tr>
+                  <tr><td>27</td><td><span class="inline-math">\(m_l\)</span> 的取值范围？</td><td><span class="inline-math">\(-l,\dots,l\)</span></td></tr>
+                  <tr><td>28</td><td><span class="inline-math">\(m_s\)</span> 的取值？</td><td><span class="inline-math">\(\pm 1/2\)</span></td></tr>
+                  <tr><td>29</td><td>角动量大小公式？</td><td><span class="inline-math">\(L=\sqrt{l(l+1)}\,\hbar\)</span></td></tr>
+                  <tr><td>30</td><td><span class="inline-math">\(z\)</span> 分量公式？</td><td><span class="inline-math">\(L_z = m_l\hbar\)</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details open>
+            <summary>分章小练习 A：光学三章综合训练</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝干涉中，已知 <span class="inline-math">\(\lambda\)</span>、<span class="inline-math">\(d\)</span>、<span class="inline-math">\(D\)</span>，求第 3 级亮纹和第 2 级暗纹的位置，并比较二者间距。</li>
+                <li>一条光路中插入折射率为 <span class="inline-math">\(n\)</span>、厚度为 <span class="inline-math">\(t\)</span> 的薄片，问中央明纹如何移动。</li>
+                <li>某薄膜两界面折射率已知，判断反射增强条件和反射减弱条件是否交换，并解释原因。</li>
+                <li>迈克耳孙干涉仪中镜子移动 <span class="inline-math">\(0.18\)</span> mm，波长为 <span class="inline-math">\(600\)</span> nm，求通过的条纹数。</li>
+                <li>单缝宽度为 <span class="inline-math">\(a\)</span>，透镜焦距为 <span class="inline-math">\(f\)</span>，波长为 <span class="inline-math">\(\lambda\)</span>，求中央明纹宽度。</li>
+                <li>光栅常数为 <span class="inline-math">\(d\)</span>，若第三主极大缺级，最小单缝暗纹级次取 1，求缝宽。</li>
+                <li>某仪器口径为 <span class="inline-math">\(D\)</span>，使用波长为 <span class="inline-math">\(\lambda\)</span> 的光，问最小可分辨角距离。</li>
+                <li>自然光通过三片偏振片，第二片和第一片夹角为 <span class="inline-math">\(30^\circ\)</span>，第三片和第二片夹角为 <span class="inline-math">\(45^\circ\)</span>，求最终光强与原始光强之比。</li>
+                <li>某晶片使两正交分量相位差变为 <span class="inline-math">\(\pi/2\)</span>，若入射时两分量等幅，问出射偏振态是什么。</li>
+                <li>光从空气射入折射率为 <span class="inline-math">\(1.5\)</span> 的介质，求布儒斯特角。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>分章小练习 B：量子三章综合训练</summary>
+            <div class="details-body">
+              <ol>
+                <li>某黑体峰值波长变为原来的 <span class="inline-math">\(1/2\)</span>，求温度比和总辐射本领比。</li>
+                <li>入射光波长为 <span class="inline-math">\(\lambda\)</span>，某金属截止电压为 <span class="inline-math">\(U_s\)</span>，求逸出功和红限波长。</li>
+                <li>比较散射角为 <span class="inline-math">\(60^\circ\)</span> 与 <span class="inline-math">\(120^\circ\)</span> 时的康普顿波长改变量大小。</li>
+                <li>电子经电压 <span class="inline-math">\(U\)</span> 加速后，其德布罗意波长如何表示。</li>
+                <li>若狭缝宽度取作 <span class="inline-math">\(\Delta x\)</span>，估算横向动量不确定量级。</li>
+                <li>无限深势阱中，若粒子处于 <span class="inline-math">\(\psi_2(x)\)</span>，测量能量会出现什么结果。</li>
+                <li>已知 <span class="inline-math">\(\Psi(x,0)=c_1\psi_1+c_2\psi_2\)</span>，写出 <span class="inline-math">\(\Psi(x,t)\)</span>。</li>
+                <li>已知展开系数为 <span class="inline-math">\(c_1=1/\sqrt2\)</span>、<span class="inline-math">\(c_2=1/\sqrt2\)</span>，求平均能量。</li>
+                <li>一群氢原子处于 <span class="inline-math">\(n=5\)</span>，最多能发出几条不同谱线。</li>
+                <li>已知某状态 <span class="inline-math">\(n=4,m_l=2\)</span>，求 <span class="inline-math">\(l\)</span> 可能的取值，并写出角动量大小公式。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>练习答案速对：先自己做，再回来核对</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>题组</th>
+                    <th>答案线索</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>光学 1</td>
+                    <td>亮纹 <span class="inline-math">\(x_k=k\lambda D/d\)</span>；暗纹 <span class="inline-math">\(x=(k+1/2)\lambda D/d\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>光学 2</td>
+                    <td>平移量 <span class="inline-math">\(\Delta x=D(n-1)t/d\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>光学 3</td>
+                    <td>先判断相位反转次数，再决定 <span class="inline-math">\(2nt\)</span> 对应亮纹还是暗纹</td>
+                  </tr>
+                  <tr>
+                    <td>光学 4</td>
+                    <td>条纹数 <span class="inline-math">\(N=2\Delta d/\lambda\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>光学 5</td>
+                    <td>中央明纹宽度 <span class="inline-math">\(2f\lambda/a\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>光学 6</td>
+                    <td>缺级条件 <span class="inline-math">\(k=md/a\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>光学 7</td>
+                    <td>瑞利判据 <span class="inline-math">\(\theta_{\min}\approx 1.22\lambda/D\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>光学 8</td>
+                    <td>逐片乘 <span class="inline-math">\(\cos^2\)</span>，别忘第一片前先除以 2</td>
+                  </tr>
+                  <tr>
+                    <td>光学 9</td>
+                    <td>等幅 + 相位差 <span class="inline-math">\(\pi/2\)</span>，为圆偏振</td>
+                  </tr>
+                  <tr>
+                    <td>光学 10</td>
+                    <td><span class="inline-math">\(i_B=\arctan 1.5\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 1</td>
+                    <td><span class="inline-math">\(T\)</span> 变 2 倍，总辐射本领变 16 倍</td>
+                  </tr>
+                  <tr>
+                    <td>量子 2</td>
+                    <td>先用 <span class="inline-math">\(h\nu=W+eU_s\)</span>，再求 <span class="inline-math">\(\lambda_0\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 3</td>
+                    <td>比较 <span class="inline-math">\(1-\cos\phi\)</span> 即可</td>
+                  </tr>
+                  <tr>
+                    <td>量子 4</td>
+                    <td><span class="inline-math">\(\lambda=h/\sqrt{2meU}\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 5</td>
+                    <td><span class="inline-math">\(\Delta p_x \sim \hbar/(2\Delta x)\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 6</td>
+                    <td>只会得到 <span class="inline-math">\(E_2\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 7</td>
+                    <td>每项乘 <span class="inline-math">\(e^{-iE_n t/\hbar}\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 8</td>
+                    <td><span class="inline-math">\(\bar E=(E_1+E_2)/2\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 9</td>
+                    <td><span class="inline-math">\(5\times 4/2=10\)</span></td>
+                  </tr>
+                  <tr>
+                    <td>量子 10</td>
+                    <td><span class="inline-math">\(l=2\)</span> 或 <span class="inline-math">\(3\)</span>；大小公式 <span class="inline-math">\(L=\sqrt{l(l+1)}\,\hbar\)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <details open>
+            <summary>最容易卡壳的 12 个为什么</summary>
+            <div class="details-body">
+              <ol>
+                <li>为什么双缝条纹间距与级次无关，而位置与级次有关？</li>
+                <li>为什么插片会让整套图样平移，但一般不改变条纹间距？</li>
+                <li>为什么中央明纹最宽？</li>
+                <li>为什么缺级题不能只写光栅主极大条件？</li>
+                <li>为什么自然光先过偏振片后一定变成线偏振？</li>
+                <li>为什么增大光强不能弥补频率不足导致的光电效应缺失？</li>
+                <li>为什么康普顿公式里改变量与入射波长本身无直接关系？</li>
+                <li>为什么德布罗意波长随动量增大而减小？</li>
+                <li>为什么势阱中不存在连续能级？</li>
+                <li>为什么测量概率看的是 <span class="inline-math">\(|c_n|^2\)</span> 而不是 <span class="inline-math">\(c_n\)</span>？</li>
+                <li>为什么氢原子高能级更靠近电离极限？</li>
+                <li>为什么 <span class="inline-math">\(L\)</span> 和 <span class="inline-math">\(L_z\)</span> 不会写成同一个公式？</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mockpaper">
+        <div class="section-head">
+          <h3>模拟卷与答案：最后两天最值得完整做的一套</h3>
+          <p>下面这套题按“闭卷冲分”的视角编排，建议你找一段完整时间计时做，再对照解析看自己到底卡在哪一步。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout green">
+            <strong>推荐做法：</strong> 先计时 90–120 分钟做题，不看下面答案。做完后把答案解析当成第二轮学习，而不是只看对错。
+          </div>
+
+          <details open>
+            <summary>模拟卷 A：题目部分</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝干涉装置中，双缝间距为 <span class="inline-math">\(d\)</span>，屏到双缝距离为 <span class="inline-math">\(D\)</span>，波长为 <span class="inline-math">\(\lambda\)</span>。求第 <span class="inline-math">\(k\)</span> 级亮纹位置和条纹间距。</li>
+                <li>在上一题基础上，于一条光路前插入折射率为 <span class="inline-math">\(n\)</span>、厚度为 <span class="inline-math">\(t\)</span> 的玻璃片，求整个图样平移量。</li>
+                <li>单缝宽度为 <span class="inline-math">\(a\)</span>，透镜焦距为 <span class="inline-math">\(f\)</span>，问中央明纹宽度为何。</li>
+                <li>某光栅的第三主极大缺级，已知光栅常数为 <span class="inline-math">\(d\)</span>，若最小暗纹级次为 1，求缝宽。</li>
+                <li>自然光通过三片偏振片，第二片相对第一片夹角 <span class="inline-math">\(30^\circ\)</span>，第三片相对第二片夹角 <span class="inline-math">\(60^\circ\)</span>，求最终光强。</li>
+                <li>某黑体峰值波长减半，求温度比和总辐射本领比。</li>
+                <li>频率为 <span class="inline-math">\(\nu\)</span> 的光照射某金属，截止电压为 <span class="inline-math">\(U_s\)</span>，求逸出功。</li>
+                <li>比较康普顿散射角为 <span class="inline-math">\(60^\circ\)</span> 和 <span class="inline-math">\(90^\circ\)</span> 时的波长改变量。</li>
+                <li>粒子在无限深方势阱中处于状态 <span class="inline-math">\(\Psi(x,0)=\dfrac{1}{\sqrt2}\psi_1+\dfrac{1}{\sqrt2}\psi_2\)</span>，写出 <span class="inline-math">\(\Psi(x,t)\)</span> 并求平均能量。</li>
+                <li>一群氢原子处于 <span class="inline-math">\(n=4\)</span> 激发态，最多可发出几条谱线？若问可见光中最短波长，优先看哪一跃迁？</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>模拟卷 A：答案与评分点</summary>
+            <div class="details-body">
+              <ol>
+                <li>
+                  <strong>答案：</strong>
+                  <span class="inline-math">\(x_k = k\lambda D/d\)</span>，
+                  <span class="inline-math">\(\Delta x = \lambda D/d\)</span>。<br />
+                  <strong>评分点：</strong> 先写 <span class="inline-math">\(\delta \approx dx/D\)</span>，再联立亮纹条件。
+                </li>
+                <li>
+                  <strong>答案：</strong> <span class="inline-math">\(\Delta x = D(n-1)t/d\)</span>。<br />
+                  <strong>评分点：</strong> 附加光程写成 <span class="inline-math">\((n-1)t\)</span>，说明是整套图样平移。
+                </li>
+                <li>
+                  <strong>答案：</strong> <span class="inline-math">\(2f\lambda/a\)</span>。<br />
+                  <strong>评分点：</strong> 知道中央明纹由两侧第一暗纹夹出，不能漏掉前面的 <span class="inline-math">\(2\)</span>。
+                </li>
+                <li>
+                  <strong>答案：</strong> <span class="inline-math">\(a=d/3\)</span>。<br />
+                  <strong>评分点：</strong> 联立缺级关系 <span class="inline-math">\(k=md/a\)</span>，这里 <span class="inline-math">\(k=3,m=1\)</span>。
+                </li>
+                <li>
+                  <strong>答案：</strong>
+                  <span class="inline-math">\(I_1=I_0/2\)</span>，
+                  <span class="inline-math">\(I_2=I_1\cos^2 30^\circ\)</span>，
+                  <span class="inline-math">\(I_3=I_2\cos^2 60^\circ\)</span>。<br />
+                  最终
+                  <span class="inline-math">\(I_3 = \dfrac{3}{32}I_0\)</span>。
+                </li>
+                <li>
+                  <strong>答案：</strong> 由 <span class="inline-math">\(\lambda_mT=b\)</span> 得温度变为 2 倍；总辐射本领变为 <span class="inline-math">\(2^4=16\)</span> 倍。
+                </li>
+                <li>
+                  <strong>答案：</strong> <span class="inline-math">\(W = h\nu - eU_s\)</span>。<br />
+                  <strong>评分点：</strong> 知道 <span class="inline-math">\(eU_s\)</span> 表示最大动能。
+                </li>
+                <li>
+                  <strong>答案：</strong>
+                  <span class="inline-math">\(\Delta\lambda_{60}=\lambda_C(1-\cos60^\circ)=\lambda_C/2\)</span>，
+                  <span class="inline-math">\(\Delta\lambda_{90}=\lambda_C\)</span>。<br />
+                  所以前者是后者的 <span class="inline-math">\(1/2\)</span>。
+                </li>
+                <li>
+                  <strong>答案：</strong>
+                  <span class="inline-math">\(\Psi(x,t)=\dfrac{1}{\sqrt2}\psi_1e^{-iE_1t/\hbar}+\dfrac{1}{\sqrt2}\psi_2e^{-iE_2t/\hbar}\)</span>，<br />
+                  <span class="inline-math">\(\bar E=(E_1+E_2)/2\)</span>。
+                </li>
+                <li>
+                  <strong>答案：</strong> 最多谱线数 <span class="inline-math">\(4\times 3/2=6\)</span>；可见光最短波长通常优先看 <span class="inline-math">\(4\to 2\)</span>。
+                </li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>考前两天怎么用这套模拟卷</summary>
+            <div class="details-body">
+              <ul>
+                <li>第一遍按考试时间完整做，绝不边做边看答案。</li>
+                <li>第二遍只重做第一遍中断住的题，不再把会的题重复抄一遍。</li>
+                <li>第三遍不是再做题，而是把每题的“第一步应该写什么”口头说出来。</li>
+                <li>如果你发现自己丢分主要来自“不会识别题型”，就回到对应精讲章节。</li>
+                <li>如果你发现自己丢分主要来自“公式记混”，就回到“题库与问答”和“考前速记”。</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="radar">
+        <div class="section-head">
+          <h3>题型雷达：把“会不会考”变成一张可执行地图</h3>
+          <p>这一块不是知识点重讲，而是站在出题角度看：哪些内容最常出现、最喜欢以什么形式出现、你该把时间投到哪里才最值。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout blue">
+            <strong>使用方式：</strong> 先看每章的高频度，再看“题眼关键词”和“最该练的动作”。如果你时间不够，就按这张雷达图从上往下吃分。
+          </div>
+          <div class="wide-visual">
+            <h4>题型热度图</h4>
+            <img src="./figures/14_exam_radar.svg" alt="大学物理二期末题型热度图" />
+            <p>这张图把复习优先级可视化，适合你每天开始复习前先扫一眼，决定今天先啃哪块。</p>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>模块</th>
+                <th>高频度</th>
+                <th>常见题型</th>
+                <th>题眼关键词</th>
+                <th>这一块最该练什么</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>双缝干涉</td>
+                <td>极高</td>
+                <td>填空、计算、大题第一问</td>
+                <td>第 k 级、亮纹、暗纹、条纹间距、插片、中央明纹</td>
+                <td>先写 <span class="inline-math">\(\delta \approx dx/D\)</span> 再联立条件</td>
+              </tr>
+              <tr>
+                <td>薄膜 / 牛顿环 / 迈克耳孙</td>
+                <td>高</td>
+                <td>计算、判断、易错题</td>
+                <td>相位反转、半波损失、移动镜面、条纹数</td>
+                <td>判断相位反转与 <span class="inline-math">\(2\Delta d\)</span></td>
+              </tr>
+              <tr>
+                <td>单缝衍射</td>
+                <td>高</td>
+                <td>填空、计算</td>
+                <td>暗纹、中央明纹宽度、第一暗纹</td>
+                <td>区分半宽和整宽，守住 <span class="inline-math">\(2f\lambda/a\)</span></td>
+              </tr>
+              <tr>
+                <td>光栅与缺级</td>
+                <td>极高</td>
+                <td>计算、大题中段</td>
+                <td>主极大、缺级、最高级次、分辨本领</td>
+                <td>联立两个条件，不要只写一个式子</td>
+              </tr>
+              <tr>
+                <td>偏振</td>
+                <td>中高</td>
+                <td>选择、填空、简答、计算</td>
+                <td>自然光、马吕斯、多片偏振片、布儒斯特角、波片</td>
+                <td>逐片乘 <span class="inline-math">\(\cos^2\theta\)</span>，别忘第一片先减半</td>
+              </tr>
+              <tr>
+                <td>黑体辐射</td>
+                <td>中</td>
+                <td>比值题、概念题</td>
+                <td>峰值波长、温度比、辐射本领</td>
+                <td>区分维恩位移定律与四次方关系</td>
+              </tr>
+              <tr>
+                <td>光电效应</td>
+                <td>极高</td>
+                <td>填空、计算、综合题</td>
+                <td>截止电压、逸出功、阈频、红限</td>
+                <td>牢固到能一眼写出 <span class="inline-math">\(h\nu=W+eU_s\)</span></td>
+              </tr>
+              <tr>
+                <td>康普顿散射</td>
+                <td>中高</td>
+                <td>计算、比值题</td>
+                <td>散射角、波长改变量、比较大小</td>
+                <td>抓住 <span class="inline-math">\(1-\cos\phi\)</span></td>
+              </tr>
+              <tr>
+                <td>德布罗意 / 不确定关系</td>
+                <td>中高</td>
+                <td>填空、简答、计算</td>
+                <td>加速电压、缝宽、量级估算</td>
+                <td>先写动量，再转波长或不确定量级</td>
+              </tr>
+              <tr>
+                <td>无限深势阱</td>
+                <td>极高</td>
+                <td>大题、证明型、过程型</td>
+                <td>本征态、初态展开、时间演化、概率、平均能量</td>
+                <td>把 <span class="inline-math">\(c_n, |c_n|^2, \Psi, |\Psi|^2\)</span> 分清</td>
+              </tr>
+              <tr>
+                <td>氢原子与量子数</td>
+                <td>极高</td>
+                <td>填空、选择、计算、简答</td>
+                <td>谱线数、最短波长、<span class="inline-math">\(m_l\)</span>、<span class="inline-math">\(L\)</span>、<span class="inline-math">\(L_z\)</span></td>
+                <td>会背能级、会夹量子数、会判断巴耳末系</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <details open>
+            <summary>从“出题老师视角”看：每章最喜欢怎么变形</summary>
+            <div class="details-body">
+              <ul>
+                <li>干涉题喜欢把“求位置”改成“求相邻条纹距离”或“插片后移动几条条纹宽”。</li>
+                <li>薄膜题喜欢在文字里藏相位反转，不直接告诉你哪一界面高折射率。</li>
+                <li>衍射题喜欢把“单缝”和“光栅”同时给出，让你故意写混。</li>
+                <li>偏振题喜欢用“三片偏振片”或者“中间插一片后反而有光”考你是否逐步分析。</li>
+                <li>光电效应喜欢把波长、频率、截止电压混着给，让你先换量再代式。</li>
+                <li>势阱题喜欢把初态写得很花，实质只要拆成前两个本征态就能做。</li>
+                <li>氢原子题喜欢把“最多谱线数”和“可见光最短波长”放在同一道里连续考。</li>
+              </ul>
+            </div>
+          </details>
+
+          <details open>
+            <summary>如果你只剩 3 天，哪些题必须练到熟到反射</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝亮纹 / 暗纹位置与插片平移。</li>
+                <li>单缝中央明纹宽度、光栅缺级与分辨本领。</li>
+                <li>偏振多片连乘与布儒斯特角。</li>
+                <li>光电效应综合式：求 <span class="inline-math">\(W\)</span>、<span class="inline-math">\(U_s\)</span>、<span class="inline-math">\(\lambda_0\)</span>。</li>
+                <li>势阱初态展开、时间演化、概率、平均能量。</li>
+                <li>氢原子谱线数、最短波长、量子数反推。</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="questiontypes">
+        <div class="section-head">
+          <h3>小题专项：填空、判断、简答集中压缩训练</h3>
+          <p>如果你觉得大题会做，但小题不稳，那通常不是知识不够，而是没把“必须一眼写出的短答案”单独练出来。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout">
+            <strong>刷法建议：</strong> 这一节最适合拿纸遮住答案列。先自己说，再看网页，不要边看边默念。
+          </div>
+
+          <details open>
+            <summary>填空专项 1：光学 18 题</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝干涉中，相邻亮纹间距为 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>双缝干涉屏上某点的几何光程差近似为 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>双缝亮纹条件是 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>双缝暗纹条件是 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>在某一路插入折射率为 <span class="inline-math">\(n\)</span> 的薄片，附加光程是 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>迈克耳孙干涉仪中镜面移动 <span class="inline-math">\(\Delta d\)</span>，光程差改变 <span class="inline-math">\(\underline{\hspace{4em}}\)</span>。</li>
+                <li>单缝暗纹条件为 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>单缝中央明纹宽度常写成 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>光栅主极大条件为 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>光栅分辨本领公式为 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>缺级条件常整理成 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>自然光通过第一片偏振片后光强变为 <span class="inline-math">\(\underline{\hspace{4em}}\)</span>。</li>
+                <li>马吕斯定律为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>布儒斯特角满足 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>四分之一波片满足 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>半波片满足 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>线偏振经适当四分之一波片后可变成 <span class="inline-math">\(\underline{\hspace{4em}}\)</span> 偏振。</li>
+                <li>当两正交分量等幅且相位差为 <span class="inline-math">\(\pm\pi/2\)</span> 时，偏振态为 <span class="inline-math">\(\underline{\hspace{4em}}\)</span>。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>填空专项 2：量子部分 18 题</summary>
+            <div class="details-body">
+              <ol>
+                <li>维恩位移定律为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>总辐射本领与绝对温度的关系为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>光电效应基本方程为 <span class="inline-math">\(\underline{\hspace{10em}}\)</span>。</li>
+                <li>截止电压对应光电子的 <span class="inline-math">\(\underline{\hspace{4em}}\)</span>。</li>
+                <li>康普顿波长改变量公式为 <span class="inline-math">\(\underline{\hspace{10em}}\)</span>。</li>
+                <li>德布罗意关系为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>不确定关系为 <span class="inline-math">\(\underline{\hspace{10em}}\)</span>。</li>
+                <li>无限深势阱中粒子限制在区间 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>无限深势阱本征波函数为 <span class="inline-math">\(\underline{\hspace{10em}}\)</span>。</li>
+                <li>无限深势阱能级公式为 <span class="inline-math">\(\underline{\hspace{10em}}\)</span>。</li>
+                <li>一般态时间演化中每一项都乘上 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>测得能量 <span class="inline-math">\(E_n\)</span> 的概率为 <span class="inline-math">\(\underline{\hspace{6em}}\)</span>。</li>
+                <li>区间概率要对 <span class="inline-math">\(\underline{\hspace{5em}}\)</span> 积分。</li>
+                <li>氢原子第 <span class="inline-math">\(n\)</span> 能级为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>一群处于 <span class="inline-math">\(n\)</span> 激发态的氢原子最多发出谱线数为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>角量子数 <span class="inline-math">\(l\)</span> 的取值范围为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>磁量子数 <span class="inline-math">\(m_l\)</span> 的取值范围为 <span class="inline-math">\(\underline{\hspace{8em}}\)</span>。</li>
+                <li>轨道角动量大小公式为 <span class="inline-math">\(\underline{\hspace{10em}}\)</span>。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>判断专项：下面这些说法对不对，为什么</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝插片后只有中央明纹会移动，其余条纹不动。</li>
+                <li>单缝中央明纹宽度等于 <span class="inline-math">\(f\lambda/a\)</span>。</li>
+                <li>缺级说明这个级次根本不满足光栅主极大条件。</li>
+                <li>自然光通过两片相互垂直的偏振片后光强一定不为零。</li>
+                <li>布儒斯特角问题本质上属于全反射问题。</li>
+                <li>只要增大光强，频率再低也能发生光电效应。</li>
+                <li>康普顿散射中的波长改变量与散射角有关。</li>
+                <li>德布罗意波长越大，粒子动量越大。</li>
+                <li>势阱中负的展开系数对应负的测量概率。</li>
+                <li>若粒子处于本征态 <span class="inline-math">\(\psi_2\)</span>，则能量测量结果只有一个。</li>
+                <li>氢原子 <span class="inline-math">\(n\)</span> 越大，能量越小。</li>
+                <li><span class="inline-math">\(L\)</span> 和 <span class="inline-math">\(L_z\)</span> 只是方向不同，本质公式可以写一样。</li>
+              </ol>
+              <div class="callout green">
+                <strong>自查提示：</strong> 判断题真正考的是“你能不能讲出为什么”，不是只选对错。建议你给每一道都补一句理由。
+              </div>
+            </div>
+          </details>
+
+          <details open>
+            <summary>简答专项：适合考前口头复述的 12 个题目</summary>
+            <div class="details-body">
+              <ol>
+                <li>为什么干涉题通常先统一到光程差再判断亮暗纹？</li>
+                <li>为什么薄膜干涉要优先判断相位反转次数？</li>
+                <li>单缝衍射和光栅衍射的主导条件分别是什么？</li>
+                <li>为什么多片偏振片问题必须逐片分析？</li>
+                <li>为什么光电效应支持光量子观点？</li>
+                <li>康普顿散射说明了光具有什么性质？</li>
+                <li>为什么德布罗意关系说明粒子也具有波动性？</li>
+                <li>为什么无限深势阱中能量是离散的？</li>
+                <li>什么是本征态，为什么它在测量问题中很重要？</li>
+                <li>为什么概率和平均值题一定要分清 <span class="inline-math">\(\Psi\)</span> 与 <span class="inline-math">\(|\Psi|^2\)</span>？</li>
+                <li>为什么氢原子可见光问题通常优先看巴耳末系？</li>
+                <li>为什么量子数题常常可以通过范围约束直接“夹出来”？</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>小题答案核对区</summary>
+            <div class="details-body">
+              <p><strong>填空专项 1 参考答案：</strong></p>
+              <p>
+                <span class="inline-math">\(\lambda D/d\)</span>，
+                <span class="inline-math">\(dx/D\)</span>，
+                <span class="inline-math">\(\delta=k\lambda\)</span>，
+                <span class="inline-math">\(\delta=(k+1/2)\lambda\)</span>，
+                <span class="inline-math">\((n-1)t\)</span>，
+                <span class="inline-math">\(2\Delta d\)</span>，
+                <span class="inline-math">\(a\sin\theta=m\lambda\)</span>，
+                <span class="inline-math">\(2f\lambda/a\)</span>，
+                <span class="inline-math">\(d\sin\theta=k\lambda\)</span>，
+                <span class="inline-math">\(R=\lambda/\Delta\lambda=kN\)</span>，
+                <span class="inline-math">\(k=md/a\)</span>，
+                <span class="inline-math">\(I_0/2\)</span>，
+                <span class="inline-math">\(I=I_{\text{in}}\cos^2\theta\)</span>，
+                <span class="inline-math">\(\tan i_B=n_2/n_1\)</span>，
+                <span class="inline-math">\(\Delta nt=\lambda/4\)</span>，
+                <span class="inline-math">\(\Delta nt=\lambda/2\)</span>，
+                圆偏振，
+                圆偏振。
+              </p>
+              <p><strong>填空专项 2 参考答案：</strong></p>
+              <p>
+                <span class="inline-math">\(\lambda_mT=b\)</span>，
+                <span class="inline-math">\(M=\sigma T^4\)</span>，
+                <span class="inline-math">\(h\nu=W+eU_s\)</span>，
+                最大初动能，
+                <span class="inline-math">\(\Delta\lambda=\lambda_C(1-\cos\phi)\)</span>，
+                <span class="inline-math">\(\lambda=h/p\)</span>，
+                <span class="inline-math">\(\Delta x\Delta p_x\ge\hbar/2\)</span>，
+                <span class="inline-math">\(0&lt;x&lt;a\)</span>，
+                <span class="inline-math">\(\psi_n(x)=\sqrt{2/a}\sin(n\pi x/a)\)</span>，
+                <span class="inline-math">\(E_n=n^2h^2/(8ma^2)\)</span>，
+                <span class="inline-math">\(e^{-iE_nt/\hbar}\)</span>，
+                <span class="inline-math">\(|c_n|^2\)</span>，
+                <span class="inline-math">\(|\Psi|^2\)</span>，
+                <span class="inline-math">\(E_n=-13.6/n^2\)</span> eV，
+                <span class="inline-math">\(n(n-1)/2\)</span>，
+                <span class="inline-math">\(0,1,\dots,n-1\)</span>，
+                <span class="inline-math">\(-l,\dots,l\)</span>，
+                <span class="inline-math">\(L=\sqrt{l(l+1)}\,\hbar\)</span>。
+              </p>
+              <p><strong>判断专项参考结论：</strong> 错、错、错、错、错、错、对、错、错、对、错、错。</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="casebook">
+        <div class="section-head">
+          <h3>章节加餐例题：把“我知道”和“我会写”再拉近一步</h3>
+          <p>这部分相当于给每个主章节再追加一轮练习型讲解。不是为了新知识，而是为了让你在写题时更自然地下笔。</p>
+        </div>
+        <div class="section-body">
+          <details open>
+            <summary>加餐例题 1：双缝第 k 级暗纹与第 (k+1) 级亮纹之间距离</summary>
+            <div class="details-body">
+              <p><strong>题型辨识：</strong> 这道题还是双缝，只不过不是单独问某条纹位置，而是问两条不同类型条纹之间的距离。</p>
+              <div class="math-note">
+                第 <span class="inline-math">\(k\)</span> 级暗纹：<span class="inline-math">\(x_{\text{dark}} = (k+1/2)\lambda D/d\)</span><br />
+                第 <span class="inline-math">\(k+1\)</span> 级亮纹：<span class="inline-math">\(x_{\text{bright}} = (k+1)\lambda D/d\)</span><br />
+                两者距离：<span class="inline-math">\(\Delta x = \lambda D/(2d)\)</span>
+              </div>
+              <p><strong>学习点：</strong> 同类条纹间距是 <span class="inline-math">\(\lambda D/d\)</span>，亮暗相邻之间则只有一半。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 2：空间相干性临界条件怎么理解</summary>
+            <div class="details-body">
+              <p>空间相干性问题经常写成“条纹刚好消失时，光源宽度是多少”。这一类题背后在问：扩展光源不同点发出的干涉图样彼此错开到什么程度时，总图样被洗平。</p>
+              <div class="math-note">
+                常见结论：<span class="inline-math">\(b_{\max}\approx \lambda L/d\)</span>
+              </div>
+              <p>这类题闭卷里一般不要求你完整推导，但你要知道它描述的是“条纹被源宽平均掉”的临界条件。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 3：光栅最高级次怎么做才不漏</summary>
+            <div class="details-body">
+              <p><strong>典型坑：</strong> 只会解出 <span class="inline-math">\(\sin\theta = k\lambda/d\)</span>，却忘了还必须满足 <span class="inline-math">\(|\sin\theta|\le 1\)</span>。</p>
+              <div class="math-note">
+                光栅主极大条件：<span class="inline-math">\(d\sin\theta=k\lambda\)</span><br />
+                所以必须有：<span class="inline-math">\(|k\lambda/d|\le 1\)</span><br />
+                于是最高级次满足：<span class="inline-math">\(|k| \le d/\lambda\)</span>
+              </div>
+              <p>最后还要取不超过这个上界的最大整数。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 4：多片偏振片中间插入一片为什么反而有光</summary>
+            <div class="details-body">
+              <p>如果只有两片互相垂直的偏振片，第二片会把第一片透过的偏振方向完全挡掉，所以无光。中间插入第三片后，偏振方向被分两次旋转，反而能透过一部分。</p>
+              <div class="math-note">
+                第一片后：<span class="inline-math">\(I_1=I_0/2\)</span><br />
+                第二片若与第一片夹角 <span class="inline-math">\(\theta\)</span>：<span class="inline-math">\(I_2=I_1\cos^2\theta\)</span><br />
+                第三片再与第二片成角：继续乘一次 <span class="inline-math">\(\cos^2\)</span>
+              </div>
+              <p>这类题的物理意义很强，值得你自己口头解释一遍。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 5：黑体辐射里“峰值变短，总辐射变强”如何一题两算</summary>
+            <div class="details-body">
+              <p>如果峰值波长变为原来的 <span class="inline-math">\(1/3\)</span>，那温度就变成原来的 3 倍；于是总辐射本领变成原来的 <span class="inline-math">\(3^4=81\)</span> 倍。</p>
+              <p>这题很适合作为你自己检查是否区分“峰值位置”和“总本领”的快练题。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 6：光电效应里换成波长形式时怎么避免代乱</summary>
+            <div class="details-body">
+              <div class="math-note">
+                先把频率换成波长：<span class="inline-math">\(\nu=c/\lambda\)</span><br />
+                再写：<span class="inline-math">\(hc/\lambda = W + eU_s\)</span><br />
+                最后按题目要求求 <span class="inline-math">\(W\)</span>、<span class="inline-math">\(U_s\)</span> 或 <span class="inline-math">\(\lambda_0\)</span>
+              </div>
+              <p><strong>核心提醒：</strong> 别一边用频率、一边用波长，一定先统一。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 7：康普顿散射比值题怎样三秒内看出答案方向</summary>
+            <div class="details-body">
+              <p>如果题目问两个散射角下的改变量比值，你应该第一眼先写：</p>
+              <div class="math-note">
+                <span class="inline-math">\(\Delta\lambda \propto 1-\cos\phi\)</span>
+              </div>
+              <p>这意味着所有常数都可以先放一边，先比较角度函数。比如 <span class="inline-math">\(\phi=0^\circ\)</span> 时改变量为 0，<span class="inline-math">\(\phi=180^\circ\)</span> 时最大。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 8：势阱初态化简时常用的三角恒等式怎么用</summary>
+            <div class="details-body">
+              <p>很多初态看起来复杂，其实只是为了逼你化成若干本征态的线性组合。最常用的两个恒等式是：</p>
+              <div class="math-note">
+                <span class="inline-math">\(\sin u\cos u = \tfrac12\sin 2u\)</span><br />
+                <span class="inline-math">\(\sin u(1-\cos u) = \sin u - \tfrac12\sin 2u\)</span>
+              </div>
+              <p>看见类似 <span class="inline-math">\(\sin(\pi x/a)(1-\cos(\pi x/a))\)</span> 的形式时，要立刻想到能拆成前两项本征态。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 9：为什么平均能量不用再做积分</summary>
+            <div class="details-body">
+              <p>如果题目已经给出展开系数，平均能量最省事的算法一定是：</p>
+              <div class="math-note">
+                <span class="inline-math">\(\bar E = \sum |c_n|^2E_n\)</span>
+              </div>
+              <p>因为能量测量结果只有那些本征值，而系数模方就是对应概率。你要培养一个习惯：能不积分就不积分，先看题里给你的结构够不够直接加权。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 10：氢原子中“最短波长”和“最大频率”是同一类题吗</summary>
+            <div class="details-body">
+              <p>是同一类题。因为 <span class="inline-math">\(E=h\nu=hc/\lambda\)</span>，能量差越大，频率越大、波长越短。所以如果题目让你找最短波长，本质是在找最大跃迁能量差。</p>
+              <p>若又限制在可见光范围，通常就先看巴耳末系，再在这个系列里找能量差最大的那一条。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 11：由 n 和 m_l 反推 l 时，为什么有时不是唯一值</summary>
+            <div class="details-body">
+              <p>若只知道 <span class="inline-math">\(n=4,m_l=1\)</span>，那么由 <span class="inline-math">\(|m_l|\le l\le n-1\)</span> 得 <span class="inline-math">\(1\le l\le 3\)</span>，此时 <span class="inline-math">\(l\)</span> 可能是 1、2、3，不唯一。</p>
+              <p>只有当范围被夹成一个点，比如 <span class="inline-math">\(m_l=-3\)</span> 时，才会唯一确定 <span class="inline-math">\(l=3\)</span>。</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>加餐例题 12：把一道综合题拆成“题型切片”</summary>
+            <div class="details-body">
+              <p>很多期末大题表面很长，其实是几段不同题型拼起来。例如一道题先给双缝，再加插片，再问某级亮纹位置，本质上是：</p>
+              <ol>
+                <li>先判断这是双缝干涉；</li>
+                <li>再识别插片带来的附加光程；</li>
+                <li>最后把新光程差和亮纹条件联立。</li>
+              </ol>
+              <p>你在练综合题时，最该练的不是一口气写完，而是先把题型切成 2–3 段。</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="mockpaperb">
+        <div class="section-head">
+          <h3>模拟卷 B：第二套整卷训练，用来查缺补漏</h3>
+          <p>如果你已经刷过模拟卷 A，这一套更适合拿来检验你到底是“会公式”还是“会做题”。题型覆盖更分散，也更接近期末里那种前面小题密、后面大题综合的感觉。</p>
+        </div>
+        <div class="section-body">
+          <div class="callout green">
+            <strong>建议做法：</strong> 先把这套当正式考试做；改完之后，不要只看错题，把每道题的“第一步该写什么”也重新说一遍。
+          </div>
+
+          <details open>
+            <summary>模拟卷 B：题目部分</summary>
+            <div class="details-body">
+              <ol>
+                <li>双缝干涉中，已知第 4 级亮纹到中央明纹的距离为 <span class="inline-math">\(x\)</span>，求条纹间距。</li>
+                <li>某反射型薄膜干涉题中，两束反射光有一次额外半波损失。若光程差写成 <span class="inline-math">\(2nt\)</span>，问反射增强条件是什么。</li>
+                <li>迈克耳孙干涉仪中移动反射镜 <span class="inline-math">\(0.12\)</span> mm，若通过 400 条条纹，求所用光波波长。</li>
+                <li>单缝宽度为 <span class="inline-math">\(0.10\)</span> mm，透镜焦距为 <span class="inline-math">\(50\)</span> cm，波长为 <span class="inline-math">\(500\)</span> nm，求中央明纹宽度。</li>
+                <li>某光栅有 5000 条刻线，工作在第 2 级，波长为 <span class="inline-math">\(600\)</span> nm，求最小可分辨波长差。</li>
+                <li>自然光依次通过两片偏振片，透振方向夹角为 <span class="inline-math">\(45^\circ\)</span>，求最终光强与原光强之比。</li>
+                <li>某黑体的绝对温度升高到原来的 1.5 倍，求峰值波长之比和总辐射本领之比。</li>
+                <li>某金属的逸出功为 <span class="inline-math">\(W\)</span>，入射光频率为 <span class="inline-math">\(2W/h\)</span>，求截止电压。</li>
+                <li>康普顿散射中，若散射角从 <span class="inline-math">\(60^\circ\)</span> 改为 <span class="inline-math">\(180^\circ\)</span>，波长改变量如何变化。</li>
+                <li>电子经电压 <span class="inline-math">\(U\)</span> 加速，写出其德布罗意波长公式。</li>
+                <li>粒子处于无限深势阱状态 <span class="inline-math">\(\Psi(x,0)=\dfrac{2}{\sqrt5}\psi_1-\dfrac{1}{\sqrt5}\psi_2\)</span>，求测得能量 <span class="inline-math">\(E_2\)</span> 的概率和平均能量。</li>
+                <li>已知某电子处于 <span class="inline-math">\(n=5,m_l=-4\)</span> 的状态，求 <span class="inline-math">\(l\)</span> 以及轨道角动量大小。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>模拟卷 B：答案与拆解</summary>
+            <div class="details-body">
+              <ol>
+                <li>
+                  第 4 级亮纹位置为 <span class="inline-math">\(x_4=4\Delta x\)</span>，所以条纹间距
+                  <span class="inline-math">\(\Delta x = x/4\)</span>。
+                </li>
+                <li>
+                  若有一次额外半波损失，则反射增强与无半波损失时的条件交换，故反射增强条件为
+                  <span class="inline-math">\(2nt=(k+1/2)\lambda\)</span>。
+                </li>
+                <li>
+                  由 <span class="inline-math">\(2\Delta d=N\lambda\)</span>，
+                  得 <span class="inline-math">\(\lambda = 2\times 0.12\text{ mm}/400 = 600\text{ nm}\)</span>。
+                </li>
+                <li>
+                  中央明纹宽度
+                  <span class="inline-math">\(2f\lambda/a = 2\times 0.50\times 500\times 10^{-9}/(0.10\times 10^{-3}) = 5.0\text{ mm}\)</span>。
+                </li>
+                <li>
+                  分辨本领 <span class="inline-math">\(R=kN=2\times 5000=10000\)</span>，
+                  所以 <span class="inline-math">\(\Delta\lambda=\lambda/R=600\text{ nm}/10000=0.06\text{ nm}\)</span>。
+                </li>
+                <li>
+                  <span class="inline-math">\(I_1=I_0/2\)</span>，
+                  <span class="inline-math">\(I_2=I_1\cos^2 45^\circ = I_0/4\)</span>。
+                </li>
+                <li>
+                  由 <span class="inline-math">\(\lambda_mT=b\)</span>，峰值波长变为原来的 <span class="inline-math">\(2/3\)</span>；
+                  总辐射本领变为原来的 <span class="inline-math">\(1.5^4=5.0625\)</span> 倍。
+                </li>
+                <li>
+                  由 <span class="inline-math">\(h\nu = W + eU_s\)</span>，
+                  且 <span class="inline-math">\(h\nu = 2W\)</span>，得 <span class="inline-math">\(eU_s=W\)</span>，
+                  所以 <span class="inline-math">\(U_s=W/e\)</span>。
+                </li>
+                <li>
+                  <span class="inline-math">\(\Delta\lambda_{60}=\lambda_C/2\)</span>，
+                  <span class="inline-math">\(\Delta\lambda_{180}=2\lambda_C\)</span>，
+                  后者是前者的 4 倍。
+                </li>
+                <li>
+                  <span class="inline-math">\(\lambda = h/\sqrt{2meU}\)</span>。
+                </li>
+                <li>
+                  <span class="inline-math">\(P(E_2)=|c_2|^2=1/5\)</span>，
+                  <span class="inline-math">\(\bar E = \dfrac45 E_1 + \dfrac15 E_2\)</span>。
+                </li>
+                <li>
+                  由 <span class="inline-math">\(|m_l|\le l\le n-1\)</span> 得
+                  <span class="inline-math">\(4\le l\le 4\)</span>，故 <span class="inline-math">\(l=4\)</span>；
+                  角动量大小为 <span class="inline-math">\(L=\sqrt{4\cdot 5}\,\hbar=2\sqrt5\,\hbar\)</span>。
+                </li>
+              </ol>
+            </div>
+          </details>
+
+          <details open>
+            <summary>模拟卷 B：评分时该盯哪些点</summary>
+            <div class="details-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>题号</th>
+                    <th>最关键评分点</th>
+                    <th>最典型失误</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>把“第 4 级亮纹位置”换成 4 个间距</td><td>直接把位置当间距</td></tr>
+                  <tr><td>2</td><td>会判断半波损失导致亮暗条件交换</td><td>机械写 <span class="inline-math">\(2nt=k\lambda\)</span></td></tr>
+                  <tr><td>3</td><td>写出 <span class="inline-math">\(2\Delta d=N\lambda\)</span></td><td>漏掉 2</td></tr>
+                  <tr><td>4</td><td>用中央明纹整宽公式</td><td>少一个 2</td></tr>
+                  <tr><td>5</td><td>分辨本领先算总值，再求 <span class="inline-math">\(\Delta\lambda\)</span></td><td>把级次忘掉</td></tr>
+                  <tr><td>6</td><td>自然光先减半</td><td>直接写 <span class="inline-math">\(\cos^2 45^\circ\)</span></td></tr>
+                  <tr><td>7</td><td>两个定律分开用</td><td>把峰值比和四次方混成一式</td></tr>
+                  <tr><td>8</td><td>知道 <span class="inline-math">\(h\nu\)</span> 已给成 <span class="inline-math">\(2W\)</span></td><td>仍然先去换波长频率</td></tr>
+                  <tr><td>9</td><td>抓住 <span class="inline-math">\(1-\cos\phi\)</span></td><td>常数算一大堆</td></tr>
+                  <tr><td>10</td><td>德布罗意波长公式完整</td><td>根号漏 <span class="inline-math">\(2meU\)</span></td></tr>
+                  <tr><td>11</td><td>概率是模方，平均能量是加权和</td><td>把负号带进概率</td></tr>
+                  <tr><td>12</td><td>用范围直接夹出 <span class="inline-math">\(l\)</span></td><td>把 <span class="inline-math">\(L\)</span> 和 <span class="inline-math">\(L_z\)</span> 混掉</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    let allOpen = true;
+    function toggleDetails() {
+      const blocks = document.querySelectorAll('details');
+      allOpen = !allOpen;
+      blocks.forEach(block => {
+        block.open = allOpen;
+      });
+    }
+
+    function cleanFormula(raw) {
+      return raw
+        .trim()
+        .replace(/^\\\(/, "")
+        .replace(/\\\)$/, "")
+        .replace(/^\\\[/, "")
+        .replace(/\\\]$/, "")
+        .replace(/\\dfrac/g, "\\frac")
+        .replace(/\\tfrac/g, "\\frac")
+        .replace(/\\left/g, "")
+        .replace(/\\right/g, "")
+        .replace(/\\,/g, "")
+        .replace(/\\;/g, "")
+        .replace(/\\!/g, "")
+        .replace(/\s+/g, "");
+    }
+
+    function isRealFormula(s) {
+      if (!s || s.includes("underline")) return false;
+      if (s.length < 5 && !/[=<>]/.test(s)) return false;
+      return /[=<>]|\\ge|\\le|\\approx|\\propto|\\sin|\\cos|\\tan|\\sum|\\int|\\exp|\\sqrt/.test(s);
+    }
+
+    function explainFormula(raw) {
+      const s = cleanFormula(raw);
+      if (!isRealFormula(s)) return "";
+
+      if (s.includes("\\Delta\\phi") && s.includes("2\\pi") && s.includes("\\delta")) return "把光程差 δ 换成相位差 Δφ；δ 每多一个波长 λ，相位就多转 2π。";
+      if (s.includes("\\delta=k\\lambda")) return "干涉亮纹条件；两束光的光程差正好差整数个波长，所以相长叠加。";
+      if (s.includes("\\delta=(k+1/2)\\lambda") || s.includes("\\delta=(k+\\frac{1}{2})\\lambda") || s.includes("\\delta=(k+\\frac12)\\lambda")) return "干涉暗纹条件；两束光差半个波长的奇数倍，所以相消。";
+      if (s.includes("\\delta\\approxdx/D") || s.includes("\\sin\\theta\\approx\\tan\\theta")) return "双缝小角近似；屏很远时，用几何关系把角度换成屏上位置 x。";
+      if (s.includes("\\Deltax=\\lambdaD/d") || s.includes("x_k=k\\lambdaD/d")) return "双缝条纹间距或第 k 级位置；D 越大条纹越疏，缝距 d 越大条纹越密。";
+      if (s.includes("(n-1)t") || s.includes("\\delta_{\\text{extra}}")) return "透明薄片带来的附加光程；光在折射率 n 的片中多走了等效光程。";
+      if (s.includes("\\Deltax=D(n-1)t/d")) return "插入薄片后的条纹平移量；先算附加光程，再用双缝位置关系换成屏上位移。";
+      if (s.includes("2\\Deltad=N\\lambda") || s.includes("N=2\\Deltad/\\lambda") || s.includes("\\Delta\\delta=2\\Deltad")) return "迈克耳孙干涉仪公式；镜子移动 Δd，往返光程改变 2Δd。";
+      if (s.includes("2nt=k\\lambda")) return "薄膜干涉的光程差条件之一；真正判亮暗前还要看反射时有没有半波损失。";
+      if (s.includes("2nt=(k+1/2)\\lambda") || s.includes("2nt=(k+\\frac{1}{2})\\lambda")) return "薄膜干涉的另一种亮暗条件；它常和半波损失一起决定最终是亮还是暗。";
+      if (s.includes("b_{\\max}") || s.includes("\\lambdaL/d")) return "空间相干性的估算式；光源越宽越难保持清晰干涉，极限宽度与 λL/d 同量级。";
+
+      if (s.includes("a\\sin\\theta=m\\lambda") && s.includes("d\\sin\\theta=k\\lambda")) return "缺级判断用的联立条件；同一方向既满足光栅亮纹又满足单缝暗纹时，该级亮纹消失。";
+      if (s.includes("a\\sin\\theta=m\\lambda")) return "单缝衍射暗纹条件；缝内不同位置的光相互抵消，m 从 1 开始。";
+      if (s.includes("2f\\lambda/a") || s.includes("\\Deltax_{\\text{center}}")) return "单缝中央明纹宽度；缝越窄中央明纹越宽，透镜焦距 f 越大图样越大。";
+      if (s.includes("d\\sin\\theta=k\\lambda") || s.includes("d\\sin(\\theta)=k\\lambda") || s.includes("d\\sin30")) return "光栅主极大条件；相邻缝光程差为整数个波长时形成亮纹。";
+      if (s.includes("R=\\lambda/\\Delta\\lambda") || s.includes("R=kN") || s.includes("\\Delta\\lambda=\\lambda/(kN)")) return "光栅分辨本领；级次 k 越高、总缝数 N 越多，越能分开接近的两条谱线。";
+      if (s.includes("k=md/a") || s.includes("3=md/a") || s.includes("a=d/3")) return "光栅缺级条件；把光栅亮纹级次 k 和单缝暗纹级次 m 对到同一个角度。";
+      if (s.includes("\\theta_{\\min}") || s.includes("1.22\\lambda/D")) return "圆孔衍射分辨极限；口径 D 越大，最小可分辨角越小。";
+      if (s.includes("|k\\lambda/d|") || s.includes("|\\sin\\theta|") || s.includes("|k|\\le")) return "可见级次限制；因为 sinθ 的绝对值不能超过 1，所以不是所有 k 级都能出现。";
+
+      if (s.includes("I=I_0/2") || s.includes("I_1=I_0/2")) return "自然光通过第一块偏振片后光强减半；因为各方向电场平均投影的平方是 1/2。";
+      if (s.includes("I_{\\text{in}}\\cos^2\\theta") || s.includes("I_1\\cos^2") || s.includes("I_2\\cos^2") || s.includes("\\cos^2")) return "马吕斯定律；偏振光过检偏器时，透过光强等于入射光强乘夹角余弦的平方。";
+      if (s.includes("\\tani_B=n_2/n_1") || s.includes("i_B=\\arctan")) return "布儒斯特角公式；入射侧折射率是 n1，折射侧折射率是 n2，反射光会完全偏振。";
+      if (s.includes("i_B+r=90")) return "布儒斯特角的几何关系；此时反射光线和折射光线互相垂直。";
+      if (s.includes("\\Delta\\phi") && s.includes("\\Deltan") && s.includes("t")) return "波片相位延迟；快慢轴折射率不同，厚度 t 让两方向电场积累不同相位。";
+      if (s.includes("\\Deltant=\\lambda/4")) return "四分之一波片条件；让两正交分量相差 π/2，常把线偏振和圆/椭圆偏振互相转换。";
+      if (s.includes("\\Deltant=\\lambda/2")) return "二分之一波片条件；让两正交分量相差 π，常用来旋转线偏振方向。";
+      if (s.includes("A_x=A_y") || s.includes("\\Delta\\phi=\\pm\\pi/2") || s.includes("\\Delta\\phi=0")) return "偏振态判据；看两个正交振幅是否相等，再看相位差是 0、π 还是 ±π/2。";
+
+      if (s.includes("E=h\\nu=hc/\\lambda") || s.includes("E=hc/\\lambda") || s.includes("\\nu=c/\\lambda")) return "光子能量关系；频率越高、波长越短，每个光子的能量越大。";
+      if (s.includes("\\lambda_mT=b")) return "维恩位移定律；黑体温度越高，辐射峰值波长越短。";
+      if (s.includes("M=\\sigmaT^4") || s.includes("M\\proptoT^4")) return "斯特藩-玻尔兹曼定律；黑体总辐射本领随绝对温度的四次方变化。";
+      if (s.includes("h\\nu=W+K") || s.includes("h\\nu=W+eU_s") || s.includes("E=W+eU_s") || s.includes("hc/\\lambda=W+eU_s")) return "光电效应能量分账；光子能量先付逸出功 W，剩余部分成为光电子最大动能。";
+      if (s.includes("W=hc/\\lambda-eU_s") || s.includes("W=h\\nu-eU_s")) return "求逸出功；用光子能量减去截止电压对应的最大动能 eUs。";
+      if (s.includes("K_{\\max}=eU_s") || s.includes("U_s=W/e") || s.includes("eU_s=W")) return "截止电压对应最大动能；反向电场刚好拦住最快电子时，Kmax 等于 eUs。";
+      if (s.includes("\\nu_0=W/h") || s.includes("W=h\\nu_0")) return "红限频率；频率低于 ν0 时，单个光子能量不够，增大光强也没用。";
+      if (s.includes("\\lambda_0=hc/W")) return "红限波长；这是还能发生光电效应的最大波长，波长再长能量就不够。";
+      if (s.includes("\\Delta\\lambda=\\lambda_C(1-\\cos\\phi)") || s.includes("1-\\cos\\phi")) return "康普顿散射波长改变量；散射角越大，波长增加越明显。";
+      if (s.includes("K=hc") && s.includes("1/\\lambda")) return "反冲电子动能；入射光子损失的能量等于电子获得的动能。";
+      if (s.includes("\\lambda=h/p")) return "德布罗意波长；粒子动量越大，物质波波长越短。";
+      if (s.includes("h/\\sqrt{2meU}") || s.includes("p=\\sqrt{2meU}") || s.includes("2meU")) return "加速电子的德布罗意波长；先由 eU 得到动能，再换成动量 p。";
+      if (s.includes("\\Deltax\\Deltap_x") || s.includes("\\Deltap_x\\sim")) return "不确定关系；位置范围压得越小，横向动量的不确定越大。";
+      if (s.includes("2d\\sin\\phi=k\\lambda")) return "布拉格衍射公式；相邻晶面反射光的光程差等于整数个波长时加强。";
+      if (s.includes("E=p^2/(2m)") || s.includes("E_F=p_F^2/(2m)") || s.includes("p_F=")) return "非相对论动能关系；已知动量 p 后，用 p²/2m 求粒子动能。";
+
+      if (s.includes("\\psi_n(x)") && s.includes("\\sin")) return "无限深势阱本征波函数；n 决定驻波形状，归一化系数保证总概率为 1。";
+      if (s.includes("E_n=n^2h^2/(8ma^2)") || s.includes("E_n=\\frac{n^2h^2}{8ma^2}")) return "无限深势阱能级；能量按 n² 增长，阱越窄能级间隔越大。";
+      if (s.includes("\\Psi(x,0)") && s.includes("\\sum")) return "初态展开；把任意初态写成本征态的线性组合，系数 cn 决定测量概率。";
+      if (s.includes("\\Psi(x,t)") && s.includes("e^{-iE_nt/\\hbar}")) return "时间演化；每个能量本征态只多一个相位因子，概率系数大小不变。";
+      if (s.includes("\\exp(-iE_nt/\\hbar)")) return "时间演化因子；能量本征态随时间只改变相位，不改变测到该能级的概率。";
+      if (s.includes("P(E_n)=|c_n|^2") || s.includes("=|c_n|^2")) return "能量测量概率；展开系数 cn 的模平方就是测到对应能级的概率。";
+      if (s.includes("\\sum|c_n|^2E_n") || s.includes("\\barE")) return "平均能量；用每个能级乘对应概率再求和。";
+      if (s.includes("\\int") && s.includes("|\\Psi")) return "区间概率；把概率密度 |Ψ|² 在指定区间内积分。";
+      if (s.includes("e^{ipx/\\hbar}")) return "动量本征函数；平面波对应确定动量 p。";
+      if (s.includes("\\sinucos") || s.includes("\\sin u\\cos u") || s.includes("\\sin u(1-\\cos u)")) return "三角恒等式；用于把初态函数拆成多个势阱本征函数。";
+      if (s.includes("\\sin(\\pix/a)(1-\\cos(\\pix/a))")) return "势阱初态函数形状；要用三角恒等式把它拆成本征函数的组合。";
+
+      if (s.includes("E_n=-13.6/n^2")) return "氢原子能级公式；n 越大能量越接近 0，负号表示电子被束缚。";
+      if (s.includes("h\\nu=|E_i-E_f|") || s.includes("\\DeltaE=|E_i-E_f|")) return "原子跃迁能量守恒；能级差变成发出或吸收光子的能量。";
+      if (s.includes("1/\\lambda=R") || s.includes("R(")) return "里德伯公式；由上下能级编号直接算谱线波长。";
+      if (s.includes("N_{\\max}=n(n-1)/2") || s.includes("n(n-1)/2")) return "最多谱线数；从最高 n 到以下各能级的所有可能跃迁数。";
+      if (s.includes("l=0") || s.includes("m_l=-l") || s.includes("m_s=\\pm") || s.includes("|m_l|\\le")) return "量子数取值规则；先由 n 限制 l，再由 l 限制 ml，自旋 ms 只能取 ±1/2。";
+      if (s.includes("\\sqrt{l(l+1)}")) return "角动量大小中的根号因子；它来自量子化规则，不能简单写成 lħ。";
+      if (s.includes("L=\\sqrt{l(l+1)}") || s.includes("L_z=m_l\\hbar")) return "角动量量子化；L 是大小，Lz 是在 z 方向的投影。";
+      if (s.includes("2n^2") || s.includes("2(2l+1)")) return "电子容纳数；主层最多 2n² 个电子，某亚层最多 2(2l+1) 个电子。";
+      if (s.includes("n_1\\approx1")) return "空气折射率近似；光从空气进入介质时常把入射侧折射率 n1 取为 1。";
+
+      if (s.includes("=")) return "这是一条代入或结果公式；左边通常是要求量，右边来自本节基本公式和题目条件，代入前要先统一单位。";
+      if (s.includes("<") || s.includes(">") || s.includes("\\le") || s.includes("\\ge")) return "这是适用条件或取值限制；先用它判断现象是否发生、级次是否可见、量子数是否合法。";
+      return "";
+    }
+
+    function addFormulaExplanations(mathItems) {
+      mathItems.forEach(({ el, raw }) => {
+        if (!el || el.closest(".formula-explain")) return;
+        const manualBox = el.closest(".formula-eq");
+        if (manualBox && manualBox.querySelector("p")) return;
+        if (el.nextElementSibling && el.nextElementSibling.classList.contains("formula-explain")) return;
+        const explanation = explainFormula(raw);
+        if (!explanation) return;
+        const note = document.createElement("span");
+        note.className = "formula-explain";
+        note.textContent = explanation;
+        el.insertAdjacentElement("afterend", note);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const mathItems = Array.from(document.querySelectorAll('.inline-math')).map(el => ({
+        el,
+        raw: el.textContent || ""
+      }));
+
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+          ],
+          ignoredTags: ["script", "noscript", "style", "textarea", "code", "option"],
+          throwOnError: false
+        });
+      }
+
+      addFormulaExplanations(mathItems);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+# Keep this repository focused on processed learning outputs.
+*
+!*/
+!.gitignore
+!README.md
+
+# Curated source/output file types
+!**/*.md
+!**/*.html
+!**/*.htm
+!**/*.py
+!**/*.css
+!**/*.js
+!**/*.json
+!**/*.csv
+!**/*.xlsx
+!**/*.svg
+!**/*.woff
+!**/*.woff2
+!**/*.ttf
+!**/*.otf
+
+# Raw reference materials and binary/courseware packages
+**/*.pdf
+**/*.PDF
+**/*.doc
+**/*.docx
+**/*.ppt
+**/*.pptx
+**/*.zip
+**/*.rar
+**/*.7z
+**/*.iso
+**/*.ISO
+**/*.exe
+**/*.dll
+**/*.pyd
+**/*.whl
+
+# Local environments, caches, generated dependency folders
+**/.venv/**
+**/venv/**
+**/__pycache__/**
+**/.pytest_cache/**
+**/node_modules/**
+**/pandoc-*/**
+
+# Bulk page dumps from PDFs are not curated learning outputs.
+**/pdf_pages/**
+**/page_images/**
+
+# Common temporary/log artifacts
+**/.DS_Store
+**/._*
+**/*.log
+**/*.tmp
+**/*.bak
+**/~$*

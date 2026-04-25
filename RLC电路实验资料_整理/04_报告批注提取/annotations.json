@@ -1,0 +1,86 @@
+[
+  {
+    "page": 2,
+    "type": "FreeText",
+    "title": "Eric.",
+    "subject": "",
+    "content": "注意欧姆格式，下同",
+    "rect": [
+      285.8,
+      127.3,
+      393.8,
+      139.3
+    ],
+    "nearby_text": "注意欧姆格式，下同"
+  },
+  {
+    "page": 3,
+    "type": "FreeText",
+    "title": "Eric.",
+    "subject": "",
+    "content": "相邻峰谷为一个周期T",
+    "rect": [
+      364.2,
+      350.1,
+      478.2,
+      362.1
+    ],
+    "nearby_text": "相邻峰谷为一个周期T 计算有误"
+  },
+  {
+    "page": 3,
+    "type": "FreeText",
+    "title": "Eric.",
+    "subject": "",
+    "content": "计算有误",
+    "rect": [
+      428.4,
+      418.5,
+      476.4,
+      430.5
+    ],
+    "nearby_text": "相邻峰谷为一个周期T 计算有误"
+  },
+  {
+    "page": 5,
+    "type": "FreeText",
+    "title": "Eric.",
+    "subject": "",
+    "content": "R=500Ω",
+    "rect": [
+      270.1,
+      776.8,
+      312.1,
+      788.8
+    ],
+    "nearby_text": "R=500Ω 结果错误"
+  },
+  {
+    "page": 5,
+    "type": "FreeText",
+    "title": "Eric.",
+    "subject": "",
+    "content": "结果错误",
+    "rect": [
+      451.2,
+      756.1,
+      499.2,
+      768.1
+    ],
+    "nearby_text": "结果错误"
+  },
+  {
+    "page": 6,
+    "type": "FreeText",
+    "title": "Eric.",
+    "subject": "",
+    "content": "R为阻尼振荡中使用的150Ω+寄生电阻，此处的计算结果也有问题？？",
+    "rect": [
+      291.5,
+      204.8,
+      549.5,
+      228.8
+    ],
+    "nearby_text": "R为阻尼振荡中使用的150Ω+寄生电阻，此处的计 算结果也有问题？？"
+  }
+]

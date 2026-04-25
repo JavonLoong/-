@@ -1,0 +1,1434 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大学物理（2）期末 AI_Learning_OS 一体化图文讲义</title>
+  <style>
+    :root {
+      --ink: #20242a;
+      --muted: #66707c;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --line: #d9ddd9;
+      --nav: #283034;
+      --nav-ink: #f6f3ea;
+      --gold: #b8842c;
+      --teal: #228178;
+      --red: #bd5a4d;
+      --green: #5d8b4e;
+      --violet: #695b9a;
+      --steel: #496a87;
+      --shadow: 0 12px 34px rgba(30, 32, 33, .09);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(34,129,120,.045) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, rgba(184,132,44,.055) 0 1px, transparent 1px 100%),
+        var(--paper);
+      background-size: 28px 28px;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 252px minmax(0, 1fr);
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 18px 16px;
+      color: var(--nav-ink);
+      background: var(--nav);
+      border-right: 1px solid rgba(255,255,255,.08);
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: grid;
+      gap: 5px;
+      padding: 4px 4px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+
+    .brand strong {
+      font-size: 18px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      color: rgba(246,243,234,.72);
+      font-size: 12px;
+    }
+
+    .nav-block {
+      margin: 16px 0;
+    }
+
+    .nav-title {
+      margin: 14px 4px 8px;
+      color: rgba(246,243,234,.58);
+      font-size: 12px;
+    }
+
+    .side a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 7px 9px;
+      border-radius: 6px;
+      color: rgba(246,243,234,.88);
+      font-size: 14px;
+    }
+
+    .side a:hover,
+    .side a.active {
+      background: rgba(255,255,255,.1);
+      color: #fff;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      border-radius: 99px;
+      background: var(--teal);
+    }
+
+    .dot.gold { background: var(--gold); }
+    .dot.red { background: var(--red); }
+    .dot.violet { background: var(--violet); }
+    .dot.green { background: var(--green); }
+    .dot.steel { background: var(--steel); }
+
+    main {
+      min-width: 0;
+      padding: 18px;
+    }
+
+    section {
+      scroll-margin-top: 18px;
+      margin: 0 0 18px;
+    }
+
+    .console {
+      min-height: calc(100vh - 36px);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 14px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 14px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .topbar p {
+      max-width: 760px;
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: min(100%, 320px);
+      padding: 8px 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .search svg { flex: 0 0 auto; color: var(--muted); }
+    .search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      font: inherit;
+      background: transparent;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .panel,
+    .chapter-card,
+    .mini-card,
+    .formula-row,
+    .mistake-card,
+    .type-card,
+    details {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(30,32,33,.05);
+    }
+
+    .panel {
+      padding: 15px;
+      min-width: 0;
+    }
+
+    .panel h2,
+    .panel h3,
+    .chapter-card h3,
+    .mini-card h3 {
+      margin: 0 0 10px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .panel h2 { font-size: 20px; }
+    .panel h3, .chapter-card h3, .mini-card h3 { font-size: 17px; }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .roadmap {
+      min-height: 320px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .roadmap svg {
+      min-width: 920px;
+    }
+
+    .diagram-card {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .diagram-card svg {
+      min-width: 420px;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .svg-scroll {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .svg-scroll svg {
+      min-width: 420px;
+    }
+
+    .svg-scroll.roadmap-scroll svg {
+      min-width: 920px;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini-card {
+      padding: 12px;
+    }
+
+    .mini-card .num {
+      display: inline-grid;
+      place-items: center;
+      min-width: 30px;
+      height: 30px;
+      margin-bottom: 8px;
+      border-radius: 99px;
+      color: #fff;
+      background: var(--teal);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .mini-card:nth-child(2) .num { background: var(--gold); }
+    .mini-card:nth-child(3) .num { background: var(--red); }
+    .mini-card:nth-child(4) .num { background: var(--steel); }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 12px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .tag.high { color: #7a2c24; background: #f7e5df; border-color: #e7beb4; }
+    .tag.mid { color: #725018; background: #f6ebd6; border-color: #e2ca98; }
+    .tag.low { color: #4d5f48; background: #e7f0e4; border-color: #c9d9c4; }
+    .tag.shared { color: #285f5c; background: #e0f0ed; border-color: #b8d7d2; }
+    .tag.check { color: #5c506f; background: #ece8f2; border-color: #d3cce1; }
+
+    .callout {
+      padding: 10px 12px;
+      border: 1px solid #dfcfae;
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      background: #fff8ea;
+      font-size: 14px;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .chapter-card {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      min-height: 252px;
+    }
+
+    .chapter-card[data-hidden="true"] {
+      display: none;
+    }
+
+    .chapter-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .chapter-code {
+      min-width: 42px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      color: #fff;
+      text-align: center;
+      font-weight: 800;
+      background: var(--nav);
+    }
+
+    .chapter-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .image-first {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      padding: 10px;
+      background: #f7f6f1;
+      border: 1px solid #e4e1d7;
+      border-radius: 6px;
+    }
+
+    .formula-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .formula-list li {
+      padding: 8px 9px;
+      border-radius: 6px;
+      background: #f7f9f6;
+      border: 1px solid #e1e7dc;
+      font-size: 13px;
+    }
+
+    code {
+      padding: 1px 4px;
+      border-radius: 4px;
+      background: rgba(40,48,52,.08);
+      font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+      font-size: .94em;
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .diagram-card {
+      min-width: 0;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .diagram-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .diagram-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cross-grid,
+    .type-grid,
+    .mistake-grid,
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cross-card,
+    .type-card,
+    .mistake-card {
+      padding: 13px;
+      background: #fff;
+    }
+
+    .cross-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .cross-card h3,
+    .type-card h3,
+    .mistake-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .cross-card p,
+    .type-card p,
+    .mistake-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .formula-table {
+      display: grid;
+      gap: 8px;
+    }
+
+    .formula-row {
+      display: grid;
+      grid-template-columns: 142px minmax(170px, .85fr) minmax(0, 1.15fr);
+      gap: 10px;
+      align-items: start;
+      padding: 10px;
+    }
+
+    .formula-row strong {
+      color: #30343a;
+    }
+
+    .formula-row p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    details {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 700;
+      background: #f5f4ef;
+    }
+
+    details > div {
+      padding: 12px 14px 14px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .schedule-grid {
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .schedule-card {
+      min-height: 150px;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .schedule-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+
+    .schedule-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .three-pass {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .pass-card {
+      padding: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .pass-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .pass-card ol {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 8px;
+      background: rgba(40,48,52,.96);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .mobile-nav a {
+      display: inline-flex;
+      padding: 7px 9px;
+      color: var(--nav-ink);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .mobile-nav a:hover { background: rgba(255,255,255,.1); }
+
+    .svg-label {
+      font-size: 11px;
+      fill: #32373b;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    .svg-small {
+      font-size: 10px;
+      fill: #66707c;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    .hidden-count {
+      display: none;
+      margin-top: 8px;
+      color: var(--red);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1180px) {
+      .chapter-grid,
+      .cross-grid,
+      .type-grid,
+      .mistake-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .schedule-grid {
+        grid-template-columns: repeat(3, minmax(180px, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        display: block;
+      }
+
+      .side { display: none; }
+      .mobile-nav { display: block; }
+      main { padding: 12px; }
+
+      .console {
+        min-height: auto;
+      }
+
+      .chapter-grid,
+      .diagram-grid,
+      .cross-grid,
+      .type-grid,
+      .mistake-grid,
+      .three-pass,
+      .control-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .formula-row {
+        grid-template-columns: 1fr;
+      }
+
+      .schedule-grid {
+        grid-template-columns: repeat(2, minmax(170px, 1fr));
+      }
+
+      .roadmap,
+      .diagram-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .roadmap svg,
+      .diagram-card svg {
+        max-width: none;
+      }
+
+      .svg-scroll {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255,255,255,.72);
+      }
+
+      .svg-scroll svg {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .topbar {
+        align-items: stretch;
+      }
+
+      .search {
+        min-width: 100%;
+      }
+
+      .schedule-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .svg-label {
+        font-size: 12px;
+      }
+
+      .svg-small {
+        font-size: 11px;
+      }
+
+      .chapter-head {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="#66707c"></path>
+      </marker>
+    </defs>
+  </svg>
+  <nav class="mobile-nav" aria-label="顶部导航">
+    <a href="#console">控制台</a>
+    <a href="#chapters">章节卡</a>
+    <a href="#diagrams">图示</a>
+    <a href="#cross">共享卡</a>
+    <a href="#formulas">公式血缘</a>
+    <a href="#types">题型</a>
+    <a href="#mistakes">易错</a>
+    <a href="#error-log">错题回写</a>
+    <a href="#three-pass">三遍法</a>
+    <a href="#schedule">调度</a>
+  </nav>
+
+  <div class="layout">
+    <aside class="side" aria-label="章节导航">
+      <div class="brand">
+        <strong>大学物理（2）期末 AI_Learning_OS</strong>
+        <span>单文件图文复习控制台</span>
+      </div>
+
+      <div class="nav-block">
+        <div class="nav-title">主控</div>
+        <a href="#console"><span class="dot"></span>复习控制台</a>
+        <a href="#chapters"><span class="dot gold"></span>章节卡矩阵</a>
+        <a href="#diagrams"><span class="dot red"></span>物理图像走廊</a>
+        <a href="#cross"><span class="dot green"></span>跨章共享卡</a>
+      </div>
+
+      <div class="nav-block">
+        <div class="nav-title">章节</div>
+        <a href="#c22">22 光的干涉</a>
+        <a href="#c23">23 光的衍射</a>
+        <a href="#c24">24 光的偏振</a>
+        <a href="#c26">26 波粒二象性</a>
+        <a href="#c27">27 薛定谔方程</a>
+        <a href="#c28">28 原子中的电子</a>
+        <a href="#c29">29 固体中的电子</a>
+      </div>
+
+      <div class="nav-block">
+        <div class="nav-title">训练</div>
+        <a href="#formulas"><span class="dot steel"></span>公式血缘摘要</a>
+        <a href="#types"><span class="dot violet"></span>典型题型入口</a>
+        <a href="#mistakes"><span class="dot red"></span>易错点防线</a>
+        <a href="#error-log"><span class="dot gold"></span>错题回写接口</a>
+        <a href="#three-pass"><span class="dot green"></span>三遍法</a>
+        <a href="#schedule"><span class="dot gold"></span>复习调度</a>
+      </div>
+    </aside>
+
+    <main>
+      <section id="console" class="console">
+        <div class="topbar">
+          <div>
+            <h1>期末复习控制台</h1>
+            <p>首屏直接进入学习工具：先看物理图像，再追公式血缘，最后进题型、易错和调度。第 29 章保持低优先度，只作为概念补丁。</p>
+          </div>
+          <label class="search" for="searchBox" aria-label="搜索章节或关键词">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            <input id="searchBox" type="search" placeholder="搜索：布拉格、马吕斯、势阱、量子数、Eg...">
+          </label>
+        </div>
+
+        <div class="dashboard">
+          <div class="panel roadmap">
+            <h2>课程路线图</h2>
+            <p class="subtle">光学三章训练相位、波面和光矢量；量子三章训练光子/物质波、态与测量、原子标签；固体章只做低优先补充。</p>
+            <svg viewBox="0 0 980 365" role="img" aria-label="大学物理2期末课程路线图">
+              <rect x="18" y="24" width="126" height="56" rx="8" fill="#e7f0ed" stroke="#9cc8c1"></rect>
+              <text x="81" y="47" text-anchor="middle" class="svg-label">22 干涉</text>
+              <text x="81" y="65" text-anchor="middle" class="svg-small">相位叠加</text>
+              <rect x="190" y="24" width="126" height="56" rx="8" fill="#f4ead8" stroke="#d2b370"></rect>
+              <text x="253" y="47" text-anchor="middle" class="svg-label">23 衍射</text>
+              <text x="253" y="65" text-anchor="middle" class="svg-small">连续次波源</text>
+              <rect x="362" y="24" width="126" height="56" rx="8" fill="#f7e5df" stroke="#d59b8f"></rect>
+              <text x="425" y="47" text-anchor="middle" class="svg-label">24 偏振</text>
+              <text x="425" y="65" text-anchor="middle" class="svg-small">光矢量方向</text>
+              <line x1="144" y1="52" x2="184" y2="52" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></line>
+              <line x1="316" y1="52" x2="356" y2="52" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></line>
+              <path d="M425 82 C425 145, 238 145, 238 202" fill="none" stroke="#8a8f94" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrow)"></path>
+
+              <rect x="18" y="202" width="126" height="56" rx="8" fill="#e7f0ed" stroke="#9cc8c1"></rect>
+              <text x="81" y="225" text-anchor="middle" class="svg-label">26 波粒</text>
+              <text x="81" y="243" text-anchor="middle" class="svg-small">光子与物质波</text>
+              <rect x="190" y="202" width="126" height="56" rx="8" fill="#ece8f2" stroke="#b7acd3"></rect>
+              <text x="253" y="225" text-anchor="middle" class="svg-label">27 势阱</text>
+              <text x="253" y="243" text-anchor="middle" class="svg-small">本征态与测量</text>
+              <rect x="362" y="202" width="126" height="56" rx="8" fill="#e6edf3" stroke="#a7bacb"></rect>
+              <text x="425" y="225" text-anchor="middle" class="svg-label">28 原子</text>
+              <text x="425" y="243" text-anchor="middle" class="svg-small">量子数与谱线</text>
+              <line x1="144" y1="230" x2="184" y2="230" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></line>
+              <line x1="316" y1="230" x2="356" y2="230" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></line>
+
+              <rect x="606" y="116" width="142" height="64" rx="8" fill="#fff8ea" stroke="#dfcfae"></rect>
+              <text x="677" y="140" text-anchor="middle" class="svg-label">共享卡</text>
+              <text x="677" y="160" text-anchor="middle" class="svg-small">布拉格 / 光子能量 / 量子数</text>
+              <path d="M316 52 C452 52, 487 112, 600 140" fill="none" stroke="#b8842c" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M144 230 C320 230, 485 185, 600 158" fill="none" stroke="#b8842c" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M488 230 C548 210, 578 182, 604 164" fill="none" stroke="#b8842c" stroke-width="2" marker-end="url(#arrow)"></path>
+
+              <rect x="810" y="200" width="132" height="56" rx="8" fill="#eef3e9" stroke="#c3d5b9"></rect>
+              <text x="876" y="223" text-anchor="middle" class="svg-label">29 固体</text>
+              <text x="876" y="241" text-anchor="middle" class="svg-small">低优先概念补丁</text>
+              <path d="M488 230 C610 230, 688 230, 804 230" fill="none" stroke="#66707c" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow)"></path>
+
+              <rect x="606" y="24" width="336" height="56" rx="8" fill="#ffffff" stroke="#d9ddd9"></rect>
+              <text x="622" y="48" class="svg-label">调度原则</text>
+              <text x="622" y="66" class="svg-small">22-28 章为主线；是否深考：需核对原课件/历年题。</text>
+              <rect x="606" y="286" width="336" height="56" rx="8" fill="#ffffff" stroke="#d9ddd9"></rect>
+              <text x="622" y="310" class="svg-label">答题闭环</text>
+              <text x="622" y="328" class="svg-small">物理图像 → 公式来源 → 适用条件 → 单位/极限检查。</text>
+            </svg>
+          </div>
+
+          <div class="panel">
+            <h2>今日复习入口</h2>
+            <div class="control-grid">
+              <div class="mini-card">
+                <span class="num">1</span>
+                <h3>先画图</h3>
+                <p>每章先画一张物理图像：光路、缝、偏振分解、实验链、势阱、能级或能带。</p>
+              </div>
+              <div class="mini-card">
+                <span class="num">2</span>
+                <h3>追血缘</h3>
+                <p>公式只记“从哪里来、什么时候能用、最容易错在哪里”。</p>
+              </div>
+              <div class="mini-card">
+                <span class="num">3</span>
+                <h3>进题型</h3>
+                <p>按关键词落模型：双缝、单缝、偏振片、光电、势阱、谱线、能带。</p>
+              </div>
+              <div class="mini-card">
+                <span class="num">4</span>
+                <h3>回写错题</h3>
+                <p>记录误判图像、误用公式、漏看条件，而不是只抄正确答案。</p>
+              </div>
+            </div>
+            <div class="callout" style="margin-top:12px">
+              第 23/26 章布拉格公式：第 23 章保留衍射概念接口；冲刺记忆、公式默写和主要刷题归第 26 章。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="chapters" class="panel">
+        <h2>章节卡矩阵</h2>
+        <p class="subtle">每张卡都按“物理图像先于公式”组织。搜索框会过滤本区域章节卡。</p>
+        <div id="noResult" class="hidden-count">没有匹配的章节卡，请换一个关键词。</div>
+        <div class="chapter-grid" style="margin-top:12px">
+          <article id="c22" class="chapter-card" data-search="22 光的干涉 双缝 薄膜 牛顿环 迈克耳孙 相干 光程 半波损失">
+            <div class="chapter-head">
+              <div>
+                <h3>光的干涉</h3>
+                <div class="tag-row"><span class="tag high">高优先</span><span class="tag shared">相位叠加</span></div>
+              </div>
+              <span class="chapter-code">22</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>找出哪两束相干光在同一点相遇，画两条光路，再写光程差和半波损失。</p>
+            </div>
+            <ul class="formula-list">
+              <li><code>Delta phi = 2 pi delta / lambda</code></li>
+              <li><code>x_k = k lambda D / d</code>，<code>Delta x = lambda D / d</code></li>
+              <li>薄膜反射先判半波损失；迈克耳孙必须有往返系数 <code>2</code>。</li>
+            </ul>
+          </article>
+
+          <article id="c23" class="chapter-card" data-search="23 光的衍射 单缝 光栅 圆孔 瑞利 布拉格 缺级 分辨">
+            <div class="chapter-head">
+              <div>
+                <h3>光的衍射</h3>
+                <div class="tag-row"><span class="tag high">高优先</span><span class="tag shared">连续次波源</span></div>
+              </div>
+              <span class="chapter-code">23</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>判断是一条缝内的连续次波源，还是多条缝之间的相干叠加。</p>
+            </div>
+            <ul class="formula-list">
+              <li>单缝暗纹：<code>a sin theta = k lambda</code></li>
+              <li>光栅主极大：<code>d sin theta = k lambda</code></li>
+              <li>圆孔分辨：<code>theta_min ≈ 1.22 lambda / D</code></li>
+            </ul>
+          </article>
+
+          <article id="c24" class="chapter-card" data-search="24 光的偏振 马吕斯 布儒斯特 波片 偏振片 自然光 四分之一 二分之一">
+            <div class="chapter-head">
+              <div>
+                <h3>光的偏振</h3>
+                <div class="tag-row"><span class="tag high">高优先</span><span class="tag shared">光矢量方向</span></div>
+              </div>
+              <span class="chapter-code">24</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>光是横波；题目本质是在筛方向、选 s/p 分量，或让 o/e 分量产生相位延迟。</p>
+            </div>
+            <ul class="formula-list">
+              <li>自然光过第一片：<code>I = I0 / 2</code></li>
+              <li>马吕斯：<code>I = Iin cos^2 alpha</code></li>
+              <li>布儒斯特：<code>tan iB = n2 / n1</code>，<code>iB + r = 90°</code></li>
+            </ul>
+          </article>
+
+          <article id="c26" class="chapter-card" data-search="26 波粒二象性 黑体 光电 康普顿 德布罗意 概率波 不确定 布拉格">
+            <div class="chapter-head">
+              <div>
+                <h3>波粒二象性</h3>
+                <div class="tag-row"><span class="tag high">高优先</span><span class="tag shared">光子与物质波</span></div>
+              </div>
+              <span class="chapter-code">26</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>经典图像失效，引入能量量子、光子动量、德布罗意波、概率幅与不确定关系。</p>
+            </div>
+            <ul class="formula-list">
+              <li><code>E = h nu = hc/lambda</code>，<code>p = h/lambda</code></li>
+              <li>光电：<code>h nu = W + eUs</code></li>
+              <li>物质波：<code>lambda = h/p</code>；布拉格刷题归本章。</li>
+            </ul>
+          </article>
+
+          <article id="c27" class="chapter-card" data-search="27 薛定谔 无限深势阱 本征态 本征值 波函数 测量 概率">
+            <div class="chapter-head">
+              <div>
+                <h3>薛定谔方程与无限深方势阱</h3>
+                <div class="tag-row"><span class="tag high">高优先</span><span class="tag shared">本征态测量</span></div>
+              </div>
+              <span class="chapter-code">27</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>波函数表示态；势阱边界筛出允许驻波；测量结果由本征态展开系数模方决定。</p>
+            </div>
+            <ul class="formula-list">
+              <li><code>Hhat Phi = E Phi</code></li>
+              <li><code>psi_n = sqrt(2/a) sin(n pi x/a)</code></li>
+              <li><code>E_n = n^2 pi^2 hbar^2/(2ma^2)</code></li>
+            </ul>
+          </article>
+
+          <article id="c28" class="chapter-card" data-search="28 原子中的电子 氢原子 能级 跃迁 里德伯 量子数 自旋 泡利">
+            <div class="chapter-head">
+              <div>
+                <h3>原子中的电子</h3>
+                <div class="tag-row"><span class="tag high">高优先</span><span class="tag shared">量子数标签</span></div>
+              </div>
+              <span class="chapter-code">28</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>谱线是能级差记录；量子数是相容力学量本征值标签；排布受泡利限制。</p>
+            </div>
+            <ul class="formula-list">
+              <li><code>E_n = -13.6/n^2 eV</code></li>
+              <li><code>1/lambda = R(1/n_l^2 - 1/n_u^2)</code></li>
+              <li>跃迁调用第 26 章 <code>E = hnu = hc/lambda</code>，不另立重复卡。</li>
+            </ul>
+          </article>
+
+          <article id="c29" class="chapter-card" data-search="29 固体中的电子 能带 半导体 绝缘体 导体 pn结 Eg 低优先">
+            <div class="chapter-head">
+              <div>
+                <h3>固体中的电子</h3>
+                <div class="tag-row"><span class="tag low">低优先</span><span class="tag check">概念补丁</span></div>
+              </div>
+              <span class="chapter-code">29</span>
+            </div>
+            <div class="image-first">
+              <strong>先看图像</strong>
+              <p>孤立原子能级分裂成能带；导电性取决于填充、禁带宽度和载流子。</p>
+            </div>
+            <ul class="formula-list">
+              <li>本征光电导阈值：<code>h nu &gt; Eg</code></li>
+              <li>最长激发波长：<code>lambda_max = hc / Eg</code></li>
+              <li>不挤占第 22-28 章主线时间。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="diagrams" class="panel">
+        <h2>物理图像走廊</h2>
+        <p class="subtle">全部为内联 SVG/CSS 图示，不依赖图片文件或外网。</p>
+        <div class="diagram-grid" style="margin-top:12px">
+          <article class="diagram-card">
+            <h3>干涉：双缝与薄膜</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="双缝与薄膜干涉示意">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <line x1="90" y1="42" x2="90" y2="168" stroke="#333" stroke-width="5"></line>
+              <rect x="86" y="72" width="10" height="14" fill="#fbfaf7"></rect>
+              <rect x="86" y="126" width="10" height="14" fill="#fbfaf7"></rect>
+              <line x1="20" y1="106" x2="84" y2="78" stroke="#228178" stroke-width="2"></line>
+              <line x1="20" y1="106" x2="84" y2="134" stroke="#228178" stroke-width="2"></line>
+              <line x1="96" y1="79" x2="225" y2="70" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="96" y1="134" x2="225" y2="70" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="245" y1="44" x2="245" y2="166" stroke="#496a87" stroke-width="3"></line>
+              <path d="M245 70 q18 10 0 20 q-18 10 0 20 q18 10 0 20 q-18 10 0 20" fill="none" stroke="#bd5a4d" stroke-width="2"></path>
+              <text x="62" y="188" text-anchor="middle" class="svg-label">双缝</text>
+              <text x="160" y="92" class="svg-small">delta ≈ d x / D</text>
+              <rect x="294" y="54" width="78" height="62" rx="3" fill="#dcebe7" stroke="#80aaa4"></rect>
+              <line x1="274" y1="70" x2="294" y2="70" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="294" y1="70" x2="333" y2="106" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="333" y1="106" x2="372" y2="70" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="294" y1="70" x2="274" y2="44" stroke="#bd5a4d" stroke-width="2"></line>
+              <text x="333" y="140" text-anchor="middle" class="svg-label">薄膜</text>
+              <text x="333" y="158" text-anchor="middle" class="svg-small">先判半波损失</text>
+            </svg>
+            <p>抓手：参与干涉的两束光、光程差、半波损失、明暗条件。</p>
+          </article>
+
+          <article class="diagram-card">
+            <h3>衍射：单缝与光栅</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="单缝和光栅衍射示意">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <line x1="72" y1="48" x2="72" y2="172" stroke="#333" stroke-width="5"></line>
+              <rect x="68" y="98" width="10" height="24" fill="#fbfaf7"></rect>
+              <path d="M78 110 C130 54, 186 45, 244 58" fill="none" stroke="#228178" stroke-width="2"></path>
+              <path d="M78 110 C132 110, 190 110, 244 110" fill="none" stroke="#b8842c" stroke-width="2"></path>
+              <path d="M78 110 C130 166, 186 175, 244 162" fill="none" stroke="#228178" stroke-width="2"></path>
+              <text x="50" y="194" text-anchor="middle" class="svg-label">单缝</text>
+              <text x="126" y="84" class="svg-small">a sinθ = kλ 暗纹</text>
+              <g transform="translate(286 50)">
+                <line x1="0" y1="0" x2="0" y2="120" stroke="#333" stroke-width="3"></line>
+                <line x1="13" y1="0" x2="13" y2="120" stroke="#333" stroke-width="3"></line>
+                <line x1="26" y1="0" x2="26" y2="120" stroke="#333" stroke-width="3"></line>
+                <line x1="39" y1="0" x2="39" y2="120" stroke="#333" stroke-width="3"></line>
+                <path d="M46 25 C72 16, 90 16, 110 24" fill="none" stroke="#bd5a4d" stroke-width="2"></path>
+                <path d="M46 60 C76 60, 93 60, 118 60" fill="none" stroke="#bd5a4d" stroke-width="2"></path>
+                <path d="M46 95 C72 104, 90 104, 110 96" fill="none" stroke="#bd5a4d" stroke-width="2"></path>
+              </g>
+              <text x="306" y="194" text-anchor="middle" class="svg-label">光栅</text>
+              <text x="345" y="178" class="svg-small">d sinθ = kλ 主极大</text>
+            </svg>
+            <p>抓手：单缝看缝宽 <code>a</code>，光栅看常数 <code>d</code>；缺级要联立。</p>
+          </article>
+
+          <article class="diagram-card">
+            <h3>偏振：偏振片与波片</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="偏振片和波片示意">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <g transform="translate(44 58)">
+                <circle cx="34" cy="54" r="34" fill="#fff" stroke="#d9ddd9"></circle>
+                <line x1="34" y1="20" x2="34" y2="88" stroke="#228178" stroke-width="2"></line>
+                <line x1="0" y1="54" x2="68" y2="54" stroke="#b8842c" stroke-width="2"></line>
+                <line x1="10" y1="30" x2="58" y2="78" stroke="#bd5a4d" stroke-width="2"></line>
+                <line x1="58" y1="30" x2="10" y2="78" stroke="#496a87" stroke-width="2"></line>
+                <text x="34" y="112" text-anchor="middle" class="svg-label">自然光</text>
+              </g>
+              <rect x="145" y="54" width="48" height="114" rx="6" fill="#e7f0ed" stroke="#80aaa4"></rect>
+              <line x1="169" y1="64" x2="169" y2="158" stroke="#228178" stroke-width="3"></line>
+              <text x="169" y="190" text-anchor="middle" class="svg-label">偏振片</text>
+              <line x1="110" y1="112" x2="142" y2="112" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></line>
+              <line x1="196" y1="112" x2="238" y2="112" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></line>
+              <line x1="242" y1="78" x2="242" y2="146" stroke="#228178" stroke-width="3"></line>
+              <text x="242" y="168" text-anchor="middle" class="svg-small">线偏振</text>
+              <rect x="292" y="54" width="58" height="114" rx="6" fill="#ece8f2" stroke="#b7acd3"></rect>
+              <line x1="304" y1="156" x2="338" y2="66" stroke="#695b9a" stroke-width="3"></line>
+              <line x1="304" y1="66" x2="338" y2="156" stroke="#b8842c" stroke-width="2" stroke-dasharray="5 4"></line>
+              <path d="M356 112 c18 -24, 42 -24, 42 0 c0 24 -24 24 -42 0" fill="none" stroke="#bd5a4d" stroke-width="2"></path>
+              <text x="321" y="190" text-anchor="middle" class="svg-label">波片</text>
+              <text x="312" y="38" text-anchor="middle" class="svg-small">改相位差，不是普通滤光</text>
+            </svg>
+            <p>抓手：偏振片筛方向；波片按 o/e 或快慢轴分解，改变相位差。</p>
+          </article>
+
+          <article class="diagram-card">
+            <h3>波粒二象性实验链</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="波粒二象性实验链">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <g fill="#fff" stroke="#d9ddd9">
+                <rect x="34" y="62" width="82" height="50" rx="7"></rect>
+                <rect x="130" y="62" width="82" height="50" rx="7"></rect>
+                <rect x="226" y="62" width="82" height="50" rx="7"></rect>
+                <rect x="130" y="142" width="82" height="50" rx="7"></rect>
+                <rect x="226" y="142" width="82" height="50" rx="7"></rect>
+              </g>
+              <text x="75" y="84" text-anchor="middle" class="svg-label">黑体</text>
+              <text x="75" y="102" text-anchor="middle" class="svg-small">能量量子</text>
+              <text x="171" y="84" text-anchor="middle" class="svg-label">光电</text>
+              <text x="171" y="102" text-anchor="middle" class="svg-small">光子能量</text>
+              <text x="267" y="84" text-anchor="middle" class="svg-label">康普顿</text>
+              <text x="267" y="102" text-anchor="middle" class="svg-small">光子动量</text>
+              <text x="171" y="164" text-anchor="middle" class="svg-label">电子衍射</text>
+              <text x="171" y="182" text-anchor="middle" class="svg-small">λ = h/p</text>
+              <text x="267" y="164" text-anchor="middle" class="svg-label">概率波</text>
+              <text x="267" y="182" text-anchor="middle" class="svg-small">|Ψ|²</text>
+              <path d="M116 87 L124 87" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M212 87 L220 87" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M267 113 C254 134, 218 145, 214 158" fill="none" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M212 167 L220 167" stroke="#66707c" stroke-width="2" marker-end="url(#arrow)"></path>
+              <text x="338" y="114" class="svg-small">不是经典粒子</text>
+              <text x="338" y="132" class="svg-small">也不是经典波</text>
+            </svg>
+            <p>抓手：经典失败 → 光子 → 物质波 → 概率幅 → 不确定关系。</p>
+          </article>
+
+          <article class="diagram-card">
+            <h3>无限深势阱能级</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="无限深方势阱能级图">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <line x1="92" y1="38" x2="92" y2="188" stroke="#333" stroke-width="5"></line>
+              <line x1="310" y1="38" x2="310" y2="188" stroke="#333" stroke-width="5"></line>
+              <line x1="92" y1="188" x2="310" y2="188" stroke="#333" stroke-width="2"></line>
+              <line x1="110" y1="160" x2="292" y2="160" stroke="#228178" stroke-width="2"></line>
+              <line x1="110" y1="118" x2="292" y2="118" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="110" y1="58" x2="292" y2="58" stroke="#bd5a4d" stroke-width="2"></line>
+              <path d="M110 160 C155 130, 247 190, 292 160" fill="none" stroke="#228178" stroke-width="2"></path>
+              <path d="M110 118 C133 88, 178 148, 201 118 C224 88, 269 148, 292 118" fill="none" stroke="#b8842c" stroke-width="2"></path>
+              <path d="M110 58 C125 28, 155 88, 170 58 C185 28, 217 88, 232 58 C247 28, 277 88, 292 58" fill="none" stroke="#bd5a4d" stroke-width="2"></path>
+              <text x="318" y="164" class="svg-small">n=1</text>
+              <text x="318" y="122" class="svg-small">n=2</text>
+              <text x="318" y="62" class="svg-small">n=3</text>
+              <text x="202" y="208" text-anchor="middle" class="svg-label">边界条件筛出驻波</text>
+              <text x="38" y="60" class="svg-small">Eₙ ∝ n²</text>
+            </svg>
+            <p>抓手：阱壁处波函数为零；<code>n=0</code> 不是物理态；测量概率看展开系数模方。</p>
+          </article>
+
+          <article class="diagram-card">
+            <h3>氢原子能级跃迁</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="氢原子能级跃迁图">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <line x1="92" y1="178" x2="320" y2="178" stroke="#333" stroke-width="2"></line>
+              <line x1="112" y1="126" x2="320" y2="126" stroke="#228178" stroke-width="2"></line>
+              <line x1="132" y1="88" x2="320" y2="88" stroke="#b8842c" stroke-width="2"></line>
+              <line x1="152" y1="64" x2="320" y2="64" stroke="#bd5a4d" stroke-width="2"></line>
+              <text x="54" y="182" class="svg-small">n=1</text>
+              <text x="72" y="130" class="svg-small">n=2</text>
+              <text x="92" y="92" class="svg-small">n=3</text>
+              <text x="112" y="68" class="svg-small">n=4</text>
+              <path d="M210 64 L210 124" stroke="#bd5a4d" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M250 88 L250 176" stroke="#228178" stroke-width="2" marker-end="url(#arrow)"></path>
+              <path d="M286 126 L286 176" stroke="#695b9a" stroke-width="2" marker-end="url(#arrow)"></path>
+              <text x="214" y="108" class="svg-small">巴耳末</text>
+              <text x="256" y="156" class="svg-small">赖曼</text>
+              <text x="176" y="38" class="svg-small">Eₙ = -13.6/n² eV</text>
+              <text x="178" y="204" class="svg-label">光子能量调用第 26 章</text>
+            </svg>
+            <p>抓手：发射光子能量取正；可见光优先想到巴耳末系 <code>n → 2</code>。</p>
+          </article>
+
+          <article class="diagram-card">
+            <h3>固体能带图</h3>
+            <svg viewBox="0 0 420 230" role="img" aria-label="固体能带图">
+              <rect x="12" y="20" width="396" height="190" rx="8" fill="#fbfaf7" stroke="#d9ddd9"></rect>
+              <g transform="translate(46 50)">
+                <rect x="0" y="84" width="82" height="28" fill="#dcebe7" stroke="#80aaa4"></rect>
+                <rect x="0" y="42" width="82" height="28" fill="#dcebe7" stroke="#80aaa4"></rect>
+                <rect x="0" y="70" width="82" height="14" fill="#f4ead8" stroke="none"></rect>
+                <text x="41" y="132" text-anchor="middle" class="svg-label">导体</text>
+                <text x="41" y="34" text-anchor="middle" class="svg-small">能带交叠</text>
+              </g>
+              <g transform="translate(168 50)">
+                <rect x="0" y="96" width="82" height="28" fill="#dcebe7" stroke="#80aaa4"></rect>
+                <rect x="0" y="28" width="82" height="28" fill="#fff" stroke="#80aaa4"></rect>
+                <line x1="0" y1="76" x2="82" y2="76" stroke="#bd5a4d" stroke-width="2" stroke-dasharray="5 4"></line>
+                <text x="41" y="132" text-anchor="middle" class="svg-label">半导体</text>
+                <text x="41" y="76" text-anchor="middle" class="svg-small">Eg 小</text>
+              </g>
+              <g transform="translate(290 50)">
+                <rect x="0" y="108" width="82" height="20" fill="#dcebe7" stroke="#80aaa4"></rect>
+                <rect x="0" y="18" width="82" height="20" fill="#fff" stroke="#80aaa4"></rect>
+                <line x1="0" y1="76" x2="82" y2="76" stroke="#bd5a4d" stroke-width="2" stroke-dasharray="5 4"></line>
+                <text x="41" y="132" text-anchor="middle" class="svg-label">绝缘体</text>
+                <text x="41" y="76" text-anchor="middle" class="svg-small">Eg 大</text>
+              </g>
+              <text x="210" y="204" text-anchor="middle" class="svg-label">第 29 章低优先：概念 + Eg 阈值</text>
+            </svg>
+            <p>抓手：满带不导电不是因为没有电子，而是填充对称导致电流贡献抵消。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cross" class="panel">
+        <h2>跨章共享卡</h2>
+        <div class="cross-grid" style="margin-top:12px">
+          <article class="cross-card">
+            <h3>布拉格公式归属</h3>
+            <div class="tag-row"><span class="tag shared">23 概念接口</span><span class="tag high">26 冲刺刷题</span></div>
+            <p><code>2d sin phi = k lambda</code> 的衍射图像留在第 23 章；X 射线/电子衍射的默写和主要刷题归第 26 章，避免重复刷卡。</p>
+          </article>
+          <article class="cross-card">
+            <h3>光子能量共享</h3>
+            <div class="tag-row"><span class="tag high">26 主卡</span><span class="tag shared">28 调用</span></div>
+            <p>第 28 章跃迁谱线使用第 26 章 <code>E = hnu = hc/lambda</code>，本章只强调能级差，不另立重复背诵卡。</p>
+          </article>
+          <article class="cross-card">
+            <h3>量子数与本征值</h3>
+            <div class="tag-row"><span class="tag high">27 本征态</span><span class="tag shared">28 量子数</span></div>
+            <p>四个量子数是相容力学量本征值的标签：<code>H</code>、<code>L^2</code>、<code>L_z</code>、<code>S_z</code> 对应能级、角动量大小与分量、自旋取向。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="formulas" class="panel">
+        <h2>公式血缘摘要</h2>
+        <p class="subtle">不是孤立公式表，而是“来源图像 → 公式 → 条件/误用”。</p>
+        <div class="formula-table" style="margin-top:12px">
+          <div class="formula-row">
+            <strong>22 干涉</strong>
+            <code>Delta phi = 2pi delta/lambda</code>
+            <p>来源：同频光矢量叠加。条件：相干、振动方向有平行分量、光程差含介质和半波损失。</p>
+          </div>
+          <div class="formula-row">
+            <strong>23 衍射</strong>
+            <code>a sinθ = kλ</code><br><code>d sinθ = kλ</code>
+            <p>单缝暗纹来自半波带相消；光栅主极大来自多缝同相加强。<code>a</code> 与 <code>d</code> 不能互换。</p>
+          </div>
+          <div class="formula-row">
+            <strong>24 偏振</strong>
+            <code>I = I0/2</code><br><code>I = Iin cos²α</code>
+            <p>自然光第一片先减半；线偏振光过检偏器用马吕斯。强度是振幅投影的平方。</p>
+          </div>
+          <div class="formula-row">
+            <strong>26 波粒</strong>
+            <code>hν = W + eUs</code><br><code>λ = h/p</code>
+            <p>单位/边界：<code>hν</code>、<code>W</code>、<code>eUs</code> 都是能量；实物粒子不能用光子的 <code>E=hc/λ</code> 代替总能量。</p>
+          </div>
+          <div class="formula-row">
+            <strong>27 势阱</strong>
+            <code>Hhat Phi = E Phi</code><br><code>P(E_n)=|c_n|²</code>
+            <p>本征方程给可能测量值；叠加态中概率来自展开系数模方。</p>
+          </div>
+          <div class="formula-row">
+            <strong>28 原子</strong>
+            <code>E_n=-13.6/n² eV</code><br><code>L=sqrt[l(l+1)]ℏ</code>
+            <p>单位/边界：氢原子能级用 eV；多电子原子不能直接套氢原子公式。量子数是相容力学量本征值标签。</p>
+          </div>
+          <div class="formula-row">
+            <strong>29 固体</strong>
+            <code>hν &gt; Eg</code><br><code>λmax = hc/Eg</code>
+            <p>单位/边界：若 <code>Eg</code> 用 eV，可用 <code>hc≈1240 eV·nm</code>；自由电子/费米公式是否深考需核对原课件/历年题。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="types" class="panel">
+        <h2>典型题型入口</h2>
+        <div class="type-grid" style="margin-top:12px">
+          <article class="type-card">
+            <h3>光学三章混排</h3>
+            <p>先标模型：双缝/薄膜/迈克耳孙、单缝/光栅/圆孔、偏振片/布儒斯特/波片。模型错比计算错更危险。</p>
+          </article>
+          <article class="type-card">
+            <h3>量子实验链</h3>
+            <p>黑体看量子化，光电看单光子能量，康普顿看动量守恒，电子衍射看物质波，不确定关系看数量级结论。</p>
+          </article>
+          <article class="type-card">
+            <h3>势阱测量题</h3>
+            <p>先找本征基底，再看初态系数；时间演化逐项乘对应相位，概率和平均值不要混。</p>
+          </article>
+          <article class="type-card">
+            <h3>原子谱线题</h3>
+            <p>能级差取正，波长用第 26 章光子能量公式；可见光优先检查巴耳末系。</p>
+          </article>
+          <article class="type-card">
+            <h3>量子数合法性</h3>
+            <p>按 <code>n</code>、<code>l</code>、<code>m_l</code>、<code>m_s</code> 层层筛；大小用 <code>L</code>，z 分量用 <code>L_z</code>。</p>
+          </article>
+          <article class="type-card">
+            <h3>固体概念题</h3>
+            <p>导体/半导体/绝缘体看能带和禁带；n/p 型看多数载流子；p-n 结先判正反偏。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="mistakes" class="panel">
+        <h2>易错点防线</h2>
+        <div class="mistake-grid" style="margin-top:12px">
+          <article class="mistake-card"><h3>半波损失</h3><p>薄膜反射先看低到高还是高到低；不判断半波损失就套明暗条件，最容易整题反写。</p></article>
+          <article class="mistake-card"><h3>往返系数 2</h3><p>迈克耳孙动镜和插介质都是往返光路；双缝插片通常是单程，不要混用。</p></article>
+          <article class="mistake-card"><h3>a 与 d</h3><p>单缝暗纹用缝宽 <code>a</code>；光栅主极大用光栅常数 <code>d</code>；缺级才联立两者。</p></article>
+          <article class="mistake-card"><h3>自然光第一片</h3><p>自然光过第一片偏振片先 <code>I0/2</code>；之后已经是线偏振光，逐片乘 <code>cos²</code>。</p></article>
+          <article class="mistake-card"><h3>概率幅与概率</h3><p>双缝概率波、势阱展开都先叠加概率幅，再取模方；<code>c_n</code> 不是概率，<code>|c_n|²</code> 才是。</p></article>
+          <article class="mistake-card"><h3>能级差正负</h3><p>发射/吸收光子能量写正值；第 28 章只写能级差图像，光子能量公式调用第 26 章。</p></article>
+        </div>
+      </section>
+
+      <section id="error-log" class="panel">
+        <h2>错题回写接口</h2>
+        <p class="subtle">错题不只改答案，必须挂回“物理图像、公式血缘、题型动作、复测时间”。</p>
+        <div class="type-grid" style="margin-top:12px">
+          <article class="type-card">
+            <h3>1. 定位章节</h3>
+            <p>先标记章节与模型：双缝/薄膜、单缝/光栅、偏振片/波片、光电/康普顿/布拉格、势阱、谱线、能带。</p>
+          </article>
+          <article class="type-card">
+            <h3>2. 切出错因</h3>
+            <p>按概念误解、公式误用、条件漏看、单位量纲、题型识别、时间压力六类记录，不写“粗心”这种空标签。</p>
+          </article>
+          <article class="type-card">
+            <h3>3. 回写位置</h3>
+            <p>错在图像就回写到物理图像走廊；错在公式条件就回写到公式血缘摘要；错在模型判断就回写到典型题型入口。</p>
+          </article>
+          <article class="type-card">
+            <h3>4. 对抗复测</h3>
+            <p>生成同类型变式：换角度定义、换坐标区间、换已知未知、加入干扰条件。第 29 章只做概念/阈值复测。</p>
+          </article>
+        </div>
+        <div class="formula-table" style="margin-top:12px">
+          <div class="formula-row">
+            <b>记录模板</b>
+            <span>题目触发词 -> 真实考点 -> 错误步骤 -> 错因类别 -> 回写区块 -> 对抗变式 -> 下次复测日期</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="three-pass" class="panel">
+        <h2>三遍法入口</h2>
+        <div class="three-pass" style="margin-top:12px">
+          <article class="pass-card">
+            <h3>第一遍：物理图像</h3>
+            <ol>
+              <li>画装置或能级图，不写公式。</li>
+              <li>说清相干光束、次波源、光矢量、本征态或能带。</li>
+              <li>用一句话解释现象为什么发生。</li>
+            </ol>
+          </article>
+          <article class="pass-card">
+            <h3>第二遍：公式血缘</h3>
+            <ol>
+              <li>从关键光程差、边界条件或能量守恒推公式。</li>
+              <li>标出符号含义、单位、适用条件。</li>
+              <li>写一个最常见误用。</li>
+            </ol>
+          </article>
+          <article class="pass-card">
+            <h3>第三遍：题目应用</h3>
+            <ol>
+              <li>先圈关键词并贴题型标签。</li>
+              <li>列主公式和检查点。</li>
+              <li>错题回写到图像、公式或条件漏看。</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="schedule" class="panel">
+        <h2>复习调度</h2>
+        <p class="subtle">按 README 与各章调度建议压缩成全局节奏。凡涉及“是否深考”的内容，只标注需核对原课件/历年题。</p>
+        <div class="schedule-grid" style="margin-top:12px">
+          <article class="schedule-card">
+            <h3>第 0 天</h3>
+            <ul>
+              <li>画光路、缝、偏振、实验链、势阱、能级、能带。</li>
+              <li>每章输出一句话图像。</li>
+            </ul>
+          </article>
+          <article class="schedule-card">
+            <h3>第 1 天</h3>
+            <ul>
+              <li>默写高优先公式血缘。</li>
+              <li>布拉格只写共享归属，不重复刷。</li>
+            </ul>
+          </article>
+          <article class="schedule-card">
+            <h3>第 3 天</h3>
+            <ul>
+              <li>基础题复测：双缝、单缝、偏振片、光电、势阱、谱线。</li>
+              <li>错题立即回写。</li>
+            </ul>
+          </article>
+          <article class="schedule-card">
+            <h3>第 7 天</h3>
+            <ul>
+              <li>光学混排与量子混排。</li>
+              <li>重点抓模型误判和公式条件漏看。</li>
+            </ul>
+          </article>
+          <article class="schedule-card">
+            <h3>第 14 天</h3>
+            <ul>
+              <li>第 26-28 章联动：光子能量、势阱本征、原子量子数。</li>
+              <li>第 29 章只做概念扫尾。</li>
+            </ul>
+          </article>
+          <article class="schedule-card">
+            <h3>考前 30 分钟</h3>
+            <ul>
+              <li>只看易错点与共享卡。</li>
+              <li>不临时扩展“需核对原课件/历年题”的深题。</li>
+            </ul>
+          </article>
+        </div>
+
+        <details style="margin-top:12px">
+          <summary>调度方注意事项</summary>
+          <div class="stack">
+            <p>第 29 章保持低优先度；是否上调需核对原课件/历年题，不应挤占第 22-28 章主线时间。</p>
+            <p>第 23/26 章布拉格公式按共享卡去重：第 23 章讲衍射图像，第 26 章负责冲刺默写和主要刷题。</p>
+            <p>第 28 章跃迁题调用第 26 章 <code>E=hnu=hc/lambda</code>，不要生成第二张重复光子能量卡。</p>
+            <p>第 28 章量子数与第 27 章本征态/本征值语言联动：量子数是一组可兼容力学量本征值的标签。</p>
+            <p>双折射深算、偏振光干涉、斜入射光栅、劳厄/粉末法、势垒穿透、谐振子、X 射线/激光拓展、费米公式等内容是否深考，均需核对原课件/历年题。</p>
+          </div>
+        </details>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const cards = Array.from(document.querySelectorAll('.chapter-card'));
+    const noResult = document.getElementById('noResult');
+
+    function normalizeText(text) {
+      return text.toLowerCase().replace(/\s+/g, '');
+    }
+
+    searchBox.addEventListener('input', () => {
+      const q = normalizeText(searchBox.value);
+      let shown = 0;
+      cards.forEach(card => {
+        const hay = normalizeText(card.dataset.search + ' ' + card.innerText);
+        const visible = !q || hay.includes(q);
+        card.dataset.hidden = visible ? 'false' : 'true';
+        if (visible) shown += 1;
+      });
+      noResult.style.display = shown === 0 ? 'block' : 'none';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#f8f4ed"/>
+  <rect x="32" y="28" width="1136" height="584" rx="28" fill="#fffdf8" stroke="#d9d1c3" stroke-width="2"/>
+  <text x="60" y="82" font-family="Georgia, Microsoft YaHei, serif" font-size="32" fill="#1f2937">氢原子：能级、谱线、量子数一图串起来</text>
+  <rect x="70" y="124" width="490" height="430" rx="24" fill="#fff8ef" stroke="#e5cfab" stroke-width="2"/>
+  <text x="96" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#9f4f2b">能级与跃迁谱线</text>
+  <line x1="130" y1="455" x2="350" y2="455" stroke="#1f2937" stroke-width="4"/>
+  <line x1="130" y1="390" x2="350" y2="390" stroke="#1f2937" stroke-width="4"/>
+  <line x1="130" y1="325" x2="350" y2="325" stroke="#1f2937" stroke-width="4"/>
+  <line x1="130" y1="270" x2="350" y2="270" stroke="#1f2937" stroke-width="4"/>
+  <line x1="130" y1="225" x2="350" y2="225" stroke="#1f2937" stroke-width="4"/>
+  <text x="368" y="462" font-family="Cambria Math, Microsoft YaHei, serif" font-size="20" fill="#1f2937">n=1</text>
+  <text x="368" y="397" font-family="Cambria Math, Microsoft YaHei, serif" font-size="20" fill="#1f2937">n=2</text>
+  <text x="368" y="332" font-family="Cambria Math, Microsoft YaHei, serif" font-size="20" fill="#1f2937">n=3</text>
+  <text x="368" y="277" font-family="Cambria Math, Microsoft YaHei, serif" font-size="20" fill="#1f2937">n=4</text>
+  <text x="368" y="232" font-family="Cambria Math, Microsoft YaHei, serif" font-size="20" fill="#1f2937">n=5</text>
+  <line x1="268" y1="270" x2="225" y2="390" stroke="#ef4444" stroke-width="4"/>
+  <polygon points="225,390 218,376 235,380" fill="#ef4444"/>
+  <line x1="248" y1="325" x2="190" y2="455" stroke="#2563eb" stroke-width="4"/>
+  <polygon points="190,455 183,441 200,445" fill="#2563eb"/>
+  <line x1="292" y1="390" x2="262" y2="455" stroke="#10b981" stroke-width="4"/>
+  <polygon points="262,455 255,441 272,445" fill="#10b981"/>
+  <text x="180" y="284" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#b91c1c">4 → 2</text>
+  <text x="150" y="356" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#1d4ed8">3 → 1</text>
+  <text x="276" y="430" font-family="Cambria Math, Microsoft YaHei, serif" font-size="18" fill="#047857">2 → 1</text>
+  <text x="100" y="520" font-family="Cambria Math, Microsoft YaHei, serif" font-size="24" fill="#1f2937">Eₙ = −13.6 / n²；Nmax = n(n−1)/2</text>
+  <rect x="640" y="124" width="490" height="430" rx="24" fill="#f1fbfa" stroke="#afd4d7" stroke-width="2"/>
+  <text x="666" y="166" font-family="Georgia, Microsoft YaHei, serif" font-size="25" fill="#1f6b73">量子数约束与角动量</text>
+  <rect x="700" y="210" width="360" height="56" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="734" y="246" font-family="Cambria Math, Microsoft YaHei, serif" font-size="23" fill="#1f2937">n = 1, 2, 3, ...</text>
+  <rect x="735" y="292" width="325" height="56" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="760" y="328" font-family="Cambria Math, Microsoft YaHei, serif" font-size="23" fill="#1f2937">l = 0, 1, ..., n−1</text>
+  <rect x="770" y="374" width="290" height="56" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="790" y="410" font-family="Cambria Math, Microsoft YaHei, serif" font-size="23" fill="#1f2937">mₗ = −l, ..., l</text>
+  <rect x="806" y="456" width="254" height="56" rx="16" fill="#fff" stroke="#d7ecec"/>
+  <text x="850" y="492" font-family="Cambria Math, Microsoft YaHei, serif" font-size="23" fill="#1f2937">mₛ = ±1/2</text>
+  <text x="668" y="520" font-family="Cambria Math, Microsoft YaHei, serif" font-size="22" fill="#1f2937">L=√(l(l+1))ħ；Lz=mₗħ</text>
+  <text x="668" y="548" font-family="Microsoft YaHei, sans-serif" font-size="16" fill="#5b6472">常用夹法：|mₗ| ≤ l ≤ n − 1。</text>
+</svg>
