@@ -1399,12 +1399,7 @@
       button.addEventListener("click", () => setStage(button.dataset.stage));
     });
 
-    let autoIndex = 0;
-    const stageOrder = ["denature", "anneal", "extend"];
-    setInterval(() => {
-      autoIndex = (autoIndex + 1) % stageOrder.length;
-      setStage(stageOrder[autoIndex]);
-    }, 4300);
+    setStage("denature");
 
     const annealSlider = document.getElementById("annealSlider");
     const annealValue = document.getElementById("annealValue");
