@@ -3,80 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>5月9日 · 欣容的 PCR 可视化学习页</title>
+  <title>欣容的学习日记 · 2026.05.09</title>
   <style>
     :root {
-      --ink: #0f172a;
-      --muted: #64748b;
+      --ink: #101828;
+      --muted: #667085;
+      --line: #d8e2ee;
       --paper: #f8fbff;
-      --line: #d9e2ef;
       --blue: #2563eb;
       --cyan: #0891b2;
       --green: #16a34a;
       --orange: #f97316;
       --red: #ef4444;
-      --violet: #7c3aed;
-      --amber: #f59e0b;
-      --shadow: 0 22px 52px rgba(15, 23, 42, 0.1);
-      --soft-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
-      --radius: 8px;
+      --shadow: 0 18px 46px rgba(15, 23, 42, 0.10);
+      --soft: 0 8px 22px rgba(15, 23, 42, 0.07);
+      --radius: 10px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       color: var(--ink);
       background:
-        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px),
-        linear-gradient(135deg, #f7fbff 0%, #ffffff 42%, #f6fff8 100%);
+        linear-gradient(90deg, rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(8, 145, 178, 0.045) 1px, transparent 1px),
+        linear-gradient(135deg, #f7fbff 0%, #ffffff 48%, #f4fff8 100%);
       background-size: 36px 36px, 36px 36px, auto;
-      font-family: "HarmonyOS Sans SC", "MiSans", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+      font-family: "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
       font-size: 16px;
-      line-height: 1.55;
+      line-height: 1.62;
       letter-spacing: 0;
-      font-weight: 400;
       -webkit-font-smoothing: antialiased;
       text-rendering: geometricPrecision;
     }
 
-    b,
-    strong,
-    h1,
-    h2,
-    h3 {
-      font-weight: 560;
-    }
+    img { max-width: 100%; display: block; }
 
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-    }
+    a { color: inherit; }
 
     .page {
-      width: min(1280px, calc(100% - 40px));
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    header {
-      min-height: 78vh;
+    .hero {
+      min-height: clamp(600px, 68vh, 780px);
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
-      gap: clamp(32px, 6vw, 80px);
+      grid-template-columns: minmax(0, 0.74fr) minmax(420px, 1fr);
+      gap: clamp(28px, 5vw, 64px);
       align-items: center;
-      padding: 36px 0 24px;
+      padding: 28px 0 18px;
     }
 
     .eyebrow {
@@ -86,1812 +65,460 @@
       margin: 0 0 18px;
       color: #175cd3;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 620;
     }
 
-    .dot-row {
+    .dots {
       display: inline-flex;
       gap: 5px;
     }
 
-    .dot-row i {
+    .dots i {
       width: 9px;
       height: 9px;
       border-radius: 50%;
       background: var(--blue);
     }
 
-    .dot-row i:nth-child(2) {
-      background: var(--green);
-    }
-
-    .dot-row i:nth-child(3) {
-      background: var(--orange);
-    }
+    .dots i:nth-child(2) { background: var(--green); }
+    .dots i:nth-child(3) { background: var(--orange); }
 
     h1 {
       margin: 0;
-      max-width: 660px;
+      max-width: 700px;
       color: #111827;
-      font-size: clamp(44px, 6.2vw, 78px);
-      line-height: 1.06;
-      font-weight: 520;
-      letter-spacing: 0;
+      font-size: clamp(42px, 6.2vw, 74px);
+      line-height: 1.08;
+      font-weight: 500;
     }
 
     .lead {
+      max-width: 560px;
       margin: 22px 0 0;
-      max-width: 520px;
-      color: #334155;
-      font-size: clamp(19px, 2vw, 26px);
-      font-weight: 430;
+      color: #344054;
+      font-size: clamp(18px, 1.8vw, 23px);
+      font-weight: 420;
     }
 
-    .hero-actions {
+    .date-strip {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+      gap: 10px;
+      margin-top: 26px;
     }
 
-    .primary-link,
-    .secondary-link {
+    .date-chip {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      color: #ffffff;
-      background: linear-gradient(135deg, #2563eb, #0891b2);
+      min-width: 74px;
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
       text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.18);
+      font-weight: 620;
+      box-shadow: var(--soft);
     }
 
-    .secondary-link {
-      color: #1f2937;
-      background: #ffffff;
-      border: 1px solid var(--line);
+    .date-chip.active {
+      color: #ffffff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    .date-chip.muted {
+      color: #98a2b3;
       box-shadow: none;
     }
 
-    .hero-visual {
-      position: relative;
-      min-height: 520px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(37, 99, 235, 0.16);
+    .hero-figure,
+    .science-figure {
+      margin: 0;
+      min-width: 0;
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.88)),
-        repeating-linear-gradient(90deg, rgba(37, 99, 235, 0.07) 0 1px, transparent 1px 44px);
+      background: rgba(255, 255, 255, 0.95);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .machine {
-      width: min(82%, 570px);
-      padding: 26px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
+    .hero-figure img {
+      width: 100%;
+      aspect-ratio: 1.28;
+      object-fit: contain;
+      object-position: center top;
       background: #ffffff;
-      box-shadow: 0 26px 48px rgba(15, 23, 42, 0.1);
-      z-index: 2;
     }
 
-    .machine-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-
-    .machine-title {
+    figcaption {
       margin: 0;
-      font-size: 18px;
-      font-weight: 620;
-    }
-
-    .screen {
-      min-width: 118px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      color: #0f3b48;
-      background: #dff6ff;
-      text-align: center;
-      font-weight: 620;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .wells {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 15px;
-      margin-top: 24px;
-    }
-
-    .well {
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 5px solid #cbd5e1;
-      background:
-        radial-gradient(circle at 50% 46%, rgba(34, 197, 94, 0.9), rgba(37, 99, 235, 0.88) 44%, #e0f2fe 46%, #f8fafc 72%);
-      animation: wellPulse 2.8s ease-in-out infinite;
-      animation-delay: calc(var(--i) * 0.07s);
-    }
-
-    @keyframes wellPulse {
-      0%, 100% { transform: translateY(0); filter: saturate(1); }
-      50% { transform: translateY(-3px); filter: saturate(1.35); }
-    }
-
-    .hero-strand {
-      position: absolute;
-      right: -22px;
-      bottom: 28px;
-      width: 320px;
-      height: 170px;
-      opacity: 0.88;
-      transform: rotate(-11deg);
-    }
-
-    .quick-map {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin: 6px 0 54px;
-    }
-
-    .map-card,
-    .tool-card,
-    .read-card,
-    .cause,
-    .fix-step {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: var(--soft-shadow);
-    }
-
-    .map-card {
-      min-height: 116px;
-      padding: 18px;
-      display: grid;
-      align-content: space-between;
-    }
-
-    .map-card b {
-      font-size: 14px;
+      padding: 12px 16px 16px;
       color: var(--muted);
+      font-size: 13px;
+      overflow-wrap: anywhere;
     }
 
-    .map-card strong {
-      font-size: 26px;
-      line-height: 1.1;
-      font-weight: 620;
+    .hero > *,
+    .diary-chapter > * {
+      min-width: 0;
     }
 
     section {
-      margin: 60px 0;
+      margin: 54px 0;
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.45fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.5fr);
+      gap: 24px;
       align-items: end;
       margin-bottom: 20px;
     }
 
-    .section-head h2 {
+    h2 {
       margin: 0;
       font-size: clamp(28px, 3.1vw, 42px);
-      line-height: 1.08;
-      font-weight: 540;
+      line-height: 1.1;
+      font-weight: 500;
     }
 
-    .section-head p {
+    .section-head p,
+    .chapter-text p {
       margin: 0;
       color: var(--muted);
-      font-weight: 430;
     }
 
-    .cycle-layout {
+    .question-rail {
       display: grid;
-      grid-template-columns: minmax(560px, 1fr) minmax(280px, 0.46fr);
-      gap: 20px;
-      align-items: start;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
 
-    .visual-panel,
-    .info-panel,
-    .full-panel,
-    .control-panel,
-    .gel-panel {
+    .question-chip {
+      min-height: 78px;
+      padding: 13px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--soft);
+    }
+
+    .question-chip b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+      font-weight: 560;
+    }
+
+    .question-chip span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .diary-chapter {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.42fr) minmax(0, 0.58fr);
+      gap: 24px;
+      align-items: center;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
       box-shadow: var(--shadow);
     }
 
-    .visual-panel {
-      padding: 18px;
-    }
-
-    .stage-nav {
+    .chapter-text {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .stage-btn {
-      min-height: 46px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      color: #334155;
-      background: #f8fafc;
-      font-weight: 600;
-      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-    }
-
-    .stage-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .stage-btn.active {
-      color: #ffffff;
-      background: linear-gradient(135deg, #2563eb, #0891b2);
-      border-color: transparent;
-    }
-
-    .dna-stage {
-      position: relative;
-      height: 420px;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-      background:
-        linear-gradient(180deg, #f8fbff 0%, #ffffff 100%),
-        repeating-linear-gradient(0deg, rgba(148, 163, 184, 0.09) 0 1px, transparent 1px 44px);
-      overflow: hidden;
-    }
-
-    .dna-badge {
-      position: absolute;
-      left: 18px;
-      top: 18px;
-      z-index: 5;
-      padding: 6px 11px;
-      border-radius: 8px;
-      color: #0f3b48;
-      background: #dff6ff;
-      font-size: 14px;
-      font-weight: 620;
-    }
-
-    .strand {
-      position: absolute;
-      left: 10%;
-      width: 80%;
-      height: 8px;
-      border-radius: 999px;
-      transition: top 0.45s ease, background 0.25s ease;
-    }
-
-    .strand.top {
-      top: 168px;
-      background: var(--blue);
-    }
-
-    .strand.bottom {
-      top: 226px;
-      background: var(--cyan);
-    }
-
-    .strand::before,
-    .strand::after {
-      position: absolute;
-      top: -26px;
-      color: #334155;
-      font-size: 13px;
-      font-weight: 620;
-    }
-
-    .strand.top::before { content: "5'"; left: 0; }
-    .strand.top::after { content: "3'"; right: 0; }
-    .strand.bottom::before { content: "3'"; left: 0; }
-    .strand.bottom::after { content: "5'"; right: 0; }
-
-    .bonds {
-      position: absolute;
-      left: 14%;
-      top: 176px;
-      width: 72%;
-      height: 58px;
-      display: grid;
-      grid-template-columns: repeat(15, 1fr);
-      align-items: center;
-      opacity: 1;
-      transition: opacity 0.25s ease;
-    }
-
-    .bond {
-      width: 2px;
-      height: 52px;
-      margin: 0 auto;
-      border-radius: 999px;
-      background: #cbd5e1;
-    }
-
-    .primer,
-    .new-strand {
-      position: absolute;
-      height: 13px;
-      border-radius: 999px;
-      opacity: 0;
-      transition: opacity 0.25s ease, transform 0.45s ease, width 0.65s ease;
-    }
-
-    .primer.forward {
-      left: 19%;
-      top: 252px;
-      width: 24%;
-      background: var(--orange);
-      transform: translateY(26px);
-    }
-
-    .primer.reverse {
-      right: 19%;
-      top: 145px;
-      width: 24%;
-      background: var(--green);
-      transform: translateY(-26px);
-    }
-
-    .primer::before,
-    .primer::after {
-      position: absolute;
-      top: -23px;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 620;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-
-    .primer.forward::after { content: "3'"; right: -2px; }
-    .primer.reverse::before { content: "3'"; left: -2px; }
-
-    .new-strand {
-      width: 0;
-      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
-    }
-
-    .new-strand.a {
-      left: 43%;
-      top: 252px;
-      background: var(--orange);
-    }
-
-    .new-strand.b {
-      right: 43%;
-      top: 145px;
-      background: var(--green);
-    }
-
-    .new-strand::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 0;
-      height: 0;
-      transform: translateY(-50%);
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-    }
-
-    .new-strand.a::after {
-      right: -10px;
-      border-left: 12px solid var(--orange);
-    }
-
-    .new-strand.b::after {
-      left: -10px;
-      border-right: 12px solid var(--green);
-    }
-
-    .polymerase {
-      position: absolute;
-      display: grid;
-      place-items: center;
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      color: #78350f;
-      background: #fffbeb;
-      border: 2px solid var(--amber);
-      font-size: 12px;
-      font-weight: 620;
-      opacity: 0;
-      transition: opacity 0.25s ease, transform 0.65s ease;
-    }
-
-    .polymerase.one {
-      left: calc(45% - 27px);
-      top: 232px;
-    }
-
-    .polymerase.two {
-      left: calc(55% - 27px);
-      top: 125px;
-    }
-
-    .direction-note {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-
-    .direction-note span {
-      padding: 9px 11px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      background: #ffffff;
-      color: #334155;
-      font-size: 13px;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .dna-stage[data-stage="denature"] .strand.top { top: 126px; }
-    .dna-stage[data-stage="denature"] .strand.bottom { top: 280px; }
-    .dna-stage[data-stage="denature"] .bonds { opacity: 0; }
-
-    .dna-stage[data-stage="anneal"] .strand.top,
-    .dna-stage[data-stage="extend"] .strand.top { top: 126px; }
-
-    .dna-stage[data-stage="anneal"] .strand.bottom,
-    .dna-stage[data-stage="extend"] .strand.bottom { top: 280px; }
-
-    .dna-stage[data-stage="anneal"] .bonds,
-    .dna-stage[data-stage="extend"] .bonds { opacity: 0; }
-
-    .dna-stage[data-stage="anneal"] .primer,
-    .dna-stage[data-stage="extend"] .primer {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .dna-stage[data-stage="anneal"] .primer::before,
-    .dna-stage[data-stage="anneal"] .primer::after,
-    .dna-stage[data-stage="extend"] .primer::before,
-    .dna-stage[data-stage="extend"] .primer::after {
-      opacity: 1;
-    }
-
-    .dna-stage[data-stage="extend"] .new-strand {
-      opacity: 1;
-      width: 34%;
-    }
-
-    .dna-stage[data-stage="extend"] .polymerase {
-      opacity: 1;
-    }
-
-    .dna-stage[data-stage="extend"] .polymerase.one {
-      transform: translateX(112px);
-    }
-
-    .dna-stage[data-stage="extend"] .polymerase.two {
-      transform: translateX(-112px);
-    }
-
-    .dna-stage[data-stage="extend"] .direction-note {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .info-panel {
-      padding: 22px;
-    }
-
-    .step-title {
-      margin: 0 0 12px;
-      font-size: 28px;
-      line-height: 1.1;
-      font-weight: 620;
-    }
-
-    .step-copy {
-      margin: 0 0 18px;
-      color: #475569;
-      font-size: 18px;
-      font-weight: 430;
-    }
-
-    .key-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .key-chip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 10px 12px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      background: #f8fafc;
-      font-weight: 500;
-    }
-
-    .key-chip i {
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      color: #ffffff;
-      background: var(--blue);
-      font-style: normal;
-      font-size: 13px;
-    }
-
-    .key-chip:nth-child(2) i { background: var(--orange); }
-    .key-chip:nth-child(3) i { background: var(--green); }
-
-    .full-panel {
-      padding: 22px;
-    }
-
-    .amplification {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.52fr);
-      gap: 26px;
-      align-items: center;
-    }
-
-    .bars {
-      display: grid;
-      gap: 12px;
-    }
-
-    .bar-row {
-      display: grid;
-      grid-template-columns: 58px minmax(0, 1fr) 46px;
-      gap: 12px;
-      align-items: center;
-      color: #475569;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .bar-track {
-      height: 24px;
-      border-radius: 999px;
-      background: #e8eef6;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      width: var(--w);
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--blue), var(--green));
-    }
-
-    .formula {
-      display: grid;
-      place-items: center;
-      min-height: 210px;
-      border-radius: 8px;
-      color: #ffffff;
-      background:
-        linear-gradient(135deg, rgba(17, 24, 39, 0.96), rgba(30, 64, 175, 0.94)),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 30px);
-      text-align: center;
-    }
-
-    .formula strong {
-      font-size: clamp(42px, 5vw, 70px);
-      line-height: 1;
-    }
-
-    .formula span {
-      display: block;
-      margin-top: 8px;
-      color: #dbeafe;
-      font-weight: 500;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin-top: 16px;
+      align-content: center;
     }
 
-    .product-card {
-      min-height: 136px;
-      padding: 16px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: var(--soft-shadow);
-    }
-
-    .product-card h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-    }
-
-    .mini-dna {
-      display: grid;
-      gap: 9px;
-    }
-
-    .mini-line {
-      height: 8px;
+    .kicker {
+      width: fit-content;
+      margin: 0;
+      padding: 6px 11px;
       border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .mini-line.mid {
-      width: 82%;
-      background: var(--cyan);
-    }
-
-    .mini-line.short {
-      width: 62%;
-      background: var(--green);
-    }
-
-    .gel-layout {
-      display: grid;
-      grid-template-columns: minmax(390px, 0.9fr) minmax(0, 1.1fr);
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .gel-panel {
-      padding: 20px;
-      background: #101827;
-      color: #ffffff;
-    }
-
-    .gel-title {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
+      color: #075985;
+      background: #e0f2fe;
+      font-size: 13px;
       font-weight: 620;
     }
 
-    .gel-title span {
-      color: #cbd5e1;
-      font-size: 13px;
+    .chapter-text h2 {
+      font-size: clamp(27px, 3vw, 40px);
     }
 
-    .gel {
-      position: relative;
-      height: 440px;
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 12%, transparent 88%, rgba(255, 255, 255, 0.05)),
-        linear-gradient(180deg, #1f2937, #0f172a);
-      overflow: hidden;
-    }
-
-    .lane-labels {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      padding: 12px 24px 0;
-      color: #e0f2fe;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .lane {
-      position: absolute;
-      top: 46px;
-      bottom: 30px;
-      width: 18%;
-      border-left: 1px solid rgba(255, 255, 255, 0.06);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .lane.marker { left: 6%; }
-    .lane.good { left: 29.5%; }
-    .lane.bad { left: 53%; }
-    .lane.ntc { left: 76.5%; }
-
-    .band {
-      position: absolute;
-      left: 13%;
-      width: 74%;
-      height: 13px;
-      border-radius: 999px;
-      background: rgba(125, 211, 252, 0.92);
-      box-shadow: 0 0 18px rgba(125, 211, 252, 0.86);
-      transition: opacity 0.25s ease;
-    }
-
-    .band.weak {
-      height: 9px;
-      opacity: 0.55;
-    }
-
-    .band.target {
-      background: rgba(134, 239, 172, 0.96);
-      box-shadow: 0 0 22px rgba(134, 239, 172, 0.95);
-    }
-
-    .band.problem {
-      background: rgba(252, 165, 165, 0.96);
-      box-shadow: 0 0 20px rgba(252, 165, 165, 0.9);
-    }
-
-    .band.dimer {
-      height: 8px;
-      background: rgba(251, 191, 36, 0.95);
-      box-shadow: 0 0 18px rgba(251, 191, 36, 0.88);
-    }
-
-    .bp-scale {
-      position: absolute;
-      left: 8px;
-      top: 48px;
-      bottom: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #94a3b8;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .control-panel {
-      padding: 20px;
-    }
-
-    .control-panel h3 {
-      margin: 0 0 14px;
-      font-size: 30px;
-      line-height: 1.1;
-      font-weight: 620;
-    }
-
-    .slider-wrap {
-      padding: 16px;
-      border-radius: 8px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-
-    .slider-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 12px;
-      color: #475569;
-      font-weight: 600;
-    }
-
-    input[type="range"] {
+    .science-figure img {
       width: 100%;
-      accent-color: #111827;
+      max-height: 590px;
+      object-fit: contain;
+      background: #ffffff;
     }
 
-    .diagnosis {
-      min-height: 88px;
-      margin-top: 14px;
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #bfdbfe;
+    .figure-fit-tall img {
+      max-height: 720px;
+    }
+
+    .figure-photo img {
+      background: #101828;
+    }
+
+    .exam-phrases,
+    .term-table,
+    .source-note {
+      border: 1px solid #dbeafe;
+      border-radius: var(--radius);
       background: #eff6ff;
     }
 
-    .diagnosis strong {
-      display: block;
-      color: #175cd3;
-      font-size: 20px;
-      line-height: 1.25;
+    .exam-phrases {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
     }
 
-    .legend-grid {
+    .exam-phrases span {
+      color: #175cd3;
+      font-size: 13px;
+      font-weight: 620;
+    }
+
+    .exam-phrases b {
+      color: #1f2937;
+      font-size: 14px;
+      font-weight: 560;
+    }
+
+    .term-table {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 14px;
+      gap: 1px;
+      overflow: hidden;
+      background: #dbeafe;
     }
 
-    .read-card {
-      min-height: 116px;
-      padding: 15px;
+    .term-row {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 14px;
+      min-height: 84px;
+      padding: 14px;
+      background: #ffffff;
     }
 
-    .read-card b {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 18px;
+    .term-row b {
+      font-size: 15px;
+      font-weight: 620;
     }
 
-    .read-card span {
+    .term-row span {
       color: var(--muted);
       font-size: 14px;
-      font-weight: 430;
     }
 
-    .read-card.good b { color: var(--green); }
-    .read-card.bad b { color: var(--red); }
-    .read-card.dim b { color: var(--amber); }
-    .read-card.ntc b { color: var(--violet); }
-
-    .controls-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
+    .source-note a {
+      color: #175cd3;
+      text-underline-offset: 3px;
     }
 
-    .tool-card {
-      padding: 15px;
-      min-height: 104px;
+    .source-note {
+      padding: 22px;
+      color: #344054;
+      background: rgba(255, 255, 255, 0.9);
     }
 
-    .tool-card b {
-      display: block;
-      font-size: 17px;
-    }
-
-    .tool-card span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 430;
-    }
-
-    .date-pill {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      min-height: 34px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      color: #075985;
-      background: #e0f2fe;
-      font-weight: 620;
-    }
-
-    .question-board {
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-      gap: 18px;
-    }
-
-    .question-card,
-    .gene-card,
-    .round-card,
-    .purpose-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: var(--soft-shadow);
-    }
-
-    .question-card {
-      padding: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .question-row {
-      display: grid;
-      grid-template-columns: 76px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-      min-height: 56px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-
-    .question-row b {
-      color: #0f172a;
-      font-size: 15px;
-      font-weight: 620;
-    }
-
-    .question-row span {
-      color: #475569;
-      font-weight: 430;
-    }
-
-    .question-index {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .ask-card {
-      min-height: 132px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: var(--soft-shadow);
-    }
-
-    .ask-card i {
-      display: inline-grid;
-      place-items: center;
-      min-width: 30px;
-      height: 24px;
-      margin-bottom: 12px;
-      border-radius: 999px;
-      color: #075985;
-      background: #e0f2fe;
-      font-style: normal;
-      font-size: 12px;
-      font-weight: 620;
-    }
-
-    .ask-card b {
-      display: block;
-      margin-bottom: 8px;
-      color: #0f172a;
-      font-size: 16px;
-      line-height: 1.25;
-      font-weight: 560;
-    }
-
-    .ask-card span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .vector-board {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 18px;
-      margin-top: 18px;
-    }
-
-    .vector-card,
-    .vector-answer {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: var(--soft-shadow);
-    }
-
-    .vector-card {
-      min-height: 300px;
-      padding: 18px;
-    }
-
-    .vector-visual {
-      position: relative;
-      min-height: 235px;
-      margin-top: 12px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      background:
-        linear-gradient(180deg, #f8fbff, #ffffff),
-        repeating-linear-gradient(90deg, rgba(37, 99, 235, 0.07) 0 1px, transparent 1px 32px);
-      overflow: hidden;
-    }
-
-    .plasmid-ring {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 148px;
-      height: 148px;
-      border: 12px solid #93c5fd;
-      border-right-color: var(--green);
-      border-bottom-color: var(--orange);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.14);
-    }
-
-    .insert-gene {
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      top: 38px;
-      height: 12px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--green), #86efac);
-    }
-
-    .cut-site {
-      position: absolute;
-      left: 50%;
-      top: 79px;
-      width: 70px;
-      height: 24px;
-      border-radius: 999px;
-      color: #ffffff;
-      background: var(--red);
-      transform: translateX(-50%);
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .vector-label {
-      position: absolute;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      color: #334155;
-      font-size: 12px;
-      box-shadow: var(--soft-shadow);
-    }
-
-    .vector-label.target { left: 11%; top: 58px; }
-    .vector-label.marker { right: 8%; bottom: 60px; color: #b45309; }
-    .vector-label.ligase { left: 8%; bottom: 60px; color: #0369a1; }
-
-    .vector-answer {
-      display: grid;
-      gap: 12px;
-      padding: 18px;
-    }
-
-    .answer-row {
-      display: grid;
-      grid-template-columns: 118px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-      min-height: 72px;
-      padding: 12px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      background: #f8fafc;
-    }
-
-    .answer-row b {
-      color: #0f172a;
-      font-size: 15px;
-      line-height: 1.25;
-    }
-
-    .answer-row span {
-      color: #475569;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .gene-card {
-      padding: 18px;
-    }
-
-    .gene-window {
-      position: relative;
-      height: 180px;
-      margin-top: 14px;
-      border-radius: 8px;
-      background:
-        linear-gradient(180deg, #f8fbff, #ffffff),
-        repeating-linear-gradient(90deg, rgba(37, 99, 235, 0.08) 0 1px, transparent 1px 34px);
-      border: 1px solid #e2e8f0;
-      overflow: hidden;
-    }
-
-    .gene-line {
-      position: absolute;
-      left: 9%;
-      right: 9%;
-      top: 86px;
-      height: 10px;
-      border-radius: 999px;
-      background: #cbd5e1;
-    }
-
-    .gene-target {
-      position: absolute;
-      left: 38%;
-      width: 24%;
-      top: 76px;
-      height: 30px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--green), #86efac);
-      box-shadow: 0 0 24px rgba(34, 197, 94, 0.35);
-    }
-
-    .primer-mark {
-      position: absolute;
-      top: 65px;
-      width: 10%;
-      height: 12px;
-      border-radius: 999px;
-      background: var(--orange);
-    }
-
-    .primer-mark.left { left: 29%; }
-    .primer-mark.right { right: 29%; background: var(--blue); }
-
-    .gene-label {
-      position: absolute;
-      top: 118px;
-      color: #334155;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .gene-label.left { left: 12%; }
-    .gene-label.mid { left: 41%; color: #15803d; }
-    .gene-label.right { right: 12%; }
-
-    .rounds-board {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .round-card {
-      min-height: 138px;
-      padding: 14px;
-    }
-
-    .round-card b {
-      display: block;
+    .source-note h2 {
       margin-bottom: 10px;
-      font-size: 18px;
+      font-size: 26px;
     }
 
-    .round-card span {
+    .source-note p {
+      margin: 0 0 8px;
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 430;
-    }
-
-    .round-line {
-      height: 8px;
-      margin: 10px 0;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-
-    .round-line.long { width: 100%; }
-    .round-line.mid { width: 78%; background: var(--cyan); }
-    .round-line.short { width: 52%; background: var(--green); }
-
-    .purpose-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .purpose-card {
-      min-height: 100px;
-      padding: 14px;
-    }
-
-    .purpose-card b {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 17px;
-    }
-
-    .purpose-card span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 430;
-    }
-
-    .cause-grid,
-    .fix-flow {
-      display: grid;
-      gap: 12px;
-    }
-
-    .cause-grid {
-      grid-template-columns: repeat(6, 1fr);
-    }
-
-    .cause,
-    .fix-step {
-      padding: 14px;
-      min-height: 116px;
-    }
-
-    .cause b,
-    .fix-step b {
-      display: block;
-      font-size: 16px;
-      line-height: 1.25;
-    }
-
-    .cause span,
-    .fix-step span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 430;
-      line-height: 1.45;
-    }
-
-    .fix-flow {
-      grid-template-columns: repeat(5, 1fr);
-      margin-top: 14px;
-    }
-
-    .fix-step i {
-      display: grid;
-      place-items: center;
-      width: 28px;
-      height: 28px;
-      margin-bottom: 10px;
-      border-radius: 50%;
-      color: #ffffff;
-      background: #111827;
-      font-style: normal;
-      font-weight: 620;
-    }
-
-    .summary-band {
-      margin: 70px 0 42px;
-      padding: 28px;
-      border-radius: 8px;
-      color: #ffffff;
-      background:
-        linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(8, 145, 178, 0.88)),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 34px);
-      box-shadow: var(--shadow);
-    }
-
-    .summary-band h2 {
-      margin: 0 0 18px;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.05;
-    }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .summary-grid div {
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(255, 255, 255, 0.09);
-      font-weight: 560;
+      font-size: 14px;
     }
 
     footer {
-      padding: 0 0 36px;
+      padding: 0 0 38px;
       color: var(--muted);
       text-align: center;
       font-size: 14px;
-      font-weight: 430;
     }
 
-    @media (max-width: 980px) {
-      header,
-      .cycle-layout,
-      .amplification,
-      .gel-layout,
-      .section-head {
+    @media (max-width: 960px) {
+      .hero,
+      .section-head,
+      .diary-chapter {
         grid-template-columns: 1fr;
       }
 
-      header {
+      .hero {
         min-height: auto;
       }
 
-      .quick-map,
-      .product-grid,
-      .legend-grid,
-      .controls-row,
-      .question-board,
-      .question-index,
-      .vector-board,
-      .rounds-board,
-      .purpose-grid,
-      .cause-grid,
-      .fix-flow,
-      .summary-grid {
-        grid-template-columns: 1fr;
+      .question-rail,
+      .term-table {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 620px) {
       .page {
-        width: min(100% - 24px, 1280px);
+        width: min(100% - 24px, 1180px);
       }
 
       h1 {
-        font-size: clamp(38px, 12vw, 56px);
+        font-size: clamp(40px, 12vw, 58px);
       }
 
-      .hero-visual {
-        min-height: 420px;
-      }
-
-      .machine {
-        width: 92%;
-        padding: 18px;
-      }
-
-      .dna-stage {
-        height: 360px;
-      }
-
-      .direction-note {
+      .question-rail,
+      .term-table {
         grid-template-columns: 1fr;
       }
 
-      .gel {
-        height: 390px;
+      .term-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .diary-chapter {
+        padding: 14px;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <header>
+    <header class="hero" id="day-2026-05-09">
       <div>
-        <p class="eyebrow"><span class="dot-row"><i></i><i></i><i></i></span>5月9日 · 欣容的学习页</p>
-        <h1>基因工程<br>PCR</h1>
-        <p class="lead">把昨天卡住的点，一次讲清楚。</p>
-        <div class="hero-actions">
-          <a class="primary-link" href="#may9">昨日问题</a>
-          <a class="secondary-link" href="#cycle">三步循环</a>
-          <a class="secondary-link" href="#bands">条带判读</a>
-        </div>
+        <p class="eyebrow"><span class="dots"><i></i><i></i><i></i></span>欣容的学习日记</p>
+        <h1>2026.05.09<br>基因工程与<br>PCR</h1>
+        <p class="lead">把一个晚上问过的问题，整理成可以反复看的图。</p>
+        <nav class="date-strip" aria-label="学习日记日期">
+          <a class="date-chip active" href="#day-2026-05-09">05.09</a>
+          <span class="date-chip muted">05.10</span>
+          <span class="date-chip muted">05.11</span>
+        </nav>
       </div>
 
-      <div class="hero-visual" aria-label="PCR 仪示意图">
-        <div class="machine">
-          <div class="machine-top">
-            <p class="machine-title">Thermal Cycler</p>
-            <div class="screen" id="heroTemp">95°C</div>
-          </div>
-          <div class="wells">
-            <div class="well" style="--i:1"></div>
-            <div class="well" style="--i:2"></div>
-            <div class="well" style="--i:3"></div>
-            <div class="well" style="--i:4"></div>
-            <div class="well" style="--i:5"></div>
-            <div class="well" style="--i:6"></div>
-            <div class="well" style="--i:7"></div>
-            <div class="well" style="--i:8"></div>
-            <div class="well" style="--i:9"></div>
-            <div class="well" style="--i:10"></div>
-            <div class="well" style="--i:11"></div>
-            <div class="well" style="--i:12"></div>
-          </div>
-        </div>
-
-        <svg class="hero-strand" viewBox="0 0 360 180" role="img" aria-label="DNA 双螺旋">
-          <path d="M18 24 C108 76 242 104 342 156" fill="none" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
-          <path d="M18 156 C108 104 242 76 342 24" fill="none" stroke="#0891b2" stroke-width="9" stroke-linecap="round"/>
-          <g stroke="#94a3b8" stroke-width="5" stroke-linecap="round">
-            <line x1="46" y1="40" x2="46" y2="140"/>
-            <line x1="90" y1="60" x2="90" y2="120"/>
-            <line x1="136" y1="78" x2="136" y2="102"/>
-            <line x1="224" y1="102" x2="224" y2="78"/>
-            <line x1="270" y1="120" x2="270" y2="60"/>
-            <line x1="314" y1="140" x2="314" y2="40"/>
-          </g>
-        </svg>
-      </div>
+      <figure class="hero-figure">
+        <img src="assets/images/openstax-pcr.webp" alt="OpenStax 的 PCR 过程教材图">
+        <figcaption>今天的主线：PCR 把目标 DNA 放大；图示来源 OpenStax Biology 2e。</figcaption>
+      </figure>
     </header>
 
-    <div class="quick-map">
-      <div class="map-card"><b>95°C</b><strong>变性</strong></div>
-      <div class="map-card"><b>50-65°C</b><strong>退火</strong></div>
-      <div class="map-card"><b>72°C</b><strong>延伸</strong></div>
-    </div>
-
-    <section id="may9">
+    <section>
       <div class="section-head">
-        <div>
-          <span class="date-pill">2026 · 05 · 09</span>
-          <h2 style="margin-top: 12px;">5月9日问题清单</h2>
-        </div>
-        <p>学习相关提问都放在这里。</p>
+        <h2>她卡住的问题</h2>
+        <p>不把聊天原文放出来，只把学习问题整理成可复习的入口。</p>
       </div>
-
-      <div class="question-board">
-        <div class="question-card">
-          <div class="question-row"><b>能问吗</b><span>可以，问题先拆成图、词、选项。</span></div>
-          <div class="question-row"><b>这题</b><span>先看 PCR，再看电泳多了什么带。</span></div>
-          <div class="question-row"><b>核心</b><span>多出非特异性条带，先看引物。</span></div>
-          <div class="question-row"><b>用途</b><span>PCR 是把少量目标 DNA 放大。</span></div>
-          <div class="question-row"><b>轮次</b><span>不是剪，是边界逐轮被限定。</span></div>
-        </div>
-
-        <div class="gene-card">
-          <span class="date-pill">目的基因在哪里？</span>
-          <div class="gene-window" aria-label="目的基因示意图">
-            <div class="gene-line"></div>
-            <div class="primer-mark left"></div>
-            <div class="primer-mark right"></div>
-            <div class="gene-target"></div>
-            <div class="gene-label left">左侧背景</div>
-            <div class="gene-label mid">目的基因</div>
-            <div class="gene-label right">右侧背景</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="question-index" aria-label="5月9日学习问题索引">
-        <div class="ask-card"><i>01</i><b>生物可以问吗？</b><span>可以，先把题干关键词圈出来。</span></div>
-        <div class="ask-card"><i>02</i><b>基因工程不会？</b><span>这题先只抓 PCR 和电泳。</span></div>
-        <div class="ask-card"><i>03</i><b>这题怎么讲？</b><span>先看目标带旁边多了什么。</span></div>
-        <div class="ask-card"><i>04</i><b>PCR只扩目标吗？</b><span>取决于引物贴得准不准。</span></div>
-        <div class="ask-card"><i>05</i><b>为什么选引物？</b><span>多带说明扩增错对象。</span></div>
-        <div class="ask-card"><i>06</i><b>循环少呢？</b><span>量少会变弱，不会多出带。</span></div>
-        <div class="ask-card"><i>07</i><b>模板少/Taq弱呢？</b><span>常见是弱带或无带。</span></div>
-        <div class="ask-card"><i>08</i><b>颜色不同算谁？</b><span>颜色变，序列可仍是目标。</span></div>
-        <div class="ask-card"><i>09</i><b>左右两边有用吗？</b><span>是背景，最终要中间片段。</span></div>
-        <div class="ask-card"><i>10</i><b>Taq酶干什么？</b><span>从引物 3' 端延伸新链。</span></div>
-        <div class="ask-card"><i>11</i><b>这么做有什么用？</b><span>把少量 DNA 放大到能检测。</span></div>
-        <div class="ask-card"><i>12</i><b>第1、2、3轮要剪吗？</b><span>不剪；第3轮开始边界齐。</span></div>
-        <div class="ask-card"><i>13</i><b>非特异性条带是啥？</b><span>不是目标，是贴错位后扩出来的额外 DNA。</span></div>
-        <div class="ask-card"><i>14</i><b>标记基因标什么？</b><span>标记“带载体的细胞”，常见是抗性。</span></div>
-        <div class="ask-card"><i>15</i><b>切开又连上干嘛？</b><span>先造接口，再把目的基因装进载体。</span></div>
-      </div>
-
-      <div class="vector-board">
-        <div class="vector-card">
-          <span class="date-pill">表达载体怎么想？</span>
-          <div class="vector-visual" aria-label="基因表达载体示意图">
-            <div class="insert-gene"></div>
-            <div class="plasmid-ring"></div>
-            <div class="cut-site">切口</div>
-            <div class="vector-label target">目的基因</div>
-            <div class="vector-label marker">标记基因：筛选</div>
-            <div class="vector-label ligase">连接酶：封口</div>
-          </div>
-        </div>
-
-        <div class="vector-answer">
-          <div class="answer-row"><b>非特异性条带</b><span>电泳里多出来的额外带。它说明引物不只贴到目标位置，还贴到了相似位置。</span></div>
-          <div class="answer-row"><b>标记基因</b><span>在质粒/载体上，用来筛出成功导入载体的细胞；一个载体可以设计多个标记，但题目常考一个抗性基因。</span></div>
-          <div class="answer-row"><b>限制酶 + 连接酶</b><span>限制酶切出能配对的接口；连接酶不是白连，是把目的基因和载体拼成重组 DNA。</span></div>
-        </div>
-      </div>
-
-      <div class="rounds-board">
-        <div class="round-card">
-          <b>第 1 轮</b>
-          <div class="round-line long"></div>
-          <span>从一个引物出发，另一端还可能很长。</span>
-        </div>
-        <div class="round-card">
-          <b>第 2 轮</b>
-          <div class="round-line mid"></div>
-          <span>边界开始被另一个引物限制。</span>
-        </div>
-        <div class="round-card">
-          <b>第 3 轮后</b>
-          <div class="round-line short"></div>
-          <span>两端都被引物夹住，目标条带变清楚。</span>
-        </div>
-      </div>
-
-      <div class="purpose-grid">
-        <div class="purpose-card"><b>为什么做 PCR？</b><span>把极少 DNA 放大到能看见。</span></div>
-        <div class="purpose-card"><b>为什么跑胶？</b><span>看有没有目标大小的条带。</span></div>
-        <div class="purpose-card"><b>为什么多带？</b><span>引物黏错地方，也被扩增。</span></div>
+      <div class="question-rail">
+        <div class="question-chip"><b>基因工程不会？</b><span>先只抓 PCR、条带、载体。</span></div>
+        <div class="question-chip"><b>PCR 为什么多带？</b><span>多带通常是扩增错对象。</span></div>
+        <div class="question-chip"><b>第 1、2、3 轮要剪吗？</b><span>不剪，是边界逐轮清楚。</span></div>
+        <div class="question-chip"><b>切开又连上干嘛？</b><span>先造接口，再拼成重组 DNA。</span></div>
+        <div class="question-chip"><b>Taq 酶干什么？</b><span>从引物 3' 端延伸新链。</span></div>
+        <div class="question-chip"><b>循环少为什么不选？</b><span>它主要让条带变弱。</span></div>
+        <div class="question-chip"><b>标记基因标什么？</b><span>筛出带载体的细胞。</span></div>
+        <div class="question-chip"><b>颜色不同代表啥？</b><span>常是图示区分，不是机制改变。</span></div>
       </div>
     </section>
 
-    <section id="cycle">
-      <div class="section-head">
-        <h2>三步循环</h2>
-        <p>看 DNA、引物、Taq 分别在哪里。</p>
-      </div>
-
-      <div class="cycle-layout">
-        <div class="visual-panel">
-          <div class="stage-nav">
-            <button class="stage-btn active" data-stage="denature">变性</button>
-            <button class="stage-btn" data-stage="anneal">退火</button>
-            <button class="stage-btn" data-stage="extend">延伸</button>
-          </div>
-
-          <div class="dna-stage" id="dnaStage" data-stage="denature">
-            <div class="dna-badge" id="stageBadge">95°C · 打开</div>
-            <div class="strand top"></div>
-            <div class="strand bottom"></div>
-            <div class="bonds" aria-hidden="true">
-              <div class="bond"></div><div class="bond"></div><div class="bond"></div><div class="bond"></div><div class="bond"></div>
-              <div class="bond"></div><div class="bond"></div><div class="bond"></div><div class="bond"></div><div class="bond"></div>
-              <div class="bond"></div><div class="bond"></div><div class="bond"></div><div class="bond"></div><div class="bond"></div>
-            </div>
-            <div class="primer forward" title="Forward primer"></div>
-            <div class="primer reverse" title="Reverse primer"></div>
-            <div class="new-strand a"></div>
-            <div class="new-strand b"></div>
-            <div class="polymerase one">Taq</div>
-            <div class="polymerase two">Taq</div>
-            <div class="direction-note">
-              <span>Forward：向右延伸</span>
-              <span>Reverse：向左延伸</span>
-            </div>
-          </div>
+    <section class="diary-chapter" id="pcr-cycle">
+      <div class="chapter-text">
+        <p class="kicker">01 · PCR</p>
+        <h2>PCR 不是随便复制 DNA</h2>
+        <p>PCR 的关键是“引物夹住哪一段”。引物贴得准，就主要扩目标片段；贴错相似位置，就可能出现非特异性条带。</p>
+        <div class="exam-phrases">
+          <span>题目常见说法</span>
+          <b>“只扩增目的基因” = 引物必须准确结合在目的基因两端。</b>
+          <b>“Taq 酶” = 负责从引物 3' 端延伸新链。</b>
         </div>
-
-        <aside class="info-panel">
-          <h3 class="step-title" id="stepTitle">变性</h3>
-          <p class="step-copy" id="stepCopy">双链打开，露出模板。</p>
-          <div class="key-list">
-            <div class="key-chip"><i>1</i>引物定边界</div>
-            <div class="key-chip"><i>Ta</i>温度定特异性</div>
-            <div class="key-chip"><i>2x</i>循环放大信号</div>
-          </div>
-        </aside>
       </div>
+      <figure class="science-figure">
+        <img src="assets/images/openstax-pcr.webp" alt="PCR 变性、退火、延伸和多轮扩增图">
+        <figcaption>OpenStax 教材图：PCR 三步循环，以及多轮后目标片段累积。</figcaption>
+      </figure>
+    </section>
+
+    <section class="diary-chapter" id="pcr-rounds">
+      <div class="chapter-text">
+        <p class="kicker">02 · 第几轮</p>
+        <h2>没有剪，是边界被引物限定</h2>
+        <p>第 1 轮和第 2 轮会出现长度还不完全固定的产物。到第 3 轮后，两端都被引物位置限定，标准长度目标片段开始稳定累积。</p>
+        <div class="exam-phrases">
+          <span>题目常见说法</span>
+          <b>“第 3 轮开始出现固定长度片段” = 两端都被引物限定。</b>
+          <b>“剪短”不是 PCR 机制，正确说法是边界限定。</b>
+        </div>
+      </div>
+      <figure class="science-figure figure-fit-tall">
+        <img src="assets/images/wikimedia-pcr-rounds.png" alt="Wikimedia 的 PCR 前几轮产物增长示意图">
+        <figcaption>Wikimedia Commons 图：PCR 产物如何从长产物逐步累积为引物夹住的短目标片段。</figcaption>
+      </figure>
+    </section>
+
+    <section class="diary-chapter" id="gel-bands">
+      <div class="chapter-text">
+        <p class="kicker">03 · 条带</p>
+        <h2>非特异性条带就是额外 DNA</h2>
+        <p>电泳图里除了目标大小的条带，还出现额外条带，就说明反应中扩出了别的片段。最常见原因是引物特异性不够。</p>
+        <div class="exam-phrases">
+          <span>题目常见说法</span>
+          <b>“非特异性条带 / 杂带” = 引物可能贴错位置。</b>
+          <b>“循环少、模板少、Taq 弱” = 多影响产量，常表现为条带弱或无带。</b>
+        </div>
+      </div>
+      <figure class="science-figure figure-photo">
+        <img src="assets/images/openstax-gel-only.webp" alt="DNA 凝胶电泳条带照片">
+        <figcaption>OpenStax 教材图：DNA 片段按大小分离；条带的位置和数量是判断依据。</figcaption>
+      </figure>
+    </section>
+
+    <section class="diary-chapter" id="expression-vector">
+      <div class="chapter-text">
+        <p class="kicker">04 · 表达载体</p>
+        <h2>切开、装入、再筛选</h2>
+        <p>限制酶把载体和目的基因切出能配对的接口；DNA 连接酶把接口封住，形成重组 DNA。标记基因不是“标目的基因”，而是用来筛出带有载体的细胞。</p>
+        <div class="exam-phrases">
+          <span>题目常见说法</span>
+          <b>“限制酶切割，连接酶连接” = 先造接口，再封 DNA 骨架。</b>
+          <b>“标记基因” = 筛选成功导入载体或重组载体的细胞；载体上可以设计一个或多个筛选标记。</b>
+        </div>
+      </div>
+      <figure class="science-figure figure-fit-tall">
+        <img src="assets/images/openstax-cloning-vector.webp" alt="OpenStax 的分子克隆和质粒载体构建图">
+        <figcaption>OpenStax 教材图：目的 DNA 与质粒用同种限制酶切开，再连接并筛选成功导入的细胞。</figcaption>
+      </figure>
     </section>
 
     <section>
       <div class="section-head">
-        <h2>越循环越多</h2>
-        <p>理想情况接近翻倍。</p>
+        <h2>题目里这样说，实际在考什么？</h2>
+        <p>把术语翻译成答题判断。</p>
       </div>
-
-      <div class="full-panel amplification">
-        <div class="bars">
-          <div class="bar-row"><span>0</span><div class="bar-track"><div class="bar-fill" style="--w:3%"></div></div><span>1</span></div>
-          <div class="bar-row"><span>1</span><div class="bar-track"><div class="bar-fill" style="--w:6%"></div></div><span>2</span></div>
-          <div class="bar-row"><span>2</span><div class="bar-track"><div class="bar-fill" style="--w:12%"></div></div><span>4</span></div>
-          <div class="bar-row"><span>3</span><div class="bar-track"><div class="bar-fill" style="--w:25%"></div></div><span>8</span></div>
-          <div class="bar-row"><span>4</span><div class="bar-track"><div class="bar-fill" style="--w:50%"></div></div><span>16</span></div>
-          <div class="bar-row"><span>5</span><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div><span>32</span></div>
-        </div>
-        <div class="formula">
-          <div>
-            <strong>2ⁿ</strong>
-            <span>第 3 轮后目标片段明显累积</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-grid">
-        <div class="product-card">
-          <h3>第 1 轮</h3>
-          <div class="mini-dna"><div class="mini-line"></div><div class="mini-line mid"></div></div>
-        </div>
-        <div class="product-card">
-          <h3>第 2 轮</h3>
-          <div class="mini-dna"><div class="mini-line mid"></div><div class="mini-line short"></div></div>
-        </div>
-        <div class="product-card">
-          <h3>第 3 轮后</h3>
-          <div class="mini-dna"><div class="mini-line short"></div><div class="mini-line short"></div></div>
-        </div>
+      <div class="term-table">
+        <div class="term-row"><b>非特异性条带 / 杂带</b><span>引物可能贴错位置，扩增出目标外片段。</span></div>
+        <div class="term-row"><b>循环数少</b><span>扩增产物少，是量的问题，不是多带首因。</span></div>
+        <div class="term-row"><b>模板量少</b><span>目标条带弱或没有，不主要导致额外条带。</span></div>
+        <div class="term-row"><b>Taq 酶活性不足</b><span>延伸效率低，产物少，不是杂带首因。</span></div>
+        <div class="term-row"><b>第 1、2、3 轮</b><span>不发生剪切；只是产物两端逐轮被引物边界限定。</span></div>
+        <div class="term-row"><b>图中颜色不同</b><span>多是为了区分模板、引物、新链或目标区，不表示碱基规则变了。</span></div>
+        <div class="term-row"><b>标记基因</b><span>筛出成功导入载体或重组载体的细胞。</span></div>
+        <div class="term-row"><b>限制酶 + DNA 连接酶</b><span>先切出接口，再连接成重组 DNA。</span></div>
       </div>
     </section>
 
-    <section id="bands">
-      <div class="section-head">
-        <h2>条带判读</h2>
-        <p>先看大小，再看对照。</p>
-      </div>
-
-      <div class="gel-layout">
-        <div class="gel-panel">
-          <div class="gel-title">
-            <div>凝胶结果</div>
-            <span>小片段更靠下</span>
-          </div>
-          <div class="gel">
-            <div class="lane-labels">
-              <div>Marker</div>
-              <div>目标</div>
-              <div>非特异</div>
-              <div>NTC</div>
-            </div>
-            <div class="bp-scale">
-              <span>1000</span>
-              <span>700</span>
-              <span>500</span>
-              <span>300</span>
-              <span>100</span>
-            </div>
-            <div class="lane marker">
-              <div class="band weak" style="top: 34px"></div>
-              <div class="band weak" style="top: 106px"></div>
-              <div class="band weak" style="top: 178px"></div>
-              <div class="band weak" style="top: 250px"></div>
-              <div class="band weak" style="top: 322px"></div>
-            </div>
-            <div class="lane good">
-              <div class="band target" style="top: 184px"></div>
-            </div>
-            <div class="lane bad" id="badLane">
-              <div class="band problem extra-high" style="top: 96px"></div>
-              <div class="band target" style="top: 184px"></div>
-              <div class="band problem extra-low" style="top: 270px"></div>
-              <div class="band dimer primer-dimer" style="top: 330px"></div>
-            </div>
-            <div class="lane ntc">
-              <div class="band dimer ntc-dimer" style="top: 330px"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="control-panel">
-          <h3>退火温度</h3>
-          <div class="slider-wrap">
-            <div class="slider-meta">
-              <span>Ta</span>
-              <span id="annealValue">55°C</span>
-            </div>
-            <input id="annealSlider" type="range" min="45" max="70" value="55" aria-label="退火温度">
-          </div>
-          <div class="diagnosis">
-            <strong id="diagnosisTitle">偏低：容易乱黏</strong>
-          </div>
-
-          <div class="legend-grid">
-            <div class="read-card good"><b>目标带</b><span>大小正确，单一清晰</span></div>
-            <div class="read-card bad"><b>非特异性条带</b><span>目标外的额外带</span></div>
-            <div class="read-card dim"><b>引物二聚体</b><span>底部小亮带</span></div>
-            <div class="read-card ntc"><b>NTC</b><span>应无目标带</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="controls-row">
-        <div class="tool-card"><b>阳性对照</b><span>必须有目标带</span></div>
-        <div class="tool-card"><b>阴性对照</b><span>不应有目标带</span></div>
-        <div class="tool-card"><b>NTC</b><span>有带 = 污染 / 二聚体</span></div>
-      </div>
+    <section class="source-note">
+      <h2>图示来源</h2>
+      <p>本页使用现成开放教育图，不使用手搓粗线条图。图片已下载到本地，减少外站请求和重复流量。</p>
+      <p>PCR、凝胶电泳、分子克隆图来自 <a href="https://openstax.org/books/biology-2e/pages/17-1-biotechnology">OpenStax Biology 2e</a> / <a href="https://openstax.org/books/concepts-biology/pages/10-1-cloning-and-genetic-engineering">Concepts of Biology</a>，OpenStax 内容通常按 CC BY 4.0 授权发布。</p>
+      <p>PCR 轮次图来自 <a href="https://commons.wikimedia.org/wiki/Category:Polymerase_chain_reaction">Wikimedia Commons</a>：File:PCR.svg by Madprime，按 Wikimedia 页面列出的 CC BY-SA 3.0 / GFDL 条款使用。</p>
     </section>
 
-    <section>
-      <div class="section-head">
-        <h2>为什么会多带？</h2>
-        <p>从最常见的因素查。</p>
-      </div>
-
-      <div class="cause-grid">
-        <div class="cause"><b>Ta 低</b><span>错配也能黏</span></div>
-        <div class="cause"><b>引物差</b><span>匹配多个位置</span></div>
-        <div class="cause"><b>Mg²⁺高</b><span>反应太宽松</span></div>
-        <div class="cause"><b>模板多</b><span>背景更复杂</span></div>
-        <div class="cause"><b>循环多</b><span>弱错带被放大</span></div>
-        <div class="cause"><b>污染</b><span>NTC 也可能有带</span></div>
-      </div>
-
-      <div class="fix-flow">
-        <div class="fix-step"><i>1</i><b>升 Ta</b><span>先做梯度 PCR</span></div>
-        <div class="fix-step"><i>2</i><b>查引物</b><span>Tm / 二聚体 / 特异性</span></div>
-        <div class="fix-step"><i>3</i><b>降浓度</b><span>Mg²⁺、引物、模板</span></div>
-        <div class="fix-step"><i>4</i><b>少循环</b><span>够亮就停</span></div>
-        <div class="fix-step"><i>5</i><b>Hot-start</b><span>减少低温误扩增</span></div>
-      </div>
-    </section>
-
-    <div class="summary-band">
-      <h2>一句话记住</h2>
-      <div class="summary-grid">
-        <div>引物：决定边界</div>
-        <div>温度：决定特异性</div>
-        <div>条带：看大小和对照</div>
-        <div>载体：切开、装入、筛选</div>
-      </div>
-    </div>
-
-    <footer>5月9日 · 给欣容的 PCR 可视化学习页</footer>
+    <footer>欣容的学习日记 · 2026.05.09 · 基因工程与 PCR</footer>
   </main>
-
-  <script>
-    const stageInfo = {
-      denature: {
-        badge: "95°C · 打开",
-        title: "变性",
-        copy: "双链打开，露出模板。",
-        temp: "95°C"
-      },
-      anneal: {
-        badge: "50-65°C · 黏上",
-        title: "退火",
-        copy: "引物找到互补位置。",
-        temp: "55°C"
-      },
-      extend: {
-        badge: "72°C · 延伸",
-        title: "延伸",
-        copy: "Taq 从引物 3' 端复制。",
-        temp: "72°C"
-      }
-    };
-
-    const stageButtons = document.querySelectorAll(".stage-btn");
-    const dnaStage = document.getElementById("dnaStage");
-    const stageBadge = document.getElementById("stageBadge");
-    const stepTitle = document.getElementById("stepTitle");
-    const stepCopy = document.getElementById("stepCopy");
-    const heroTemp = document.getElementById("heroTemp");
-
-    function setStage(stage) {
-      const info = stageInfo[stage];
-      dnaStage.dataset.stage = stage;
-      stageBadge.textContent = info.badge;
-      stepTitle.textContent = info.title;
-      stepCopy.textContent = info.copy;
-      heroTemp.textContent = info.temp;
-      stageButtons.forEach((button) => {
-        button.classList.toggle("active", button.dataset.stage === stage);
-      });
-    }
-
-    stageButtons.forEach((button) => {
-      button.addEventListener("click", () => setStage(button.dataset.stage));
-    });
-
-    setStage("denature");
-
-    const annealSlider = document.getElementById("annealSlider");
-    const annealValue = document.getElementById("annealValue");
-    const diagnosisTitle = document.getElementById("diagnosisTitle");
-    const badLane = document.getElementById("badLane");
-
-    function setOpacity(selector, value) {
-      badLane.querySelector(selector).style.opacity = value;
-    }
-
-    function updateAnneal() {
-      const value = Number(annealSlider.value);
-      annealValue.textContent = `${value}°C`;
-
-      if (value < 55) {
-        diagnosisTitle.textContent = "偏低：容易乱黏";
-        setOpacity(".extra-high", "1");
-        setOpacity(".extra-low", "1");
-        setOpacity(".primer-dimer", "0.95");
-        setOpacity(".target", "1");
-      } else if (value <= 63) {
-        diagnosisTitle.textContent = "合适：目标带干净";
-        setOpacity(".extra-high", "0.16");
-        setOpacity(".extra-low", "0.16");
-        setOpacity(".primer-dimer", "0.24");
-        setOpacity(".target", "1");
-      } else {
-        diagnosisTitle.textContent = "偏高：目标带变弱";
-        setOpacity(".extra-high", "0.08");
-        setOpacity(".extra-low", "0.08");
-        setOpacity(".primer-dimer", "0.1");
-        setOpacity(".target", "0.35");
-      }
-    }
-
-    annealSlider.addEventListener("input", updateAnneal);
-    updateAnneal();
-  </script>
 </body>
 </html>
