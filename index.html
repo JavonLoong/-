@@ -1068,6 +1068,123 @@
       line-height: 1.45;
     }
 
+    .vector-board {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .vector-card,
+    .vector-answer {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .vector-card {
+      min-height: 300px;
+      padding: 18px;
+    }
+
+    .vector-visual {
+      position: relative;
+      min-height: 235px;
+      margin-top: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, #f8fbff, #ffffff),
+        repeating-linear-gradient(90deg, rgba(37, 99, 235, 0.07) 0 1px, transparent 1px 32px);
+      overflow: hidden;
+    }
+
+    .plasmid-ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 148px;
+      height: 148px;
+      border: 12px solid #93c5fd;
+      border-right-color: var(--green);
+      border-bottom-color: var(--orange);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.14);
+    }
+
+    .insert-gene {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: 38px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), #86efac);
+    }
+
+    .cut-site {
+      position: absolute;
+      left: 50%;
+      top: 79px;
+      width: 70px;
+      height: 24px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: var(--red);
+      transform: translateX(-50%);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .vector-label {
+      position: absolute;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      font-size: 12px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .vector-label.target { left: 11%; top: 58px; }
+    .vector-label.marker { right: 8%; bottom: 60px; color: #b45309; }
+    .vector-label.ligase { left: 8%; bottom: 60px; color: #0369a1; }
+
+    .vector-answer {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .answer-row {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-height: 72px;
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+
+    .answer-row b {
+      color: #0f172a;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .answer-row span {
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     .gene-card {
       padding: 18px;
     }
@@ -1258,7 +1375,7 @@
 
     .summary-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
 
@@ -1297,6 +1414,7 @@
       .controls-row,
       .question-board,
       .question-index,
+      .vector-board,
       .rounds-board,
       .purpose-grid,
       .cause-grid,
@@ -1440,6 +1558,29 @@
         <div class="ask-card"><i>10</i><b>Taq酶干什么？</b><span>从引物 3' 端延伸新链。</span></div>
         <div class="ask-card"><i>11</i><b>这么做有什么用？</b><span>把少量 DNA 放大到能检测。</span></div>
         <div class="ask-card"><i>12</i><b>第1、2、3轮要剪吗？</b><span>不剪；第3轮开始边界齐。</span></div>
+        <div class="ask-card"><i>13</i><b>非特异性条带是啥？</b><span>不是目标，是贴错位后扩出来的额外 DNA。</span></div>
+        <div class="ask-card"><i>14</i><b>标记基因标什么？</b><span>标记“带载体的细胞”，常见是抗性。</span></div>
+        <div class="ask-card"><i>15</i><b>切开又连上干嘛？</b><span>先造接口，再把目的基因装进载体。</span></div>
+      </div>
+
+      <div class="vector-board">
+        <div class="vector-card">
+          <span class="date-pill">表达载体怎么想？</span>
+          <div class="vector-visual" aria-label="基因表达载体示意图">
+            <div class="insert-gene"></div>
+            <div class="plasmid-ring"></div>
+            <div class="cut-site">切口</div>
+            <div class="vector-label target">目的基因</div>
+            <div class="vector-label marker">标记基因：筛选</div>
+            <div class="vector-label ligase">连接酶：封口</div>
+          </div>
+        </div>
+
+        <div class="vector-answer">
+          <div class="answer-row"><b>非特异性条带</b><span>电泳里多出来的额外带。它说明引物不只贴到目标位置，还贴到了相似位置。</span></div>
+          <div class="answer-row"><b>标记基因</b><span>在质粒/载体上，用来筛出成功导入载体的细胞；一个载体可以设计多个标记，但题目常考一个抗性基因。</span></div>
+          <div class="answer-row"><b>限制酶 + 连接酶</b><span>限制酶切出能配对的接口；连接酶不是白连，是把目的基因和载体拼成重组 DNA。</span></div>
+        </div>
       </div>
 
       <div class="rounds-board">
@@ -1661,6 +1802,7 @@
         <div>引物：决定边界</div>
         <div>温度：决定特异性</div>
         <div>条带：看大小和对照</div>
+        <div>载体：切开、装入、筛选</div>
       </div>
     </div>
 
