@@ -1022,6 +1022,52 @@
       font-weight: 430;
     }
 
+    .question-index {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .ask-card {
+      min-height: 132px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .ask-card i {
+      display: inline-grid;
+      place-items: center;
+      min-width: 30px;
+      height: 24px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      color: #075985;
+      background: #e0f2fe;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 620;
+    }
+
+    .ask-card b {
+      display: block;
+      margin-bottom: 8px;
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1.25;
+      font-weight: 560;
+    }
+
+    .ask-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     .gene-card {
       padding: 18px;
     }
@@ -1250,6 +1296,7 @@
       .legend-grid,
       .controls-row,
       .question-board,
+      .question-index,
       .rounds-board,
       .purpose-grid,
       .cause-grid,
@@ -1352,18 +1399,18 @@
       <div class="section-head">
         <div>
           <span class="date-pill">2026 · 05 · 09</span>
-          <h2 style="margin-top: 12px;">昨天的问题板</h2>
+          <h2 style="margin-top: 12px;">5月9日问题清单</h2>
         </div>
-        <p>按昨天卡住的点整理。</p>
+        <p>学习相关提问都放在这里。</p>
       </div>
 
       <div class="question-board">
         <div class="question-card">
-          <div class="question-row"><b>题目</b><span>多出非特异性条带，先看引物。</span></div>
-          <div class="question-row"><b>目的基因</b><span>真正要的是中间那一小段。</span></div>
-          <div class="question-row"><b>左右两边</b><span>是模板背景，不是最终目标。</span></div>
-          <div class="question-row"><b>Taq酶</b><span>负责延伸，不负责“剪短”。</span></div>
-          <div class="question-row"><b>第3轮</b><span>固定长度目标片段开始稳定出现。</span></div>
+          <div class="question-row"><b>能问吗</b><span>可以，问题先拆成图、词、选项。</span></div>
+          <div class="question-row"><b>这题</b><span>先看 PCR，再看电泳多了什么带。</span></div>
+          <div class="question-row"><b>核心</b><span>多出非特异性条带，先看引物。</span></div>
+          <div class="question-row"><b>用途</b><span>PCR 是把少量目标 DNA 放大。</span></div>
+          <div class="question-row"><b>轮次</b><span>不是剪，是边界逐轮被限定。</span></div>
         </div>
 
         <div class="gene-card">
@@ -1378,6 +1425,21 @@
             <div class="gene-label right">右侧背景</div>
           </div>
         </div>
+      </div>
+
+      <div class="question-index" aria-label="5月9日学习问题索引">
+        <div class="ask-card"><i>01</i><b>生物可以问吗？</b><span>可以，先把题干关键词圈出来。</span></div>
+        <div class="ask-card"><i>02</i><b>基因工程不会？</b><span>这题先只抓 PCR 和电泳。</span></div>
+        <div class="ask-card"><i>03</i><b>这题怎么讲？</b><span>先看目标带旁边多了什么。</span></div>
+        <div class="ask-card"><i>04</i><b>PCR只扩目标吗？</b><span>取决于引物贴得准不准。</span></div>
+        <div class="ask-card"><i>05</i><b>为什么选引物？</b><span>多带说明扩增错对象。</span></div>
+        <div class="ask-card"><i>06</i><b>循环少呢？</b><span>量少会变弱，不会多出带。</span></div>
+        <div class="ask-card"><i>07</i><b>模板少/Taq弱呢？</b><span>常见是弱带或无带。</span></div>
+        <div class="ask-card"><i>08</i><b>颜色不同算谁？</b><span>颜色变，序列可仍是目标。</span></div>
+        <div class="ask-card"><i>09</i><b>左右两边有用吗？</b><span>是背景，最终要中间片段。</span></div>
+        <div class="ask-card"><i>10</i><b>Taq酶干什么？</b><span>从引物 3' 端延伸新链。</span></div>
+        <div class="ask-card"><i>11</i><b>这么做有什么用？</b><span>把少量 DNA 放大到能检测。</span></div>
+        <div class="ask-card"><i>12</i><b>第1、2、3轮要剪吗？</b><span>不剪；第3轮开始边界齐。</span></div>
       </div>
 
       <div class="rounds-board">
