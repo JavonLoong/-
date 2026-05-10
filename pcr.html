@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PCR 全知识点与题库 · 欣容的学习日记</title>
+  <style>
+    :root {
+      --ink: #101828;
+      --muted: #667085;
+      --line: #d8e2ee;
+      --paper: #f8fbff;
+      --blue: #2563eb;
+      --cyan: #0891b2;
+      --green: #16a34a;
+      --orange: #f97316;
+      --red: #ef4444;
+      --shadow: 0 18px 46px rgba(15, 23, 42, 0.10);
+      --soft: 0 8px 22px rgba(15, 23, 42, 0.07);
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(8, 145, 178, 0.045) 1px, transparent 1px),
+        linear-gradient(135deg, #f7fbff 0%, #ffffff 48%, #f4fff8 100%);
+      background-size: 36px 36px, 36px 36px, auto;
+      font-family: "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.62;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0 10px;
+      backdrop-filter: blur(12px);
+    }
+
+    .brand,
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      color: #175cd3;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 620;
+    }
+
+    .back-link {
+      padding: 7px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #344054;
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .dots {
+      display: inline-flex;
+      gap: 5px;
+      margin-right: 10px;
+    }
+
+    .dots i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .dots i:nth-child(2) { background: var(--green); }
+    .dots i:nth-child(3) { background: var(--orange); }
+
+    .hero {
+      min-height: clamp(560px, 66vh, 760px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(420px, 1fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+      padding: 16px 0 34px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      color: #111827;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.07;
+      font-weight: 500;
+    }
+
+    .lead {
+      max-width: 610px;
+      margin: 22px 0 0;
+      color: #344054;
+      font-size: clamp(18px, 1.8vw, 23px);
+      font-weight: 420;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: #344054;
+      text-decoration: none;
+      font-weight: 620;
+      box-shadow: var(--soft);
+    }
+
+    .pill.primary {
+      color: #ffffff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    .figure-card,
+    .panel,
+    .source-note {
+      min-width: 0;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .figure-card img {
+      width: 100%;
+      aspect-ratio: 1.28;
+      object-fit: contain;
+      background: #ffffff;
+    }
+
+    figcaption {
+      margin: 0;
+      padding: 12px 16px 16px;
+      color: var(--muted);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    section {
+      margin: 54px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.48fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 3.1vw, 42px);
+      line-height: 1.1;
+      font-weight: 500;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 560;
+    }
+
+    .section-head p,
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .map-grid,
+    .question-grid,
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .map-card,
+    .quick-card {
+      min-height: 138px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--soft);
+    }
+
+    .map-card span,
+    .quick-card span,
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin: 0 0 10px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      color: #075985;
+      background: #e0f2fe;
+      font-size: 13px;
+      font-weight: 620;
+    }
+
+    .map-card b,
+    .quick-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 18px;
+      font-weight: 560;
+    }
+
+    .map-card p,
+    .quick-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: minmax(310px, 0.42fr) minmax(0, 0.58fr);
+      gap: 24px;
+      align-items: center;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .chapter > * { min-width: 0; }
+
+    .chapter-text {
+      display: grid;
+      gap: 14px;
+      align-content: center;
+    }
+
+    .fact-list {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid #dbeafe;
+      border-radius: var(--radius);
+      background: #eff6ff;
+    }
+
+    .fact-list b {
+      color: #1f2937;
+      font-size: 14px;
+      font-weight: 560;
+    }
+
+    .table {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid #dbeafe;
+      border-radius: var(--radius);
+      background: #dbeafe;
+      overflow: hidden;
+    }
+
+    .row {
+      display: grid;
+      gap: 6px;
+      min-height: 88px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .row b {
+      font-size: 15px;
+      font-weight: 620;
+    }
+
+    .row span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .diagnosis {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1px;
+      border: 1px solid #dbeafe;
+      border-radius: var(--radius);
+      background: #dbeafe;
+      overflow: hidden;
+    }
+
+    .diagnosis div {
+      padding: 13px;
+      background: #ffffff;
+      font-size: 14px;
+    }
+
+    .diagnosis .head {
+      color: #075985;
+      background: #eff6ff;
+      font-weight: 620;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--soft);
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 15px 16px;
+      font-weight: 560;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details p {
+      margin: 0;
+      padding: 0 16px 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .source-note {
+      padding: 22px;
+      color: #344054;
+      box-shadow: var(--soft);
+    }
+
+    .source-note h2 {
+      margin-bottom: 10px;
+      font-size: 26px;
+    }
+
+    .source-note p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .source-note a {
+      color: #175cd3;
+      text-underline-offset: 3px;
+    }
+
+    footer {
+      padding: 0 0 38px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .section-head,
+      .chapter {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { min-height: auto; }
+
+      .map-grid,
+      .question-grid,
+      .quick-grid,
+      .table {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page { width: min(100% - 24px, 1180px); }
+
+      h1 { font-size: clamp(40px, 12vw, 58px); }
+
+      .map-grid,
+      .question-grid,
+      .quick-grid,
+      .table {
+        grid-template-columns: 1fr;
+      }
+
+      .diagnosis {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .back-link {
+        display: none;
+      }
+
+      .chapter {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="topbar" aria-label="页面导航">
+      <a class="brand" href="index.html"><span class="dots"><i></i><i></i><i></i></span>欣容的学习日记</a>
+      <a class="back-link" href="index.html">回到 05.09</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <h1>PCR 全知识点<br>与题库</h1>
+        <p class="lead">从“引物为什么决定特异性”到“非特异性条带为什么出现”，一页把 PCR 的概念、判断和常见题目串起来。</p>
+        <div class="hero-actions">
+          <a class="pill primary" href="#questions">直接刷题</a>
+          <a class="pill" href="#bands">看条带判读</a>
+          <a class="pill" href="#rounds">看第几轮</a>
+        </div>
+      </div>
+      <figure class="figure-card">
+        <img src="assets/images/openstax-pcr.webp" alt="OpenStax 的 PCR 三步循环与多轮扩增教材图">
+        <figcaption>主图看三件事：高温打开、引物贴上、聚合酶从 3' 端延伸。</figcaption>
+      </figure>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <h2>先抓住 8 个核心</h2>
+        <p>考试题基本都在这 8 个位置换说法。</p>
+      </div>
+      <div class="map-grid">
+        <div class="map-card"><span>01</span><b>目的</b><p>把一段目标 DNA 在体外大量复制出来。</p></div>
+        <div class="map-card"><span>02</span><b>体系</b><p>模板、两条引物、dNTP、耐热 DNA 聚合酶、Mg2+、缓冲液。</p></div>
+        <div class="map-card"><span>03</span><b>三步</b><p>变性打开双链，退火贴引物，延伸合成新链。</p></div>
+        <div class="map-card"><span>04</span><b>引物</b><p>决定扩哪一段，也决定特异性。</p></div>
+        <div class="map-card"><span>05</span><b>Taq 酶</b><p>耐高温，从引物 3' 端按 5'→3' 合成。</p></div>
+        <div class="map-card"><span>06</span><b>第几轮</b><p>不剪 DNA；第 3 轮开始稳定出现固定长度产物。</p></div>
+        <div class="map-card"><span>07</span><b>条带</b><p>目标带看大小，杂带看特异性，弱带看产量。</p></div>
+        <div class="map-card"><span>08</span><b>对照</b><p>阴性对照查污染，阳性对照查体系是否能工作。</p></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="cycle">
+      <div class="chapter-text">
+        <p class="kicker">循环机制</p>
+        <h2>三步循环，不是随便复制</h2>
+        <p>PCR 每轮都在重复：打开模板、让引物贴到目标两端、让聚合酶延伸。引物贴在哪里，PCR 的边界就在哪里。</p>
+        <div class="fact-list">
+          <b>95°C 左右：变性，氢键断开，双链变单链。</b>
+          <b>50-65°C 常见：退火，引物与模板互补结合。</b>
+          <b>72°C 常见：延伸，Taq DNA 聚合酶合成新链。</b>
+        </div>
+      </div>
+      <figure class="figure-card">
+        <img src="assets/images/openstax-pcr.webp" alt="PCR 变性、退火、延伸和多轮扩增图">
+        <figcaption>图中红色区域是目标片段；绿色短段是引物。</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter" id="rounds">
+      <div class="chapter-text">
+        <p class="kicker">第 1、2、3 轮</p>
+        <h2>没有剪，是边界越来越准</h2>
+        <p>第 1 轮新链从一个引物出发，另一端可能延伸到模板尽头。第 2 轮部分产物开始继承另一端边界。第 3 轮后，两端都被引物夹住的固定长度片段开始稳定出现。</p>
+        <div class="fact-list">
+          <b>“剪短”不是 PCR 机制。</b>
+          <b>正确表述：产物边界由两条引物逐轮限定。</b>
+          <b>后面循环越多，标准长度目标片段越占主导。</b>
+        </div>
+      </div>
+      <figure class="figure-card">
+        <img src="assets/images/wikimedia-pcr-rounds.png" alt="PCR 前几轮产物边界变化示意图">
+        <figcaption>这张图专门解释：为什么第 3 轮开始能看到两端都固定的目标片段。</figcaption>
+      </figure>
+    </section>
+
+    <section id="bands">
+      <div class="section-head">
+        <h2>条带判读</h2>
+        <p>题目问“非特异性条带”，本质是在问：扩出来的是不是目标 DNA。</p>
+      </div>
+      <div class="chapter">
+        <div class="chapter-text">
+          <p class="kicker">电泳</p>
+          <h2>多带是“质”的问题，弱带是“量”的问题</h2>
+          <p>目标条带之外多出来的带，通常说明引物还贴到了别的位置。循环少、模板少、Taq 弱更常见的表现是目标条带弱，甚至没有带。</p>
+          <div class="diagnosis" aria-label="PCR 条带诊断表">
+            <div class="head">现象</div><div class="head">优先想到</div><div class="head">题目判断</div>
+            <div>多条额外带</div><div>引物特异性差、退火温度低、污染</div><div>选“非特异性扩增”方向</div>
+            <div>目标带很弱</div><div>模板少、循环少、酶弱、抑制物</div><div>是产量不足</div>
+            <div>底部很短小带</div><div>引物二聚体</div><div>不是目标片段</div>
+            <div>阴性对照有带</div><div>污染</div><div>体系被外源 DNA 污染</div>
+          </div>
+        </div>
+        <figure class="figure-card">
+          <img src="assets/images/openstax-gel-only.webp" alt="DNA 凝胶电泳条带照片">
+          <figcaption>Marker 用来判断片段大小；样品带的位置和数量用来判断结果。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>题目关键词速译</h2>
+        <p>看到关键词，先翻译成机制。</p>
+      </div>
+      <div class="table">
+        <div class="row"><b>只扩增目的基因</b><span>引物必须只在目的片段两端稳定结合。</span></div>
+        <div class="row"><b>非特异性条带 / 杂带</b><span>引物可能贴错位置，扩出目标外片段。</span></div>
+        <div class="row"><b>退火温度偏低</b><span>引物更容易乱贴，杂带风险升高。</span></div>
+        <div class="row"><b>退火温度偏高</b><span>引物不易结合，条带可能弱或无带。</span></div>
+        <div class="row"><b>循环数少</b><span>产物总量少，不是多带的首要解释。</span></div>
+        <div class="row"><b>模板量少</b><span>目标带弱或无带，不主要解释额外条带。</span></div>
+        <div class="row"><b>Taq 酶活性不足</b><span>延伸效率低，产物少。</span></div>
+        <div class="row"><b>5'→3' 合成</b><span>新链只能从引物 3' 端继续加核苷酸。</span></div>
+        <div class="row"><b>阴性对照出现条带</b><span>污染或假阳性。</span></div>
+        <div class="row"><b>Ct 值小</b><span>qPCR 中初始模板量更多。</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>她问过的 PCR 题</h2>
+        <p>把 5 月 9 日真正卡过的点直接变成可复习答案。</p>
+      </div>
+      <div class="quick-grid">
+        <div class="quick-card"><span>题 1</span><b>非特异性条带是啥？</b><p>目标带之外的额外带，说明扩出了不该扩的片段。</p></div>
+        <div class="quick-card"><span>题 2</span><b>循环少为什么不选？</b><p>循环少主要让产物少、条带弱；它不优先解释“多出杂带”。</p></div>
+        <div class="quick-card"><span>题 3</span><b>Taq 酶干什么？</b><p>耐高温 DNA 聚合酶，从引物 3' 端延伸新链。</p></div>
+        <div class="quick-card"><span>题 4</span><b>第 1、2、3 轮要剪吗？</b><p>不剪。第 3 轮开始出现两端都由引物限定的固定长度产物。</p></div>
+        <div class="quick-card"><span>题 5</span><b>图里颜色不同代表啥？</b><p>多是区分模板、引物、新链和目标区，不表示碱基配对规则改变。</p></div>
+        <div class="quick-card"><span>题 6</span><b>PCR 为啥能特异？</b><p>靠两条引物同时限定目标片段两端。</p></div>
+      </div>
+    </section>
+
+    <section id="questions">
+      <div class="section-head">
+        <h2>PCR 题库</h2>
+        <p>点开看答案。先自己想，再展开。</p>
+      </div>
+      <div class="question-grid">
+        <details><summary>1. PCR 的直接目的是什么？</summary><p>在体外大量扩增某一段目标 DNA，而不是复制整条染色体或整个基因组。</p></details>
+        <details><summary>2. PCR 三个基本温度步骤分别做什么？</summary><p>变性打开双链；退火让引物结合模板；延伸让 DNA 聚合酶合成新链。</p></details>
+        <details><summary>3. 为什么 PCR 不需要解旋酶？</summary><p>高温变性已经能让双链 DNA 分开，所以不需要像细胞内复制那样用解旋酶打开双链。</p></details>
+        <details><summary>4. 为什么必须有引物？</summary><p>DNA 聚合酶不能凭空起始，它需要引物提供可延伸的 3'-OH。</p></details>
+        <details><summary>5. 新链的合成方向是什么？</summary><p>新链只能沿 5'→3' 方向合成；聚合酶在引物 3' 端继续添加核苷酸。</p></details>
+        <details><summary>6. 正向引物和反向引物为什么要成对？</summary><p>它们分别贴在目标片段两侧，方向相向，才能把中间片段夹住并扩增出来。</p></details>
+        <details><summary>7. “第 3 轮开始出现固定长度片段”是什么意思？</summary><p>不是剪切。到第 3 轮后，部分产物的两端都由两条引物的位置限定，长度固定。</p></details>
+        <details><summary>8. 理想情况下扩增倍数怎么算？</summary><p>每轮理想翻倍，n 轮约为 2^n；真实实验后期会进入平台期，不能永远严格翻倍。</p></details>
+        <details><summary>9. 为什么后期会进入平台期？</summary><p>底物消耗、酶活下降、产物竞争、体系副产物和抑制因素都会让扩增效率下降。</p></details>
+        <details><summary>10. 出现非特异性条带，最优先怀疑什么？</summary><p>引物特异性不足、退火温度偏低、Mg2+ 条件不合适或污染；考试里常选“引物特异性差”。</p></details>
+        <details><summary>11. 循环数少、模板少、Taq 弱通常导致什么？</summary><p>主要导致产物少、目标条带弱或无带；不是“多出额外条带”的首要原因。</p></details>
+        <details><summary>12. 退火温度偏低会怎样？</summary><p>引物更容易和相似序列结合，非特异性扩增和杂带风险升高。</p></details>
+        <details><summary>13. 退火温度偏高会怎样？</summary><p>引物不容易结合模板，可能导致目标条带弱或无带。</p></details>
+        <details><summary>14. 引物二聚体是什么？</summary><p>引物之间互补并被延伸形成的小片段，跑胶时常出现在靠近底部的位置。</p></details>
+        <details><summary>15. Marker / Ladder 的作用是什么？</summary><p>提供已知大小的 DNA 片段作参照，用来判断样品条带大小。</p></details>
+        <details><summary>16. 阴性对照有条带说明什么？</summary><p>说明体系可能被外源 DNA 污染，结果可能是假阳性。</p></details>
+        <details><summary>17. 阳性对照没有条带说明什么？</summary><p>说明体系、程序或试剂可能有问题，不能轻易判定样品阴性。</p></details>
+        <details><summary>18. RT-PCR 和普通 PCR 的区别是什么？</summary><p>RT-PCR 先把 RNA 逆转录成 cDNA，再扩增；普通 PCR 直接扩增 DNA。</p></details>
+        <details><summary>19. qPCR 的 Ct 值怎么判断？</summary><p>Ct 越小，说明越早达到荧光阈值，通常代表初始模板量越多。</p></details>
+        <details><summary>20. 高保真聚合酶和 Taq 的差别是什么？</summary><p>高保真聚合酶错配率更低，适合克隆和测序；普通 Taq 更常用于一般扩增。</p></details>
+        <details><summary>21. PCR 产物为什么能接到载体上？</summary><p>可以在引物 5' 端设计限制酶位点或同源臂，让扩增产物适合后续克隆。</p></details>
+        <details><summary>22. Mg2+ 为什么会影响 PCR？</summary><p>DNA 聚合酶需要 Mg2+ 参与反应；浓度不合适会影响产量、特异性和错误率。</p></details>
+        <details><summary>23. Hot-start PCR 解决什么问题？</summary><p>减少低温配反应时的提前延伸和非特异性扩增。</p></details>
+        <details><summary>24. PCR 结果只有一条带就一定正确吗？</summary><p>不一定。还要看大小是否正确，必要时测序或进一步验证。</p></details>
+      </div>
+    </section>
+
+    <section class="source-note">
+      <h2>资料依据</h2>
+      <p>机制与温度循环参考 <a href="https://www.ncbi.nlm.nih.gov/books/NBK589663/">NCBI Bookshelf: Polymerase Chain Reaction</a> 与 <a href="https://openstax.org/books/biology-2e/pages/17-1-biotechnology">OpenStax Biology 2e</a>。</p>
+      <p>非特异性扩增、无带、弱带和退火温度判断参考 <a href="https://www.neb.com/en-gb/tools-and-resources/troubleshooting-guides/pcr-troubleshooting-guide">NEB PCR Troubleshooting Guide</a> 与 <a href="https://www.thermofisher.com/us/en/home/life-science/cloning/cloning-learning-center/invitrogen-school-of-molecular-biology/pcr-education/pcr-reagents-enzymes/pcr-troubleshooting.html">Thermo Fisher PCR Troubleshooting Guide</a>。</p>
+      <p>本页图片继续使用 OpenStax 与 Wikimedia 的现成开放教育图，不新增手绘科学图。</p>
+    </section>
+
+    <footer>欣容的学习日记 · PCR 全知识点与题库</footer>
+  </main>
+</body>
+</html>

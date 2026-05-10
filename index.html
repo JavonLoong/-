@@ -362,6 +362,42 @@
       text-underline-offset: 3px;
     }
 
+    .deep-link {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(239, 246, 255, 0.96), rgba(236, 253, 245, 0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .deep-link h2 {
+      margin-bottom: 8px;
+      font-size: clamp(26px, 3vw, 40px);
+    }
+
+    .deep-link p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .deep-link a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      text-decoration: none;
+      font-weight: 620;
+      white-space: nowrap;
+    }
+
     .source-note {
       padding: 22px;
       color: #344054;
@@ -428,6 +464,10 @@
 
       .diary-chapter {
         padding: 14px;
+      }
+
+      .deep-link {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -559,6 +599,14 @@
         <div class="term-row"><b>DNA 连接酶</b><span>在接口已配对后封住 DNA 骨架，形成稳定的重组 DNA。</span></div>
         <div class="term-row"><b>标记基因</b><span>筛出成功导入载体或重组载体的细胞，不是用来“标记目的基因序列”。</span></div>
       </div>
+    </section>
+
+    <section class="deep-link" aria-label="PCR 全知识点与题库入口">
+      <div>
+        <h2>PCR 全知识点与题库</h2>
+        <p>把三步循环、引物、Taq、产物轮次、条带判读、对照、RT-PCR、qPCR 和常见题目放到一页里。</p>
+      </div>
+      <a href="pcr.html">打开完整 PCR 页</a>
     </section>
 
     <section class="source-note">
