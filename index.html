@@ -266,6 +266,7 @@
     }
 
     .exam-phrases,
+    .enzyme-strip,
     .term-table,
     .source-note {
       border: 1px solid #dbeafe;
@@ -289,6 +290,44 @@
       color: #1f2937;
       font-size: 14px;
       font-weight: 560;
+    }
+
+    .enzyme-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      background: #dbeafe;
+    }
+
+    .enzyme-step {
+      display: grid;
+      gap: 6px;
+      padding: 13px;
+      background: #ffffff;
+    }
+
+    .enzyme-step span {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: #2563eb;
+      font-size: 13px;
+      font-weight: 620;
+    }
+
+    .enzyme-step b {
+      font-size: 15px;
+      font-weight: 620;
+    }
+
+    .enzyme-step em {
+      color: var(--muted);
+      font-size: 13px;
+      font-style: normal;
     }
 
     .term-table {
@@ -381,6 +420,10 @@
       .term-row {
         grid-template-columns: 1fr;
         gap: 6px;
+      }
+
+      .enzyme-strip {
+        grid-template-columns: 1fr;
       }
 
       .diary-chapter {
@@ -481,10 +524,16 @@
       <div class="chapter-text">
         <p class="kicker">04 · 表达载体</p>
         <h2>切开、装入、再筛选</h2>
-        <p>限制酶把载体和目的基因切出能配对的接口；DNA 连接酶把接口封住，形成重组 DNA。标记基因不是“标目的基因”，而是用来筛出带有载体的细胞。</p>
+        <p>限制酶负责“认位点、切 DNA”；DNA 连接酶负责“封接口”。所以不是切开又白连上，而是先做出能配对的接口，再把目的基因稳定接进载体。</p>
+        <div class="enzyme-strip" aria-label="限制酶和 DNA 连接酶的分工">
+          <div class="enzyme-step"><span>1</span><b>限制酶</b><em>识别特定序列，把载体和目的基因切出兼容末端。</em></div>
+          <div class="enzyme-step"><span>2</span><b>末端配对</b><em>相同或兼容切口能靠碱基互补先贴在一起。</em></div>
+          <div class="enzyme-step"><span>3</span><b>DNA 连接酶</b><em>封住糖-磷酸骨架，形成稳定的重组 DNA。</em></div>
+        </div>
         <div class="exam-phrases">
           <span>题目常见说法</span>
-          <b>“限制酶切割，连接酶连接” = 先造接口，再封 DNA 骨架。</b>
+          <b>“限制酶切割” = 认特定序列并制造兼容接口，不是随便剪。</b>
+          <b>“连接酶连接” = 在已配对的接口处封 DNA 骨架，不负责选择目的基因。</b>
           <b>“标记基因” = 筛选成功导入载体或重组载体的细胞；载体上可以设计一个或多个筛选标记。</b>
         </div>
       </div>
@@ -506,8 +555,9 @@
         <div class="term-row"><b>Taq 酶活性不足</b><span>延伸效率低，产物少，不是杂带首因。</span></div>
         <div class="term-row"><b>第 1、2、3 轮</b><span>不发生剪切；只是产物两端逐轮被引物边界限定。</span></div>
         <div class="term-row"><b>图中颜色不同</b><span>多是为了区分模板、引物、新链或目标区，不表示碱基规则变了。</span></div>
-        <div class="term-row"><b>标记基因</b><span>筛出成功导入载体或重组载体的细胞。</span></div>
-        <div class="term-row"><b>限制酶 + DNA 连接酶</b><span>先切出接口，再连接成重组 DNA。</span></div>
+        <div class="term-row"><b>限制酶</b><span>识别特定序列并切开 DNA，给载体和目的基因制造兼容接口。</span></div>
+        <div class="term-row"><b>DNA 连接酶</b><span>在接口已配对后封住 DNA 骨架，形成稳定的重组 DNA。</span></div>
+        <div class="term-row"><b>标记基因</b><span>筛出成功导入载体或重组载体的细胞，不是用来“标记目的基因序列”。</span></div>
       </div>
     </section>
 
