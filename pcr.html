@@ -208,10 +208,15 @@
     }
 
     .map-grid,
-    .question-grid,
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
@@ -289,6 +294,47 @@
       font-weight: 560;
     }
 
+    .lesson-box {
+      display: grid;
+      gap: 10px;
+      padding: 15px;
+      border: 1px solid #dbeafe;
+      border-radius: var(--radius);
+      background: #ffffff;
+    }
+
+    .lesson-box p {
+      margin: 0;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .step b {
+      color: #075985;
+      font-size: 14px;
+      font-weight: 620;
+    }
+
+    .step span {
+      color: #344054;
+      font-size: 14px;
+    }
+
     .table {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -361,6 +407,37 @@
       padding: 0 16px 16px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .answer {
+      display: grid;
+      gap: 10px;
+      padding: 0 16px 16px;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .answer p {
+      padding: 0;
+      color: #344054;
+    }
+
+    .answer ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #344054;
+    }
+
+    .answer li + li {
+      margin-top: 5px;
+    }
+
+    .answer .exam {
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: #175cd3;
+      background: #eff6ff;
+      font-weight: 560;
     }
 
     .source-note {
@@ -436,6 +513,10 @@
       .chapter {
         padding: 14px;
       }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -489,6 +570,10 @@
           <b>50-65°C 常见：退火，引物与模板互补结合。</b>
           <b>72°C 常见：延伸，Taq DNA 聚合酶合成新链。</b>
         </div>
+        <div class="lesson-box">
+          <p>PCR 可以理解成“用两条引物给 DNA 片段画边界”。模板 DNA 只是被读取的原件，引物决定从哪里开始复制，dNTP 是原料，Taq 酶负责把原料接到新链上。</p>
+          <p>考试问“为什么只扩增目的基因”时，答案不是“PCR 自己认识目的基因”，而是“两条引物分别与目的片段两端互补结合”。如果引物还能贴到相似序列，就会扩出目标外片段。</p>
+        </div>
       </div>
       <figure class="figure-card">
         <img src="assets/images/openstax-pcr.webp" alt="PCR 变性、退火、延伸和多轮扩增图">
@@ -505,6 +590,15 @@
           <b>“剪短”不是 PCR 机制。</b>
           <b>正确表述：产物边界由两条引物逐轮限定。</b>
           <b>后面循环越多，标准长度目标片段越占主导。</b>
+        </div>
+        <div class="lesson-box">
+          <p>这里最容易误会成“第一轮长，第二轮剪短，第三轮剪好”。PCR 里没有剪切酶参与，所以没有“剪”。长度变化来自复制边界的继承：新链从引物 3' 端开始，但第一次复制时另一头还可能没有被另一个引物限制住。</p>
+          <div class="step-list">
+            <div class="step"><b>第 1 轮</b><span>每条新链只有一个起点由引物决定，另一端可以延伸过目标区，所以不一定是固定长度。</span></div>
+            <div class="step"><b>第 2 轮</b><span>有些新链以第 1 轮产物为模板，开始获得另一个引物位置形成的边界，但固定长度片段数量还少。</span></div>
+            <div class="step"><b>第 3 轮</b><span>第一次稳定产生“两端都由引物限定”的目标片段。之后这些标准长度片段按循环快速累积。</span></div>
+          </div>
+          <p>答题句式：PCR 产物不是被剪短，而是两条引物分别限定目标片段两端；第 3 轮起出现固定长度目标片段，随后成为主要扩增产物。</p>
         </div>
       </div>
       <figure class="figure-card">
@@ -527,9 +621,13 @@
             <div class="head">现象</div><div class="head">优先想到</div><div class="head">题目判断</div>
             <div>多条额外带</div><div>引物特异性差、退火温度低、污染</div><div>选“非特异性扩增”方向</div>
             <div>目标带很弱</div><div>模板少、循环少、酶弱、抑制物</div><div>是产量不足</div>
-            <div>底部很短小带</div><div>引物二聚体</div><div>不是目标片段</div>
-            <div>阴性对照有带</div><div>污染</div><div>体系被外源 DNA 污染</div>
-          </div>
+          <div>底部很短小带</div><div>引物二聚体</div><div>不是目标片段</div>
+          <div>阴性对照有带</div><div>污染</div><div>体系被外源 DNA 污染</div>
+        </div>
+        <div class="lesson-box">
+          <p>跑胶不是直接告诉你“反应对不对”，而是把 DNA 片段按大小分开。目标带出现在预期大小位置，说明有目标长度产物；额外带说明还有其他长度的 DNA 也被扩出来。</p>
+          <p>所以看到“非特异性条带”，优先判断为引物特异性问题或条件让引物乱贴。循环数少、模板量少、Taq 酶活性不足更像“扩不够”，通常表现为条带弱或无带。</p>
+        </div>
         </div>
         <figure class="figure-card">
           <img src="assets/images/openstax-gel-only.webp" alt="DNA 凝胶电泳条带照片">
@@ -578,30 +676,30 @@
         <p>点开看答案。先自己想，再展开。</p>
       </div>
       <div class="question-grid">
-        <details><summary>1. PCR 的直接目的是什么？</summary><p>在体外大量扩增某一段目标 DNA，而不是复制整条染色体或整个基因组。</p></details>
-        <details><summary>2. PCR 三个基本温度步骤分别做什么？</summary><p>变性打开双链；退火让引物结合模板；延伸让 DNA 聚合酶合成新链。</p></details>
-        <details><summary>3. 为什么 PCR 不需要解旋酶？</summary><p>高温变性已经能让双链 DNA 分开，所以不需要像细胞内复制那样用解旋酶打开双链。</p></details>
-        <details><summary>4. 为什么必须有引物？</summary><p>DNA 聚合酶不能凭空起始，它需要引物提供可延伸的 3'-OH。</p></details>
-        <details><summary>5. 新链的合成方向是什么？</summary><p>新链只能沿 5'→3' 方向合成；聚合酶在引物 3' 端继续添加核苷酸。</p></details>
-        <details><summary>6. 正向引物和反向引物为什么要成对？</summary><p>它们分别贴在目标片段两侧，方向相向，才能把中间片段夹住并扩增出来。</p></details>
-        <details><summary>7. “第 3 轮开始出现固定长度片段”是什么意思？</summary><p>不是剪切。到第 3 轮后，部分产物的两端都由两条引物的位置限定，长度固定。</p></details>
-        <details><summary>8. 理想情况下扩增倍数怎么算？</summary><p>每轮理想翻倍，n 轮约为 2^n；真实实验后期会进入平台期，不能永远严格翻倍。</p></details>
-        <details><summary>9. 为什么后期会进入平台期？</summary><p>底物消耗、酶活下降、产物竞争、体系副产物和抑制因素都会让扩增效率下降。</p></details>
-        <details><summary>10. 出现非特异性条带，最优先怀疑什么？</summary><p>引物特异性不足、退火温度偏低、Mg2+ 条件不合适或污染；考试里常选“引物特异性差”。</p></details>
-        <details><summary>11. 循环数少、模板少、Taq 弱通常导致什么？</summary><p>主要导致产物少、目标条带弱或无带；不是“多出额外条带”的首要原因。</p></details>
-        <details><summary>12. 退火温度偏低会怎样？</summary><p>引物更容易和相似序列结合，非特异性扩增和杂带风险升高。</p></details>
-        <details><summary>13. 退火温度偏高会怎样？</summary><p>引物不容易结合模板，可能导致目标条带弱或无带。</p></details>
-        <details><summary>14. 引物二聚体是什么？</summary><p>引物之间互补并被延伸形成的小片段，跑胶时常出现在靠近底部的位置。</p></details>
-        <details><summary>15. Marker / Ladder 的作用是什么？</summary><p>提供已知大小的 DNA 片段作参照，用来判断样品条带大小。</p></details>
-        <details><summary>16. 阴性对照有条带说明什么？</summary><p>说明体系可能被外源 DNA 污染，结果可能是假阳性。</p></details>
-        <details><summary>17. 阳性对照没有条带说明什么？</summary><p>说明体系、程序或试剂可能有问题，不能轻易判定样品阴性。</p></details>
-        <details><summary>18. RT-PCR 和普通 PCR 的区别是什么？</summary><p>RT-PCR 先把 RNA 逆转录成 cDNA，再扩增；普通 PCR 直接扩增 DNA。</p></details>
-        <details><summary>19. qPCR 的 Ct 值怎么判断？</summary><p>Ct 越小，说明越早达到荧光阈值，通常代表初始模板量越多。</p></details>
-        <details><summary>20. 高保真聚合酶和 Taq 的差别是什么？</summary><p>高保真聚合酶错配率更低，适合克隆和测序；普通 Taq 更常用于一般扩增。</p></details>
-        <details><summary>21. PCR 产物为什么能接到载体上？</summary><p>可以在引物 5' 端设计限制酶位点或同源臂，让扩增产物适合后续克隆。</p></details>
-        <details><summary>22. Mg2+ 为什么会影响 PCR？</summary><p>DNA 聚合酶需要 Mg2+ 参与反应；浓度不合适会影响产量、特异性和错误率。</p></details>
-        <details><summary>23. Hot-start PCR 解决什么问题？</summary><p>减少低温配反应时的提前延伸和非特异性扩增。</p></details>
-        <details><summary>24. PCR 结果只有一条带就一定正确吗？</summary><p>不一定。还要看大小是否正确，必要时测序或进一步验证。</p></details>
+        <details><summary>1. PCR 的直接目的是什么？</summary><div class="answer"><p>PCR 的直接目的，是在试管里把一段指定 DNA 大量复制出来。它不是复制整条染色体，也不是让细胞分裂，而是利用引物把目标片段两端圈定，再让 DNA 聚合酶反复复制这段区域。</p><ul><li>模板 DNA：提供被复制的原始序列。</li><li>引物：决定扩增哪一段。</li><li>dNTP：合成新链的原料。</li><li>耐热 DNA 聚合酶：负责延伸新链。</li></ul><p class="exam">答题句式：PCR 是体外特异性扩增目标 DNA 片段的技术，特异性主要由引物决定。</p></div></details>
+        <details><summary>2. PCR 三个基本温度步骤分别做什么？</summary><div class="answer"><p>三步循环可以记成“打开、贴上、延伸”。第一步变性，高温破坏双链之间的氢键，让 DNA 双链分开。第二步退火，温度降低后，引物与模板上的互补序列结合。第三步延伸，温度调到聚合酶适合工作的范围，聚合酶从引物 3' 端开始合成新链。</p><ul><li>变性不是切断磷酸二酯键，只是打开氢键。</li><li>退火决定引物能不能准确贴到目标位置。</li><li>延伸决定能不能把新链合成出来。</li></ul><p class="exam">题目问“三步循环”，优先写：变性、退火、延伸；对应功能是打开双链、引物结合、合成新链。</p></div></details>
+        <details><summary>3. 为什么 PCR 不需要解旋酶？</summary><div class="answer"><p>细胞内复制 DNA 时需要解旋酶打开双链，因为细胞不能把整套复制体系反复加热到 95°C。PCR 是体外反应，可以直接用高温让双链 DNA 分开，所以不需要解旋酶。</p><p>这也是 PCR 必须使用耐热 DNA 聚合酶的原因：如果普通聚合酶在高温变性步骤中失活，后面的延伸就无法继续。</p><p class="exam">易错点：PCR 不需要解旋酶，不等于不需要打开双链；打开双链由高温变性完成。</p></div></details>
+        <details><summary>4. 为什么必须有引物？</summary><div class="answer"><p>DNA 聚合酶不能凭空从模板上开始合成新链，它只能在已有核酸链的 3'-OH 上继续添加核苷酸。引物就是给聚合酶提供这个起点。</p><p>更重要的是，引物还承担“定位”作用。两条引物分别贴在目标片段两侧，PCR 才知道要扩哪一段。没有引物，既没有起点，也没有边界。</p><p class="exam">答题句式：引物为 DNA 聚合酶提供 3'-OH，并通过与模板互补结合决定扩增片段的特异性。</p></div></details>
+        <details><summary>5. 新链的合成方向是什么？</summary><div class="answer"><p>新链只能沿 5'→3' 方向合成。也就是说，DNA 聚合酶把新的核苷酸不断接到引物或新链的 3' 端，而不是接到 5' 端。</p><p>题图里如果出现箭头，箭头通常表示新链延伸方向。判断正向引物和反向引物时，要看它们的 3' 端是否朝向目标片段内部。</p><p class="exam">易错点：读模板方向和合成新链方向不要混淆；新链合成永远是 5'→3'。</p></div></details>
+        <details><summary>6. 正向引物和反向引物为什么要成对？</summary><div class="answer"><p>一条引物只能规定一个起点。如果只有一条引物，复制会从一个方向开始，不能稳定限定目标片段两端。两条引物分别贴在双链 DNA 的两条模板链上，并且 3' 端相向，才能把中间片段夹住。</p><p>这就是 PCR 特异性的核心：不是聚合酶自己认识目的基因，而是两条引物共同把目标区域圈出来。</p><p class="exam">答题句式：正反向引物分别结合目标片段两侧，延伸方向相向，从而限定扩增片段。</p></div></details>
+        <details><summary>7. “第 3 轮开始出现固定长度片段”是什么意思？</summary><div class="answer"><p>这道题最容易被误解成“前两轮在剪 DNA”。PCR 没有剪切步骤。第 1 轮时，新链从一个引物开始，另一端可能延伸到模板尽头，因此长度不完全固定。第 2 轮开始出现被另一端引物边界影响的产物。到第 3 轮，才稳定产生两端都由引物限定的目标长度片段。</p><ul><li>第 1 轮：只有一端由引物限定。</li><li>第 2 轮：部分产物开始获得另一端边界。</li><li>第 3 轮：出现两端都被引物限定的固定长度产物。</li></ul><p class="exam">答题句式：不是剪短，而是复制产物的两端逐轮被两条引物的位置限定。</p></div></details>
+        <details><summary>8. 理想情况下扩增倍数怎么算？</summary><div class="answer"><p>如果每一轮扩增效率都是 100%，每轮产物数量翻倍，n 轮后理论上约为 2^n。比如 10 轮约 2^10，也就是约 1024 倍。</p><p>但真实实验不会永远严格翻倍。随着循环增加，dNTP 和引物被消耗，酶活可能下降，产物之间也会竞争，扩增会进入平台期。</p><p class="exam">考试区分：前期可用 2^n 理想估算；真实实验后期不再严格指数扩增。</p></div></details>
+        <details><summary>9. 为什么后期会进入平台期？</summary><div class="answer"><p>平台期的意思是产物增加速度明显变慢，不再按理想倍数增长。原因不是“模板突然没有了”，而是整个反应体系的条件变差了。</p><ul><li>引物和 dNTP 被消耗，原料不足。</li><li>聚合酶经历多轮高温后活性下降。</li><li>产物越来越多，会与引物或模板竞争结合。</li><li>副产物和离子条件变化会影响扩增效率。</li></ul><p class="exam">易错点：理想倍增只适合解释 PCR 早期；后期进入平台期是正常现象。</p></div></details>
+        <details><summary>10. 出现非特异性条带，最优先怀疑什么？</summary><div class="answer"><p>非特异性条带就是目标条带之外的额外条带，说明反应中扩增出了不该扩的 DNA 片段。最优先怀疑的是引物特异性不足，或者退火温度偏低导致引物贴到了相似序列。</p><p>如果题目选项里有“循环数少、模板量少、Taq 酶活性不足”，这些更常导致产物少、条带弱或无带，不是多出额外条带的首要解释。</p><p class="exam">答题句式：出现非特异性条带，说明发生非特异性扩增，常由引物特异性差或退火条件不合适导致。</p></div></details>
+        <details><summary>11. 循环数少、模板少、Taq 弱通常导致什么？</summary><div class="answer"><p>这三个因素共同点是影响“扩增产量”。循环数少意味着复制次数少；模板量少意味着起始拷贝少；Taq 酶活性不足意味着延伸效率低。它们都会让目标产物少。</p><p>所以它们常见表现是目标条带弱、荧光信号低、甚至没有条带。它们不优先解释“出现多条额外条带”，因为多带属于扩增对象不够专一，是“质”的问题。</p><p class="exam">判断口诀：多带看特异性，弱带看产量。</p></div></details>
+        <details><summary>12. 退火温度偏低会怎样？</summary><div class="answer"><p>退火温度偏低时，引物和模板之间即使有少量不完全匹配，也可能结合上。这样引物就可能贴到与目标序列相似但不完全正确的位置，造成非特异性扩增。</p><p>在实际优化中，升高退火温度常用于提高特异性。但温度不能无限升高，否则引物连正确位置也贴不住。</p><p class="exam">题目判断：退火温度低 → 引物乱贴概率上升 → 杂带或非特异性条带增加。</p></div></details>
+        <details><summary>13. 退火温度偏高会怎样？</summary><div class="answer"><p>退火温度偏高时，引物与模板的结合变得困难。即使目标位置是互补的，引物也可能贴不上或贴得不稳定，后续延伸就少。</p><p>所以退火温度过高通常表现为扩增效率下降，目标条带弱，甚至无带。它不常作为“多出杂带”的首要原因。</p><p class="exam">对比记忆：退火温度低容易多带；退火温度高容易弱带或无带。</p></div></details>
+        <details><summary>14. 引物二聚体是什么？</summary><div class="answer"><p>引物二聚体是引物之间互相配对并被聚合酶延伸形成的小片段。它不来自目标模板，而是引物自己之间发生了错误配对。</p><p>跑胶时，引物二聚体通常很短，常出现在靠近胶底部的位置。它会消耗引物和 dNTP，影响真正目标片段的扩增。</p><p class="exam">题目看到“底部小条带”，可以优先想到引物二聚体，而不是目标片段。</p></div></details>
+        <details><summary>15. Marker / Ladder 的作用是什么？</summary><div class="answer"><p>Marker 又叫 DNA ladder，是一组已知长度的 DNA 片段。跑胶时它像尺子一样放在一条泳道里，用来判断样品条带大概有多长。</p><p>判断 PCR 成败时，不能只看有没有条带，还要看条带是否出现在预期大小附近。如果大小不对，即使只有一条带，也可能不是目标产物。</p><p class="exam">答题句式：Marker 用作分子量或片段大小参照，帮助判断 PCR 产物长度是否符合预期。</p></div></details>
+        <details><summary>16. 阴性对照有条带说明什么？</summary><div class="answer"><p>阴性对照通常是不加模板 DNA 的反应。理论上没有模板就不应扩增出目标条带。如果阴性对照也出现条带，说明体系里可能混入了外源 DNA，或者操作过程有污染。</p><p>这时样品中的阳性结果就不可靠，因为你无法判断条带来自样品模板，还是来自污染。</p><p class="exam">题目判断：阴性对照有带 → 污染 / 假阳性风险。</p></div></details>
+        <details><summary>17. 阳性对照没有条带说明什么？</summary><div class="answer"><p>阳性对照是已知应该扩增成功的模板。如果阳性对照没有条带，说明 PCR 体系或程序可能出错，比如聚合酶失活、引物问题、温度程序错误、反应液漏加成分等。</p><p>此时不能直接说样品是阴性。因为连应该成功的阳性对照都失败了，说明实验体系本身不可信。</p><p class="exam">题目判断：阳性对照无带 → 体系失败 / 假阴性风险。</p></div></details>
+        <details><summary>18. RT-PCR 和普通 PCR 的区别是什么？</summary><div class="answer"><p>普通 PCR 的模板是 DNA。RT-PCR 的模板起点是 RNA，需要先用逆转录酶把 RNA 反转录成 cDNA，再用 PCR 扩增 cDNA。</p><p>所以 RT-PCR 常用于检测基因表达或 RNA 病毒等 RNA 信息。这里的 RT 是 reverse transcription，不是实时定量的意思。</p><p class="exam">易错点：RT-PCR = 逆转录 PCR；qPCR = 定量 PCR；RT-qPCR 才是逆转录后再定量。</p></div></details>
+        <details><summary>19. qPCR 的 Ct 值怎么判断？</summary><div class="answer"><p>qPCR 会在扩增过程中实时检测荧光信号。Ct 值是荧光信号达到设定阈值时所经历的循环数。初始模板越多，越早达到阈值，Ct 值越小。</p><p>所以 Ct 小通常代表起始模板量多；Ct 大代表起始模板量少或扩增效率低。比较样品时还要看内参和重复。</p><p class="exam">答题句式：Ct 值与初始模板量通常呈反向关系，Ct 越小，初始模板越多。</p></div></details>
+        <details><summary>20. 高保真聚合酶和 Taq 的差别是什么？</summary><div class="answer"><p>普通 Taq DNA 聚合酶耐高温、使用方便，但校对能力弱，错误率相对较高。高保真聚合酶通常具有更强的校对能力，扩增错误率更低。</p><p>如果 PCR 产物只是用来检测有没有目标片段，普通 Taq 往往够用；如果要克隆、测序或表达蛋白，就更需要高保真聚合酶降低突变风险。</p><p class="exam">题目判断：要求序列准确、后续克隆或表达 → 优先高保真酶。</p></div></details>
+        <details><summary>21. PCR 产物为什么能接到载体上？</summary><div class="answer"><p>PCR 本身只是扩增 DNA。要把 PCR 产物接到载体上，需要在设计时让产物带有可克隆的接口，例如在引物 5' 端加入限制酶位点，或设计与载体相同的同源臂。</p><p>限制酶位点的设计不一定改变引物与模板结合的核心区域，因为引物 3' 端负责稳定结合和延伸，5' 端可以携带额外序列，扩增后这些额外序列会进入 PCR 产物。</p><p class="exam">答题句式：可在引物 5' 端加入限制酶位点，使 PCR 产物获得与载体连接所需的接口。</p></div></details>
+        <details><summary>22. Mg2+ 为什么会影响 PCR？</summary><div class="answer"><p>Mg2+ 是 DNA 聚合酶工作所需的重要离子，也会影响引物与模板结合的稳定性。Mg2+ 太少，聚合酶活性不足，产物少；Mg2+ 太多，错配结合更容易稳定，可能增加非特异性扩增。</p><p>因此 Mg2+ 既影响产量，也影响特异性。题目如果问优化 PCR 条件，Mg2+ 浓度常常是需要调整的因素之一。</p><p class="exam">记忆：Mg2+ 不合适会影响 PCR 效率、特异性和保真度。</p></div></details>
+        <details><summary>23. Hot-start PCR 解决什么问题？</summary><div class="answer"><p>普通 PCR 在配反应体系或升温前，反应液可能处在较低温度。这个阶段引物容易非特异性结合，聚合酶如果已经有活性，就可能提前延伸，产生杂带或引物二聚体。</p><p>Hot-start PCR 让聚合酶在高温激活前保持不工作，等真正进入 PCR 程序后再开始延伸，从而减少低温阶段的错误扩增。</p><p class="exam">题目判断：Hot-start 主要提高 PCR 特异性，减少非特异性扩增和引物二聚体。</p></div></details>
+        <details><summary>24. PCR 结果只有一条带就一定正确吗？</summary><div class="answer"><p>不一定。只有一条带只能说明产物比较单一，不能自动证明它就是目标片段。还要看条带大小是否与预期一致，必要时需要测序、酶切验证或与阳性对照比较。</p><p>反过来，如果条带大小正确但阴性对照也有带，也不能认为结果可靠，因为存在污染可能。</p><p class="exam">答题句式：PCR 结果判断要同时看条带数量、条带大小和对照结果。</p></div></details>
       </div>
     </section>
 
