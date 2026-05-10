@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PCR扩增可视化讲义</title>
+  <title>5月9日 · 欣容的 PCR 可视化学习页</title>
   <style>
     :root {
       --ink: #111827;
@@ -952,6 +952,182 @@
       font-weight: 800;
     }
 
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 34px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #075985;
+      background: #e0f2fe;
+      font-weight: 950;
+    }
+
+    .question-board {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 18px;
+    }
+
+    .question-card,
+    .gene-card,
+    .round-card,
+    .purpose-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .question-card {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .question-row {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-height: 56px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .question-row b {
+      color: #0f172a;
+      font-size: 15px;
+    }
+
+    .question-row span {
+      color: #475569;
+      font-weight: 850;
+    }
+
+    .gene-card {
+      padding: 18px;
+    }
+
+    .gene-window {
+      position: relative;
+      height: 180px;
+      margin-top: 14px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, #f8fbff, #ffffff),
+        repeating-linear-gradient(90deg, rgba(37, 99, 235, 0.08) 0 1px, transparent 1px 34px);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+
+    .gene-line {
+      position: absolute;
+      left: 9%;
+      right: 9%;
+      top: 86px;
+      height: 10px;
+      border-radius: 999px;
+      background: #cbd5e1;
+    }
+
+    .gene-target {
+      position: absolute;
+      left: 38%;
+      width: 24%;
+      top: 76px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), #86efac);
+      box-shadow: 0 0 24px rgba(34, 197, 94, 0.35);
+    }
+
+    .primer-mark {
+      position: absolute;
+      top: 65px;
+      width: 10%;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--orange);
+    }
+
+    .primer-mark.left { left: 29%; }
+    .primer-mark.right { right: 29%; background: var(--blue); }
+
+    .gene-label {
+      position: absolute;
+      top: 118px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .gene-label.left { left: 12%; }
+    .gene-label.mid { left: 41%; color: #15803d; }
+    .gene-label.right { right: 12%; }
+
+    .rounds-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .round-card {
+      min-height: 138px;
+      padding: 14px;
+    }
+
+    .round-card b {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .round-card span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .round-line {
+      height: 8px;
+      margin: 10px 0;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    .round-line.long { width: 100%; }
+    .round-line.mid { width: 78%; background: var(--cyan); }
+    .round-line.short { width: 52%; background: var(--green); }
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .purpose-card {
+      min-height: 100px;
+      padding: 14px;
+    }
+
+    .purpose-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    .purpose-card span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
     .cause-grid,
     .fix-flow {
       display: grid;
@@ -1059,6 +1235,9 @@
       .product-grid,
       .legend-grid,
       .controls-row,
+      .question-board,
+      .rounds-board,
+      .purpose-grid,
       .cause-grid,
       .fix-flow,
       .summary-grid {
@@ -1102,11 +1281,12 @@
   <main class="page">
     <header>
       <div>
-        <p class="eyebrow"><span class="dot-row"><i></i><i></i><i></i></span>PCR 可视化</p>
-        <h1>PCR 扩增</h1>
-        <p class="lead">三步循环，把目标 DNA 放大。</p>
+        <p class="eyebrow"><span class="dot-row"><i></i><i></i><i></i></span>5月9日 · 欣容的学习页</p>
+        <h1>基因工程<br>PCR</h1>
+        <p class="lead">把昨天卡住的点，一次讲清楚。</p>
         <div class="hero-actions">
-          <a class="primary-link" href="#cycle">三步循环</a>
+          <a class="primary-link" href="#may9">昨日问题</a>
+          <a class="secondary-link" href="#cycle">三步循环</a>
           <a class="secondary-link" href="#bands">条带判读</a>
         </div>
       </div>
@@ -1153,6 +1333,63 @@
       <div class="map-card"><b>50-65°C</b><strong>退火</strong></div>
       <div class="map-card"><b>72°C</b><strong>延伸</strong></div>
     </div>
+
+    <section id="may9">
+      <div class="section-head">
+        <div>
+          <span class="date-pill">2026 · 05 · 09</span>
+          <h2 style="margin-top: 12px;">昨天的问题板</h2>
+        </div>
+        <p>按昨天卡住的点整理。</p>
+      </div>
+
+      <div class="question-board">
+        <div class="question-card">
+          <div class="question-row"><b>题目</b><span>多出非特异性条带，先看引物。</span></div>
+          <div class="question-row"><b>目的基因</b><span>真正要的是中间那一小段。</span></div>
+          <div class="question-row"><b>左右两边</b><span>是模板背景，不是最终目标。</span></div>
+          <div class="question-row"><b>Taq酶</b><span>负责延伸，不负责“剪短”。</span></div>
+          <div class="question-row"><b>第3轮</b><span>固定长度目标片段开始稳定出现。</span></div>
+        </div>
+
+        <div class="gene-card">
+          <span class="date-pill">目的基因在哪里？</span>
+          <div class="gene-window" aria-label="目的基因示意图">
+            <div class="gene-line"></div>
+            <div class="primer-mark left"></div>
+            <div class="primer-mark right"></div>
+            <div class="gene-target"></div>
+            <div class="gene-label left">左侧背景</div>
+            <div class="gene-label mid">目的基因</div>
+            <div class="gene-label right">右侧背景</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounds-board">
+        <div class="round-card">
+          <b>第 1 轮</b>
+          <div class="round-line long"></div>
+          <span>从一个引物出发，另一端还可能很长。</span>
+        </div>
+        <div class="round-card">
+          <b>第 2 轮</b>
+          <div class="round-line mid"></div>
+          <span>边界开始被另一个引物限制。</span>
+        </div>
+        <div class="round-card">
+          <b>第 3 轮后</b>
+          <div class="round-line short"></div>
+          <span>两端都被引物夹住，目标条带变清楚。</span>
+        </div>
+      </div>
+
+      <div class="purpose-grid">
+        <div class="purpose-card"><b>为什么做 PCR？</b><span>把极少 DNA 放大到能看见。</span></div>
+        <div class="purpose-card"><b>为什么跑胶？</b><span>看有没有目标大小的条带。</span></div>
+        <div class="purpose-card"><b>为什么多带？</b><span>引物黏错地方，也被扩增。</span></div>
+      </div>
+    </section>
 
     <section id="cycle">
       <div class="section-head">
@@ -1304,7 +1541,7 @@
 
           <div class="legend-grid">
             <div class="read-card good"><b>目标带</b><span>大小正确，单一清晰</span></div>
-            <div class="read-card bad"><b>非特异带</b><span>目标外的额外带</span></div>
+            <div class="read-card bad"><b>非特异性条带</b><span>目标外的额外带</span></div>
             <div class="read-card dim"><b>引物二聚体</b><span>底部小亮带</span></div>
             <div class="read-card ntc"><b>NTC</b><span>应无目标带</span></div>
           </div>
@@ -1351,7 +1588,7 @@
       </div>
     </div>
 
-    <footer>PCR 扩增 · 可视化学习页</footer>
+    <footer>5月9日 · 给欣容的 PCR 可视化学习页</footer>
   </main>
 
   <script>
