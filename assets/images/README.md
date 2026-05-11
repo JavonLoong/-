@@ -28,6 +28,10 @@ The learning diary uses existing educational images from open resources instead 
   - License: CC BY-SA 3.0 / GFDL as listed on Wikimedia Commons.
   - Use: PCR cycle progression and accumulation of primer-flanked product.
 
+- `2026-05-10-gut-osmotic-sensor.jpg`
+  - Source: user-provided study photo from the May 10 learning question.
+  - Use: reference image for the gut osmotic pressure biosensor explanation page.
+
 ## Page Policy
 
 Images are downloaded locally to reduce repeated external requests and keep page loading stable. Captions and source notes are shown in the page footer.
