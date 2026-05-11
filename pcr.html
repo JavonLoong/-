@@ -167,6 +167,48 @@
       background: #ffffff;
     }
 
+    .figure-card.lab-photo img {
+      aspect-ratio: 1.05;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .visual-card {
+      min-width: 0;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--soft);
+      overflow: hidden;
+    }
+
+    .visual-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background: #ffffff;
+    }
+
+    .visual-card.lab img,
+    .visual-card.gel img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .visual-card figcaption b {
+      display: block;
+      margin-bottom: 4px;
+      color: #1f2937;
+      font-weight: 620;
+    }
+
     figcaption {
       margin: 0;
       padding: 12px 16px 16px;
@@ -479,6 +521,7 @@
       .hero { min-height: auto; }
 
       .map-grid,
+      .visual-grid,
       .question-grid,
       .quick-grid,
       .table {
@@ -492,6 +535,7 @@
       h1 { font-size: clamp(40px, 12vw, 58px); }
 
       .map-grid,
+      .visual-grid,
       .question-grid,
       .quick-grid,
       .table {
@@ -537,9 +581,9 @@
           <a class="pill" href="#rounds">看第几轮</a>
         </div>
       </div>
-      <figure class="figure-card">
-        <img src="assets/images/openstax-pcr.webp" alt="OpenStax 的 PCR 三步循环与多轮扩增教材图">
-        <figcaption>主图看三件事：高温打开、引物贴上、聚合酶从 3' 端延伸。</figcaption>
+      <figure class="figure-card lab-photo">
+        <img src="assets/images/wikimedia-pcr-machine.jpg" alt="PCR 热循环仪实物照片">
+        <figcaption>真正执行 PCR 温度循环的是热循环仪：样品管反复经历变性、退火、延伸。</figcaption>
       </figure>
     </header>
 
@@ -557,6 +601,27 @@
         <div class="map-card"><span>06</span><b>第几轮</b><p>不剪 DNA；第 3 轮开始稳定出现固定长度产物。</p></div>
         <div class="map-card"><span>07</span><b>条带</b><p>目标带看大小，杂带看特异性，弱带看产量。</p></div>
         <div class="map-card"><span>08</span><b>对照</b><p>阴性对照查污染，阳性对照查体系是否能工作。</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>先用三张图建立直觉</h2>
+        <p>仪器负责温度循环，教材图负责机制，胶图负责结果判读。</p>
+      </div>
+      <div class="visual-grid">
+        <figure class="visual-card lab">
+          <img src="assets/images/wikimedia-pcr-machine.jpg" alt="PCR 热循环仪">
+          <figcaption><b>热循环仪</b>它不“识别基因”，只精确改变温度；真正决定扩增边界的是引物。</figcaption>
+        </figure>
+        <figure class="visual-card">
+          <img src="assets/images/openstax-pcr.webp" alt="OpenStax PCR 教材图">
+          <figcaption><b>三步循环</b>变性打开双链，退火让引物贴上，延伸从引物 3' 端合成新链。</figcaption>
+        </figure>
+        <figure class="visual-card gel">
+          <img src="assets/images/wikimedia-unspecific-pcr.jpg" alt="非特异性 PCR 条带照片">
+          <figcaption><b>条带结果</b>预期大小之外的额外带，就是题目常说的非特异性条带或杂带。</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -579,6 +644,25 @@
         <img src="assets/images/openstax-pcr.webp" alt="PCR 变性、退火、延伸和多轮扩增图">
         <figcaption>图中红色区域是目标片段；绿色短段是引物。</figcaption>
       </figure>
+    </section>
+
+    <section class="chapter" id="system">
+      <div class="chapter-text">
+        <p class="kicker">反应体系</p>
+        <h2>每个成分都有固定角色</h2>
+        <p>PCR 题不只考“三步”，还常考缺少某个成分会发生什么。最稳的理解方式是把体系拆成：模板、定位、原料、催化、环境。</p>
+        <div class="step-list">
+          <div class="step"><b>模板 DNA</b><span>提供被复制的序列；模板太少时，目标带常变弱。</span></div>
+          <div class="step"><b>两条引物</b><span>提供 3'-OH 起点，并把目标片段两端圈住；引物设计差会出杂带。</span></div>
+          <div class="step"><b>dNTP</b><span>dATP、dTTP、dGTP、dCTP 是合成新链的四种原料。</span></div>
+          <div class="step"><b>Taq 酶</b><span>耐高温 DNA 聚合酶，在延伸阶段把核苷酸接到 3' 端。</span></div>
+          <div class="step"><b>Mg2+ / 缓冲液</b><span>维持聚合酶活性和离子环境，影响产量、特异性和保真度。</span></div>
+        </div>
+      </div>
+      <div class="lesson-box">
+        <p>卷面上不要只写“加酶、加原料”。更高分的写法是：模板决定可复制信息，引物决定扩增对象，dNTP 提供原料，耐热 DNA 聚合酶催化新链合成，Mg2+ 和缓冲液保证酶活与退火环境。</p>
+        <p>如果题目说“换成普通 DNA 聚合酶”，重点答：普通酶会在高温变性步骤失活，所以 PCR 需要耐热 DNA 聚合酶。</p>
+      </div>
     </section>
 
     <section class="chapter" id="rounds">
@@ -627,12 +711,28 @@
         <div class="lesson-box">
           <p>跑胶不是直接告诉你“反应对不对”，而是把 DNA 片段按大小分开。目标带出现在预期大小位置，说明有目标长度产物；额外带说明还有其他长度的 DNA 也被扩出来。</p>
           <p>所以看到“非特异性条带”，优先判断为引物特异性问题或条件让引物乱贴。循环数少、模板量少、Taq 酶活性不足更像“扩不够”，通常表现为条带弱或无带。</p>
+          <p>判断顺序可以固定成三问：第一，目标大小位置有没有清楚条带；第二，目标带之外有没有额外条带；第三，对照泳道是否干净。三问分别对应“扩增成功、特异性、污染”。</p>
         </div>
         </div>
         <figure class="figure-card">
-          <img src="assets/images/openstax-gel-only.webp" alt="DNA 凝胶电泳条带照片">
-          <figcaption>Marker 用来判断片段大小；样品带的位置和数量用来判断结果。</figcaption>
+          <img src="assets/images/wikimedia-unspecific-pcr.jpg" alt="非特异性 PCR 产物琼脂糖凝胶电泳照片">
+          <figcaption>这类多条额外带就是“非特异性扩增”的典型视觉结果。</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>怎么减少非特异性条带</h2>
+        <p>题目问“如何优化 PCR”，可以按这几类写。</p>
+      </div>
+      <div class="table">
+        <div class="row"><b>提高退火温度</b><span>让不完全互补的错误结合更难稳定，常用于减少杂带。</span></div>
+        <div class="row"><b>优化引物设计</b><span>避免引物与目标外序列互补，避免引物之间互补形成二聚体。</span></div>
+        <div class="row"><b>使用 Hot-start 酶</b><span>低温配液阶段先不让聚合酶工作，减少提前错误延伸。</span></div>
+        <div class="row"><b>调整 Mg2+ 浓度</b><span>Mg2+ 过高可能稳定错配，过低又会降低酶活，需要平衡。</span></div>
+        <div class="row"><b>减少过量循环</b><span>循环过多会放大微弱副产物；循环过少则主要表现为弱带。</span></div>
+        <div class="row"><b>设置对照</b><span>阴性对照查污染，阳性对照查体系；必要时测序确认目标带。</span></div>
       </div>
     </section>
 
@@ -652,6 +752,21 @@
         <div class="row"><b>5'→3' 合成</b><span>新链只能从引物 3' 端继续加核苷酸。</span></div>
         <div class="row"><b>阴性对照出现条带</b><span>污染或假阳性。</span></div>
         <div class="row"><b>Ct 值小</b><span>qPCR 中初始模板量更多。</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>普通 PCR、RT-PCR、qPCR 别混</h2>
+        <p>名字相似，但题目考点完全不同。</p>
+      </div>
+      <div class="table">
+        <div class="row"><b>普通 PCR</b><span>模板是 DNA，结果常用凝胶电泳看条带大小和数量。</span></div>
+        <div class="row"><b>RT-PCR</b><span>RT 是逆转录。先把 RNA 反转录成 cDNA，再扩增 cDNA。</span></div>
+        <div class="row"><b>qPCR</b><span>实时检测扩增荧光，Ct 值越小通常说明初始模板越多。</span></div>
+        <div class="row"><b>RT-qPCR</b><span>先逆转录，再实时定量，常用于比较基因表达量或检测 RNA 病毒。</span></div>
+        <div class="row"><b>电泳条带</b><span>判断大小、数量、污染和非特异性扩增。</span></div>
+        <div class="row"><b>熔解曲线</b><span>qPCR 中用于辅助判断产物是否单一；多个峰常提示非特异产物或二聚体。</span></div>
       </div>
     </section>
 
@@ -700,6 +815,12 @@
         <details><summary>22. Mg2+ 为什么会影响 PCR？</summary><div class="answer"><p>Mg2+ 是 DNA 聚合酶工作所需的重要离子，也会影响引物与模板结合的稳定性。Mg2+ 太少，聚合酶活性不足，产物少；Mg2+ 太多，错配结合更容易稳定，可能增加非特异性扩增。</p><p>因此 Mg2+ 既影响产量，也影响特异性。题目如果问优化 PCR 条件，Mg2+ 浓度常常是需要调整的因素之一。</p><p class="exam">记忆：Mg2+ 不合适会影响 PCR 效率、特异性和保真度。</p></div></details>
         <details><summary>23. Hot-start PCR 解决什么问题？</summary><div class="answer"><p>普通 PCR 在配反应体系或升温前，反应液可能处在较低温度。这个阶段引物容易非特异性结合，聚合酶如果已经有活性，就可能提前延伸，产生杂带或引物二聚体。</p><p>Hot-start PCR 让聚合酶在高温激活前保持不工作，等真正进入 PCR 程序后再开始延伸，从而减少低温阶段的错误扩增。</p><p class="exam">题目判断：Hot-start 主要提高 PCR 特异性，减少非特异性扩增和引物二聚体。</p></div></details>
         <details><summary>24. PCR 结果只有一条带就一定正确吗？</summary><div class="answer"><p>不一定。只有一条带只能说明产物比较单一，不能自动证明它就是目标片段。还要看条带大小是否与预期一致，必要时需要测序、酶切验证或与阳性对照比较。</p><p>反过来，如果条带大小正确但阴性对照也有带，也不能认为结果可靠，因为存在污染可能。</p><p class="exam">答题句式：PCR 结果判断要同时看条带数量、条带大小和对照结果。</p></div></details>
+        <details><summary>25. 反应体系缺少某个成分会怎样？</summary><div class="answer"><p>可以按“缺什么，坏哪一步”来判断。缺模板，没有可复制对象；缺引物，聚合酶没有起点，也没有扩增边界；缺 dNTP，没有合成新链的原料；缺耐热 DNA 聚合酶，延伸不能进行；Mg2+ 或缓冲体系不合适，酶活和退火稳定性都会受影响。</p><p class="exam">答题句式：PCR 体系包括模板 DNA、引物、dNTP、耐热 DNA 聚合酶和适宜缓冲体系，缺少关键成分会导致扩增失败或效率下降。</p></div></details>
+        <details><summary>26. 为什么 PCR 需要耐热 DNA 聚合酶？</summary><div class="answer"><p>PCR 每轮都要经历高温变性，温度常在 95°C 左右。如果使用普通 DNA 聚合酶，酶会在高温下变性失活，后续循环无法继续延伸。Taq 酶来自嗜热微生物，能承受多轮高温，所以适合 PCR。</p><p class="exam">卷面关键词：高温变性、普通酶失活、耐热聚合酶保证多轮循环。</p></div></details>
+        <details><summary>27. 怎样区分污染和非特异性扩增？</summary><div class="answer"><p>污染要看阴性对照。阴性对照不加模板，如果它也有条带，就说明体系中可能混入了外源 DNA。非特异性扩增则更强调样品泳道里目标带之外出现额外带，原因常是引物贴到目标外位置或退火条件不合适。</p><ul><li>阴性对照有带：优先判污染。</li><li>样品多条杂带，阴性对照干净：优先判非特异性扩增。</li><li>只有目标带弱：优先判产量不足。</li></ul><p class="exam">答题句式：污染看对照，非特异性看额外产物，产量不足看目标带强弱。</p></div></details>
+        <details><summary>28. PCR 产物用于克隆时，引物 5' 端为什么能加限制酶位点？</summary><div class="answer"><p>引物真正负责与模板稳定配对的是靠近 3' 端的互补区。5' 端可以带上一段额外序列，例如限制酶识别位点、保护碱基或同源臂。第一轮扩增时，5' 端额外序列会被带入新链；后续循环中，这些序列就成为模板的一部分。</p><p class="exam">答题句式：可在引物 5' 端添加限制酶位点，使 PCR 产物获得与载体连接所需的黏性末端或克隆接口。</p></div></details>
+        <details><summary>29. qPCR 熔解曲线为什么能提示杂产物？</summary><div class="answer"><p>不同长度和序列的双链 DNA 熔解温度不同。qPCR 结束后升温检测荧光变化，如果只有一种主要产物，熔解曲线通常表现为单一主峰；如果出现多个峰，说明体系里可能有不同产物，例如非特异性扩增产物或引物二聚体。</p><p class="exam">题目判断：熔解曲线单峰支持产物较单一；多峰提示非特异性产物或引物二聚体，需要进一步验证。</p></div></details>
+        <details><summary>30. 问“如何提高 PCR 特异性”怎么组织答案？</summary><div class="answer"><p>这类题不要只写一个措施，按“引物、温度、酶、体系、对照”组织最稳。可以写：重新设计特异性更高的引物；适当提高或梯度优化退火温度；使用 Hot-start DNA 聚合酶；优化 Mg2+ 浓度和模板量；设置阴性、阳性对照并用电泳或测序确认产物。</p><p class="exam">高分句式：通过优化引物设计和退火条件，提高引物与目标序列结合的专一性，从而减少非特异性扩增和引物二聚体。</p></div></details>
       </div>
     </section>
 
@@ -707,7 +828,8 @@
       <h2>资料依据</h2>
       <p>机制与温度循环参考 <a href="https://www.ncbi.nlm.nih.gov/books/NBK589663/">NCBI Bookshelf: Polymerase Chain Reaction</a> 与 <a href="https://openstax.org/books/biology-2e/pages/17-1-biotechnology">OpenStax Biology 2e</a>。</p>
       <p>非特异性扩增、无带、弱带和退火温度判断参考 <a href="https://www.neb.com/en-gb/tools-and-resources/troubleshooting-guides/pcr-troubleshooting-guide">NEB PCR Troubleshooting Guide</a> 与 <a href="https://www.thermofisher.com/us/en/home/life-science/cloning/cloning-learning-center/invitrogen-school-of-molecular-biology/pcr-education/pcr-reagents-enzymes/pcr-troubleshooting.html">Thermo Fisher PCR Troubleshooting Guide</a>。</p>
-      <p>本页图片继续使用 OpenStax 与 Wikimedia 的现成开放教育图，不新增手绘科学图。</p>
+      <p>新增实物图来自 <a href="https://commons.wikimedia.org/wiki/File:PCR_machine.jpg">Wikimedia Commons: PCR machine.jpg</a>；新增杂带图来自 <a href="https://commons.wikimedia.org/wiki/File:Unspecific_pcr.jpg">Wikimedia Commons: Unspecific pcr.jpg</a>。</p>
+      <p>本页图片使用 OpenStax 与 Wikimedia Commons 的现成开放教育图，包括热循环仪照片和非特异性 PCR 电泳照片，不新增手绘科学图。</p>
     </section>
 
     <footer>欣容的学习日记 · PCR 全知识点与题库</footer>

@@ -434,6 +434,21 @@
       </div>
     </section>
 
+    <section>
+      <div class="section-head">
+        <h2>先把题干翻译成人话</h2>
+        <p>这类合成生物学题，先翻译再看图。</p>
+      </div>
+      <div class="answer-grid">
+        <div class="answer-card"><span class="badge">背景</span><b>要监测什么</b><p>肠道吸收不良时，肠腔内渗透压会升高；题目要做一个能报告渗透压变化的活菌传感器。</p></div>
+        <div class="answer-card"><span class="badge">材料</span><b>为什么用拟杆菌</b><p>拟杆菌是肠道菌群核心成员，可以长期定植，更适合作为肠道环境的“驻留式传感器”。</p></div>
+        <div class="answer-card"><span class="badge">筛选</span><b>为什么看上调基因</b><p>某基因在高渗透压下上调，说明它前面的启动子可能能感受高渗透压。</p></div>
+        <div class="answer-card"><span class="badge">排除</span><b>为什么排除重叠区</b><p>如果同一个基因也被温度、H2O2 或 pH 激活，它就不能特异代表渗透压。</p></div>
+        <div class="answer-card"><span class="badge">输出</span><b>为什么用 GFP/RFP</b><p>荧光蛋白把看不见的转录变化变成可测荧光强度。</p></div>
+        <div class="answer-card"><span class="badge">对照</span><b>为什么必须有对照</b><p>对照组用来证明荧光变化来自传感线路，而不是菌量、培养状态或检测误差。</p></div>
+      </div>
+    </section>
+
     <section class="chapter">
       <div class="chapter-text">
         <p class="kicker">图 1</p>
@@ -449,6 +464,21 @@
         <b>第（1）问答案</b>
         <p>需要从 <b>155</b> 个基因中筛选目的基因，再找到这些基因对应的内源启动子作为候选启动子。</p>
         <p>答题关键词：特异性、渗透压单独上调、避免其他应激干扰。</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>图 1 的数字为什么只选 155</h2>
+        <p>不是“哪个数字大选哪个”，而是看是否只属于渗透压。</p>
+      </div>
+      <div class="table" aria-label="图1数字排除逻辑">
+        <div class="head">区域类型</div><div class="head">能不能选</div><div class="head">理由</div>
+        <div>只在渗透压椭圆内</div><div>选 155</div><div>只对渗透压上调，特异性最好。</div>
+        <div>渗透压与温度重叠</div><div>不选</div><div>温度变化也会启动表达，容易误报。</div>
+        <div>渗透压与 H2O2 重叠</div><div>不选</div><div>氧化应激也能影响表达，不够专一。</div>
+        <div>渗透压与 pH 重叠</div><div>不选</div><div>酸碱变化会干扰渗透压判断。</div>
+        <div>多个条件共同重叠</div><div>不选</div><div>这类基因更像一般应激反应，不适合做专一传感器。</div>
       </div>
     </section>
 
@@ -469,6 +499,21 @@
       </div>
     </section>
 
+    <section>
+      <div class="section-head">
+        <h2>方案二每个元件在干什么</h2>
+        <p>把图 2 当成一条调控链，而不是几个方框。</p>
+      </div>
+      <div class="answer-grid">
+        <div class="answer-card"><span class="badge">输入端</span><b>候选启动子</b><p>接受渗透压信号。高渗透压时，它的转录活性上升。</p></div>
+        <div class="answer-card"><span class="badge">转换器</span><b>阻遏蛋白基因</b><p>候选启动子不直接带 GFP，而是先让阻遏蛋白表达出来。</p></div>
+        <div class="answer-card"><span class="badge">开关</span><b>X 启动子</b><p>正常驱动 GFP；一旦被阻遏蛋白结合，转录就被压低。</p></div>
+        <div class="answer-card"><span class="badge">读数</span><b>GFP 基因</b><p>绿色荧光强弱代表 X 启动子是否被抑制，不是代表候选启动子直接变强。</p></div>
+        <div class="answer-card"><span class="badge">内参</span><b>组成型启动子 + RFP</b><p>不随渗透压明显改变，用来校正菌量和检测条件。</p></div>
+        <div class="answer-card"><span class="badge">终止</span><b>终止子</b><p>让转录在该停的位置停止，避免读穿影响后面的基因。</p></div>
+      </div>
+    </section>
+
     <section class="chapter">
       <div class="chapter-text">
         <p class="kicker">方案二</p>
@@ -483,6 +528,24 @@
       <div class="note-box">
         <h3>这就是提高灵敏度的关键</h3>
         <p>候选启动子即使只产生微量阻遏蛋白，也能明显压低 X 启动子的转录活性。这样弱小的环境响应被转化成明显的 GFP 下降，检测差异就被放大了。</p>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-text">
+        <p class="kicker">判图逻辑</p>
+        <h2>为什么它叫“反向输出”</h2>
+        <p>很多人会本能地以为“刺激越强，GFP 越强”。但方案二中，高渗透压增强的是候选启动子，候选启动子增强后产生更多阻遏蛋白，而阻遏蛋白的作用是关闭 X 启动子，所以最终 GFP 下降。</p>
+        <div class="flow">
+          <div class="flow-row"><b>高渗透压</b><span>候选启动子活性升高。</span></div>
+          <div class="flow-row"><b>阻遏蛋白</b><span>表达量上升，并结合 X 启动子。</span></div>
+          <div class="flow-row"><b>X 启动子</b><span>被抑制，驱动 GFP 的能力下降。</span></div>
+          <div class="flow-row"><b>最终读数</b><span>GFP 低，RFP 稳定；这才说明渗透压传感线路有效。</span></div>
+        </div>
+      </div>
+      <div class="final-answer">
+        <b>一句话写法</b>
+        <p>高渗透压通过候选启动子诱导阻遏蛋白表达，阻遏蛋白抑制 X 启动子，从而使 GFP 表达降低；RFP 由组成型启动子控制，用作内参。</p>
       </div>
     </section>
 
@@ -515,6 +578,19 @@
         <div class="answer-card"><span class="badge">④</span><b>RFP 模块作用</b><p>组成型启动子驱动 RFP 稳定表达，作为内参，校正菌量、活性和检测误差。</p></div>
         <div class="answer-card"><span class="badge">易错</span><b>GFP 不是越高越高渗</b><p>在方案二中，高渗透压让阻遏蛋白增加，所以 GFP 反而下降。</p></div>
         <div class="answer-card"><span class="badge">答题</span><b>一定写“特异性”</b><p>图 1 选 155 的关键不是数字本身，而是“只对渗透压响应，排除其他应激”。</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>卷面怎么组织才像标准答案</h2>
+        <p>按“对象—机制—结果—排除干扰”写。</p>
+      </div>
+      <div class="flow">
+        <div class="flow-row"><b>先写对象</b><span>选择只在高渗透压下特异性上调的基因，对应启动子作为候选启动子。</span></div>
+        <div class="flow-row"><b>再写机制</b><span>候选启动子驱动阻遏蛋白，阻遏蛋白抑制 X 启动子控制的 GFP。</span></div>
+        <div class="flow-row"><b>再写结果</b><span>高渗透压下实验组 GFP 下降，RFP 不变。</span></div>
+        <div class="flow-row"><b>最后排除</b><span>RFP 稳定说明不是菌量减少或检测误差；对照组不响应说明变化依赖候选启动子。</span></div>
       </div>
     </section>
 
